@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Epic Riff Contest</title>
+</head>
+<body"> 
+    <div id="container">
+    <header id="epicRiffHeader">
+        <div>
+            <img src="logo.png" alt="Stagetrack Studio" id="logo">
+        </div>
+        <div id="session">
+            <input type="image" src="sessionLeave.png" class="session" alt="Leave Session">
+            <input type="image" src="sessionPause.png" class="session" alt="Pause Session">
+            <input type="image" src="sessionStart.png" class="session" alt="Start Session">
+        </div>
+        <div id="headerBandContainer">
+            <div id="epicRiffContestTitle">Epic Riff Contest</div>
+        </div>
+    </header>
+    <div id="epicRiffContentContainer">
+        <div id="epicRiffContentLeft">
+            <img src="vidPlaceholder.png" class="vidCaptureEpicRiff">
+            <div id="epicRiffTimeSigSelect">
+                <button>Select</button>
+                <button>2/4</button>
+                <button>4/4</button>
+                <button>8/4</button>
+                <button>Browse</button>
+            </div>
+            <button id="epicRiffFollowTrack">Start Follow Track</button>
+        </div>
+        <div id="epicRiffContentRight">
+            <div id="epicRiffContentRightUpper">
+                <div id="epicRiffContentUpperInner">
+                    <div id="epicRiffTracksContainerNew">
+                        <div class="epicRiffTracksNew">
+                               <div class="epicRiffTrackLabelsNew">
+                                   <div class="epicRiffTrackLabelNewTrackName">Follow Track</div>
+                                   <div class="trackLabelNewMContainer">
+                                       <button class="trackLabelMBtn">M</button>
+                                       <button class="trackLabelDeleteBtn">Delete</button>
+                                   </div>
+                                   <div class="trackLabelNewSContainer">
+                                       <button class="trackLabelSBtn">S</button>
+                                       <button class="trackLabelNotesBtn">Notes</button>
+                                   </div>
+                               </div>
+                               <div class="trackLineNumbersNew">
+                                   <div class="trackLineNumNew">1.0</div>
+                                   <div class="trackLineNumNew">0.5</div>
+                                   <div class="trackLineNumNew">0.0</div>
+                                   <div class="trackLineNumNew">-0.5</div>
+                                   <div class="trackLineNumNew">-1.0</div>
+                               </div>
+                               <div class="trackLinesNew">
+                   <!-- Do NOT delete the letter 'a' below. It is used for styling purposes. -->
+                   <!-- It is hidden. You can append text or numbers to it. -->                
+                                   <div class="epicRiffTrackLineSingleNew">a</div>
+                                   <div class="epicRiffTrackLineSingleNew">a</div>
+                                   <div class="epicRiffTrackLineSingleNew">a</div>
+                                   <div class="epicRiffTrackLineSingleNew">a</div>
+                                   <div class="epicRiffTrackLineSingleNew">a</div>
+                               </div>     
+                           </div>
+                           <div class="epicRiffTracksNew">
+                               <div class="epicRiffTrackLabelsNew">
+                                   <div class="epicRiffTrackLabelNewTrackName">#1 - [Name]</div>
+                                   <div class="trackLabelNewMContainer">
+                                       <button class="trackLabelMBtn">M</button>
+                                       <button class="trackLabelDeleteBtn">Delete</button>
+                                   </div>
+                                   <div class="trackLabelNewSContainer">
+                                       <button class="trackLabelSBtn">S</button>
+                                       <button class="trackLabelNotesBtn">Notes</button>
+                                   </div>
+                               </div>
+                               <div class="trackLineNumbersNew">
+                                   <div class="trackLineNumNew">1.0</div>
+                                   <div class="trackLineNumNew">0.5</div>
+                                   <div class="trackLineNumNew">0.0</div>
+                                   <div class="trackLineNumNew">-0.5</div>
+                                   <div class="trackLineNumNew">-1.0</div>
+                               </div>
+                               <div class="trackLinesNew">
+                   <!-- Do NOT delete the letter 'a' below. It is used for styling purposes. -->
+                   <!-- It is hidden. You can append text or numbers to it. -->                
+                                   <div class="epicRiffTrackLineSingleNew">a</div>
+                                   <div class="epicRiffTrackLineSingleNew">a</div>
+                                   <div class="epicRiffTrackLineSingleNew">a</div>
+                                   <div class="epicRiffTrackLineSingleNew">a</div>
+                                   <div class="epicRiffTrackLineSingleNew">a</div>
+                               </div>     
+                           </div>
+                        </div>
+                        <div id="epicRiffControlsContainer">
+                            <input type="image" src="newMainBtn1.png">
+                            <input type="image" src="newMainBtn2.png">
+                            <input type="image" src="newMainBtn3.png">
+                            <input type="image" src="newMainBtn4.png">
+                            <input type="image" src="newMainBtn5.png">
+                            <input type="image" src="newMainBtn6.png">
+                            <input type="image" src="newMainBtn7.png">
+                            <input type="image" src="newMainBtn8.png">
+                        </div>
+                </div>
+            </div>
+            <div id="epicRiffContentRightLower">
+                <button>Start Recording</button>
+                <button class="epicRiffSkewed">Save</button>
+                <button>Contest Info</button>
+            </div>
+        </div>
+    </div>
+   
+
+
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

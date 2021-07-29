@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Vid Website</title>
+</head>
+<body> <!--moved entire div class="navDelete"-->
+
+    <div id="container">
+    <header>
+        <img src="logo.png" alt="Stagetrack Studio" id="logo">
+        <div id="session">
+            <input type="image" src="sessionLeave.png" class="session" alt="Leave Session">
+            <input type="image" src="sessionPause.png" class="session" alt="Pause Session">
+            <input type="image" src="sessionStart.png" class="session" alt="Start Session">
+        </div>
+        <div id="bandName">The Purple Potatoes</div>
+    </header>
+<!--new content-->
+     <div id="contentContainer">  
+
+        <aside id="nav_side">
+            <div id="mySidepanel" class="sidepanel">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#" onclick="openLeftMenuOptions(3)">Admin</a>
+                <a href="#" onclick="openLeftMenuOptions(2)">Notes</a>
+                <a href="#" onclick="openLeftMenuOptions(1)">Resource Library</a>
+                <a href="#" onclick="openLeftMenuOptions(0)">Song Library</a>
+                <a href="#" onclick="openLeftMenuOptions(4)">Profile</a>
+<!-- 10/11/2020 <a href="#" onclick="openProfile()">Profile</a>  -->
+                <a href="bandLogin.html">Band</a>
+                <a href="actorLogin.html">Actor</a>
+                <a href="register.html">Register</a>
+                <a href="vid website.7z" download>Files</a>
+                <a href="splashPage.html">Splash</a>
+                <a href="vendorShowcase.html">Vendor</a>
+                <a href="store.html">Store</a>
+                <!--end of new content-->
+   
+            </div>
+              
+              <button class="openbtn" id="openbtn" onclick="openNav()">&#9776;</button>
+    
+        </aside>
+
+           <!--new code-->
+                <!--Song Library-->
+            <div class="leftSideMenuChoiceSelected">
+            <a href="javascript:void(0)" class="closeLeftMenuOption" onclick="closeLeftMenuOptions()">&times;</a>
+                <div class="lSMCSTitleContainer">
+                    <div class="lSMCSTitle">Song Library</div>
+                    <div class="arrow-down"></div>
+                </div>
+           
+                    <div class="lSMCSNameContainer">
+                        <div class="lSMCSLastName">[Last Name],</div>
+                        <div class="lSMCSFirstName">[First Name]</div>
+                    </div>
+                    <div class="lSMCSTime">
+                        <p>200828-3:41PM</p>
+                        <div class="editSelectBtns"> 
+<!--edit removed-->    <!-- <a href="#">Edit</a>  -->
+                            <a href="#">Select</a>
+                        </div>
+                    </div>
+                    <div class="lSMCSSongName">
+                        <p>You Wreck Me</p> 
+                        <div class="editSelectBtns"> 
+<!--edit removed-->    <!-- <a href="#">Edit</a>  -->
+                            <a href="#" class="redColorText">Select</a>
+                        </div>
+                    </div>
+           
+                    <div class="lSMCSNameContainer">
+                        <div class="lSMCSBandName">[Band Name]</div>
+                    </div>
+                    <div class="lSMCSTime">
+                        <p>200828-4:31PM</p>
+                        <div class="editSelectBtns"> 
+<!--edit removed-->    <!-- <a href="#">Edit</a>  -->
+                            <a href="#">Select</a>
+                        </div>
+                    </div>
+                    <div class="lSMCSSongName">
+                        <p>Won't Back Down</p> 
+                        <div class="editSelectBtns"> 
+<!--edit removed-->    <!-- <a href="#">Edit</a>  -->
+                            <a href="#" class="redColorText">Select</a>
+                        </div>
+                    </div>
+           
+                    <div class="lSMCSNameContainer">
+                        <div class="lSMCSBandName">[Band Name], </div>
+                    </div>
+                    <div class="lSMCSTime">
+                        <p>200828-3:41PM</p>
+                        <div class="editSelectBtns"> 
+<!--edit removed-->    <!-- <a href="#">Edit</a>  -->
+                            <a href="#">Select</a>
+                        </div>
+                    </div>
+                    <div class="lSMCSSongName">
+                        <p>Wildflowers</p> 
+                        <div class="editSelectBtns"> 
+<!--edit removed-->    <!-- <a href="#">Edit</a>  -->
+                            <a href="#" class="redColorText">Select</a>
+                        </div>
+                    </div>
+                
+            </div>
+        
+                <!--Resource Library-->
+                <div class="leftSideMenuChoiceSelected">
+                <a href="javascript:void(0)" class="closeLeftMenuOption" onclick="closeLeftMenuOptions()">&times;</a>
+                    <div class="lSMCSTitleContainer">
+                        <div class="lSMCSTitle">Resource Library</div>
+                        <div class="arrow-down"></div>
+                    </div>
+           
+                        <div class="lSMCSNameContainer">
+                            <div class="lSMCSLastName">[Last Name], </div>
+                            <div class="lSMCSFirstName">[First Name]</div>
+                        </div>
+                        <div class="lSMCSTime">
+                            <p>Chord Sheet</p>
+                            <div class="editSelectBtns"> 
+<!--edit removed-->    <!-- <a href="#">Edit</a>  -->
+                                <a href="#">Select</a>
+                            </div>
+                        </div>
+                        <div class="lSMCSSongName">
+                            <p>You Wreck Me-Lyrics</p> 
+                            <div class="editSelectBtns"> 
+<!--edit removed-->    <!-- <a href="#">Edit</a>  -->
+                                <a href="#" class="redColorText">Select</a>
+                            </div>
+                        </div>
+           
+                        <div class="lSMCSNameContainer">
+                            <div class="lSMCSBandName">[Band Name]</div>
+                        </div>
+                        <div class="lSMCSTime">
+                            <p>Exercise Sheet</p>
+                            <div class="editSelectBtns"> 
+<!--edit removed-->    <!-- <a href="#">Edit</a>  -->
+                                <a href="#">Select</a>
+                            </div>
+                        </div>
+                        <div class="lSMCSSongName">
+                            <p>Receipt-Guitar</p> 
+                            <div class="editSelectBtns"> 
+<!--edit removed-->    <!-- <a href="#">Edit</a>  -->
+                                <a href="#" class="redColorText">Select</a>
+                            </div>
+                        </div>
+                                            
+                </div>
+
+                <!--Notes-->
+                <div class="leftSideMenuChoiceSelected">
+                <a href="javascript:void(0)" class="closeLeftMenuOption" onclick="closeLeftMenuOptions()">&times;</a>
+                    <div class="lSMCSTitleContainer">
+                        <div class="lSMCSTitle">Notes</div>
+                        <div class="arrow-down"></div>
+                    </div>
+                        <div class="lSMCSNameContainer">
+                            <div class="lSMCSLastName">08/28/20 - [Topic]</div>
+                        </div>
+                        <div class="lSMCSNotes">
+                            <p>Note note note note note</p>
+                        </div>
+                        <div class="lSMCSNameContainer">
+                            <div class="lSMCSLastName">08/29/20 - [Topic]</div>
+                        </div>
+                        <div class="lSMCSNotes">
+                            <p>Note note note note note note</p>
+                        </div>
+                        
+                </div>
+
+                <!--Admin-->
+                <div class="leftSideMenuChoiceSelected">
+                    <a href="javascript:void(0)" class="closeLeftMenuOption" onclick="closeLeftMenuOptions()">&times;</a>
+                    <div class="lSMCSTitleContainer">
+                        <div class="lSMCSTitle">Admin</div>
+                        <div class="arrow-down"></div>
+                    </div>
+                    <div class="adminHideOptionsTitle">
+                        <p class="redColorText">Hide</p>
+                    </div>
+                    <div class="adminHideActualOptions">
+                        <div>
+                            <input type="checkbox" name="" id="">
+                            <label for="">Band Name</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="" id="">
+                            <label for="">Chat box</label>
+                        </div>                        
+                        <div>
+                            <input type="checkbox" name="" id="">
+                            <label for="">Scrolling Banner</label>
+                        </div>
+                    </div>
+                    <div class="adminSetupOptions">
+                        <a href="#" class="redColorText">Set-up Band/Musician Profile</a>
+                        <a href="#" class="redColorText">Set-up Recurring Practice</a>
+                    </div>    
+                </div>
+
+        <!--10/02/2020 code-->
+            <!--Profile page-->
+            <div class="leftSideMenuChoiceSelected">
+                <a href="javascript:void(0)" class="closeLeftMenuOption" onclick="closeLeftMenuOptions()">&times;</a>
+                    <div id="profileTitleContainer">
+                        <h6>Account Owner</h6>
+                        <div id="actualProfileOwner">Richard Kagan</div>
+                    </div>
+                    <div id="bandsILeadContainer">
+                          Bands I Lead
+                            <button type="button" data-toggle="collapse" data-target="#bandsILead" aria-expanded="false" aria-controls="bandsILead" class="bandsILeadBtn">
+                              +
+                            </button>
+                          
+                          
+                    </div>
+                    <div class="collapse" id="bandsILead">
+                            <div id="profileAddBandContainer">
+                                <div id="profileAddBandTitle">Add/ Edit Band</div>
+                                <form id="profileAddBandForm">
+                                    <input type="text" name="" id="" placeholder="Name">
+                                    <input type="text" name="" id="" placeholder="City">
+                                    <input type="text" name="" id="" placeholder="State">
+                                    <input type="text" name="" id="" placeholder="ZIP">
+                                    <input type="text" name="" id="" placeholder="Band Website">
+                                    <input type="text" name="" id="" placeholder="Date Established">
+                                </form>
+                                <div id="profileAddBandToDirectory">
+                                    <input type="checkbox" name="" id="">
+                                    <p>Add band to directory</p>
+                                </div>
+                                <button id="addBandSaveBtn">Save</button>
+                            </div>
+                            
+                            <div id="bandsILeadMembersList">
+                                <h5>Band Members</h5>
+                                <select name="" id="" size="4">
+                                    <option value="">Jack</option>
+                                    <option value="">John</option>
+                                    <option value="">Jim</option>
+                                    <option value="">Jill</option>
+                                    <option value="">Jill's sister</option>
+                                    <option value="">Jill's cousin</option>
+                                  </select>
+                                  <div id="addDeleteBandMember">
+                                    <input type="text" placeholder="Add name">
+                                    <button id="addBandMemberSave">Add</button>
+                                    <button id="bandsILeadListDelete">Delete</button>
+                                </div>
+                            </div>
+                        
+                      </div>
+
+                      <div id="bandsILeadList">
+                        
+                            <button type="button" data-toggle="collapse" data-target="#bandsILead01" aria-expanded="false" aria-controls="bandsILead01" class="bandsILeadBtn">
+                              + Black Label Society
+                            </button>
+                        
+                          <div class="collapse" id="bandsILead01">
+                            <div>
+                                <table class="bandsILeadTable">
+                                    <tr>
+                                        <td></td>
+                                        <td><button>Invite All</button></td>
+                                        <td><button>Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Johnston</td>
+                                        <td><button>Invite</button></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jill</td>
+                                        <td><button>Invite</button></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jack</td>
+                                        <td><button>Invite</button></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+                          </div>
+                          <button type="button" data-toggle="collapse" data-target="#bandsILead02" aria-expanded="false" aria-controls="bandsILead02" class="bandsILeadBtn">
+                            + Guns'n'Roses
+                          </button>
+                      
+                        <div class="collapse" id="bandsILead02">
+                          <div>
+                              <table class="bandsILeadTable">
+                                  <tr>
+                                      <td></td>
+                                      <td><button>Invite All</button></td>
+                                      <td><button>Edit</button></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Slash</td>
+                                      <td><button>Invite</button></td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Axl</td>
+                                      <td><button>Invite</button></td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Others</td>
+                                      <td><button>Invite</button></td>
+                                      <td></td>
+                                  </tr>
+                              </table>
+                          </div>
+                        </div>
+                        <button type="button" data-toggle="collapse" data-target="#bandsILead03" aria-expanded="false" aria-controls="bandsILead03" class="bandsILeadBtn">
+                            + Metallica
+                          </button>
+                      
+                        <div class="collapse" id="bandsILead03">
+                          <div>
+                              <table class="bandsILeadTable">
+                                  <tr>
+                                      <td></td>
+                                      <td><button>Invite All</button></td>
+                                      <td><button>Edit</button></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Jack</td>
+                                      <td><button>Invite</button></td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Daniel</td>
+                                      <td><button>Invite</button></td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Jessica</td>
+                                      <td><button>Invite</button></td>
+                                      <td></td>
+                                  </tr>
+                              </table>
+                          </div>
+                        </div>
+
+                    </div>
+
+                    <div id="bandsIBelongToTitle">Bands I Belong To</div>
+
+                    <div id="bandsIBelongToList">
+                        
+                        <button type="button" data-toggle="collapse" data-target="#bandsIBelongTo01" aria-expanded="false" aria-controls="bandsIBelongTo01" class="bandsILeadBtn">
+                          + Simpsons
+                        </button>
+                    
+                      <div class="collapse" id="bandsIBelongTo01">
+                        <div>
+                            <table class="bandsILeadTable">
+                                <tr>
+                                    <td></td>
+                                    <td><button>Invite All</button></td>
+                                    <td><button>Leave</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Bart</td>
+                                    <td><button>Invite</button></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Lisa</td>
+                                    <td><button>Invite</button></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Homer</td>
+                                    <td><button>Invite</button></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                      </div>
+                      <button type="button" data-toggle="collapse" data-target="#bandsIBelongTo02" aria-expanded="false" aria-controls="bandsIBelongTo02" class="bandsILeadBtn">
+                        + Family Guy
+                      </button>
+                  
+                    <div class="collapse" id="bandsIBelongTo02">
+                      <div>
+                          <table class="bandsILeadTable">
+                              <tr>
+                                  <td></td>
+                                  <td><button>Invite All</button></td>
+                                  <td><button>Leave</button></td>
+                              </tr>
+                              <tr>
+                                  <td>Brian</td>
+                                  <td><button>Invite</button></td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td>Stewie</td>
+                                  <td><button>Invite</button></td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td>Louis</td>
+                                  <td><button>Invite</button></td>
+                                  <td></td>
+                              </tr>
+                          </table>
+                      </div>
+                    </div>
+                    <button type="button" data-toggle="collapse" data-target="#bandsIBelongTo03" aria-expanded="false" aria-controls="bandsIBelongTo03" class="bandsILeadBtn">
+                        + South Park
+                      </button>
+                  
+                    <div class="collapse" id="bandsIBelongTo03">
+                      <div>
+                          <table class="bandsILeadTable">
+                              <tr>
+                                  <td></td>
+                                  <td><button>Invite All</button></td>
+                                  <td><button>Leave</button></td>
+                              </tr>
+                              <tr>
+                                  <td>Cartman</td>
+                                  <td><button>Invite</button></td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td>Kenny</td>
+                                  <td><button>Invite</button></td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td>Stan</td>
+                                  <td><button>Invite</button></td>
+                                  <td></td>
+                              </tr>
+                          </table>
+                      </div>
+                    </div>
+
+                </div>
+                <div id="bandsSendInviteTitle">Send Invite</div>
+                <div id="bandsSendInviteContent">
+                    <input type="text" placeholder="Send email or text">
+                    <button type="submit">Send</button>
+                </div>
+    <!--                 <div class="profileContainer">
+                            <div class="profileAccountOwner">Bands that I lead</div>
+                            <button class="profileAccountInfoDisplay" onclick="profileAddBand()">+</button>
+                        </div>
+                        <div class="profileContainer">
+                            <div class="profileAccountOwner">Bands that I belong to</div>
+                            <button class="profileAccountInfoDisplay" onclick="profileAddBand()">+</button>
+                        </div>
+    -->         </div>
+                
+
+            <!--end of 10/02/2020 code-->
+
+
+
+
+<!--end of new code-->
+            
+     <main>
+<!--this section hidden for now         
+        <div class="scroll-left">
+            <p>Hey! We're pretty awesome!! :)</p>
+        </div>              
+-->
+        <div class="mainTop">
+            
+
+            <div id="stageContainer">
+                <div id="overlay"></div>
+                    <video id="character0301" class="item one">
+                    <source src="Project2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>    
+                    <video id="character0302" class="item two">
+                        <source src="Project2.mp4" type="video/mp4">
+                    </video>
+                    <video id="character0303" class="item three">
+                        <source src="Project2.mp4" type="video/mp4">
+                    </video>
+                    <video id="character0304" class="item four">
+                        <source src="Project2.mp4" type="video/mp4">
+                    </video>
+                    <video id="character0305" class="item five">
+                        <source src="Project2.mp4" type="video/mp4">
+                    </video>
+                    <video id="character0306" class="item six">
+                        <source src="Project2.mp4" type="video/mp4">
+                    </video>
+                    <video id="character0307" class="item seven">
+                        <source src="Project2.mp4" type="video/mp4">
+                    </video>
+            </div>
+         
+<div id="twoGuests">
+    <div id="twoGuestsUpper">
+        
+        <div id="temporaryChatBoxControls">
+            <button onclick="tempChatBox(1)">1</button>
+            <button onclick="tempChatBox(2)">2</button>
+            <button onclick="tempChatBox(3)">3</button>
+            <button onclick="tempChatBox(4)">4</button>
+            <button onclick="tempChatBox(5)">5</button>
+        </div>
+        <div class="guestChatBoxes" id="guestChatBox1"></div>
+        <div class="guestChatBoxes" id="guestChatBox2"></div>
+        <div class="guestChatBoxes" id="guestChatBox3"></div>
+        <div class="guestChatBoxes" id="guestChatBox4"></div>
+        <div class="guestChatBoxes" id="guestChatBox5"></div>
+        
+    </div>
+    <div id="twoGuestsLower">
+    
+        <div id="twoGLnotes">
+            <textarea id="textareaNotes" placeholder="Type your notes here..."></textarea>
+        </div>
+    
+        <div class="twoGLBtns">
+    
+            <button class="textareaNotesBtns">Keep</button>
+            <button class="textareaNotesBtns">Open</button>
+            <button class="textareaNotesBtns">Upload</button>
+        </div>
+            
+            
+    </div>
+</div>
+
+
+<div id="manyGuests">
+    <div id="manyGuestsUpper">
+        <div class="guestChatBoxes guestChatBoxBig"></div>
+        <div class="guestChatBoxes guestChatBoxBig"></div>
+        <div class="guestChatBoxes guestChatBoxMedium"></div>
+        <div class="guestChatBoxes guestChatBoxMedium"></div>
+    </div>
+    <div id="manyGuestsLower">
+        <div id="manyGLnotes">
+            <textarea id="textareaNotesMany" placeholder="Type your notes here..."></textarea>
+        </div>
+        <div class="twoGLBtns">
+            <button class="textareaNotesBtns">Keep</button>
+            <button class="textareaNotesBtns">Open</button>
+            <button class="textareaNotesBtns">Upload</button>
+        </div>   
+    </div>
+    <div id="manyGuestsRightSide">
+        <div class="guestChatBoxesRight"></div>
+        <div class="guestChatBoxesRight"></div>
+        <div class="guestChatBoxesRight"></div>
+        <div class="guestChatBoxesRight"></div>
+        <div class="guestChatBoxesRight"></div>
+        <div class="guestChatBoxesRight"></div>
+        <div class="guestChatBoxesRight"></div>
+        <div class="guestChatBoxesRight"></div>
+    </div>
+</div>
+
+
+
+
+<!--new code for user profile-->
+<!-- 10/11/2020 will probably get deleted
+<div id="userProfileContainer">
+    <a href="javascript:void(0)" id="closeUserProfile" onclick="closeUserProfile()">&times;</a>
+    <div id="userProfileTitleContainer">
+            <h6>Account Owner: Richard</h6>
+            <button id="bandsILeadBtn" onclick="leadOrBelongTo(1)">Bands I lead</button>
+            <button id="bandsIBelongToBtn" onclick="leadOrBelongTo(2)">Bands I belong to</button>
+    </div>
+    <div id="profileBandsILeadContent">
+    <div class="bandsAndMembersList">
+        <div id="bandsILeadList">
+            <select name="bandsILeadList" id="" size="4">
+                <option value="">Metallica</option>
+                <option value="">G'n'R</option>
+                <option value="">Ozzy</option>
+                <option value="">Black Label Society</option>
+              </select>
+              <button id="bandsILeadListDelete">Delete</button>
+        </div>
+        <div id="bandsILeadMembersList">
+            <h5>Band Members</h5>
+            <select name="bandsILeadMembersList" id="" size="4">
+                <option value="">Jack</option>
+                <option value="">John</option>
+                <option value="">Jim</option>
+                <option value="">Jill</option>
+                <option value="">Jill's sister</option>
+                <option value="">Jill's cousin</option>
+              </select>
+              <div id="addDeleteBandMember">
+                <input type="text" placeholder="Add band member">
+                <button id="addBandMemberSave">Add</button>
+                <button id="bandsILeadListDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+        <div id="profileAddBandContainer">
+            <div id="profileAddBandTitle">Add/ Edit Band</div>
+            <form id="profileAddBandForm">
+                <input type="text" name="" id="" placeholder="Name">
+                <input type="text" name="" id="" placeholder="City">
+                <input type="text" name="" id="" placeholder="State">
+                <input type="text" name="" id="" placeholder="ZIP">
+                <input type="text" name="" id="" placeholder="Band Website">
+                <input type="text" name="" id="" placeholder="Date Established">
+            </form>
+            <div id="profileAddBandPhotoContainer">
+                <p>Add Band Photo</p>
+                <img src="cameraIcon.png">
+            </div>
+            <div id="profileAddBandToDirectory">
+                <input type="checkbox" name="" id="">
+                <p>Add band to directory</p>
+            </div>
+            <button id="addBandSaveBtn">Save</button>
+        </div>
+    </div>
+    
+
+    <div id="profileBandsIBelongToContent">
+        <div class="bandsAndMembersList">
+            <div id="bandsIBelongToList">
+                <select name="bandsIBelongToList" id="" size="4">
+                    <option value="">Sweet Potatoes</option>
+                    <option value="">R'n'G</option>
+                    <option value="">Ozzy Cover Band</option>
+                    <option value="">Blue Shrimp Cult</option>
+                  </select>
+                  <button id="bandsIBelongToListDelete">Leave</button>
+            </div>
+            <div id="bandsIBelongToMembersList">
+                <h5>Band Members</h5>
+                <select name="bandsIBelongToMembersList" id="" size="4">
+                    <option value="">Peter</option>
+                    <option value="">Parry</option>
+                    <option value="">Pam</option>
+                    <option value="">Prince</option>
+                    <option value="">Prince's dad</option>
+                    <option value="">Prince's uncle</option>
+                  </select>
+            </div>
+        </div>
+            <div id="profileAddBandContainer">
+                <div id="profileAddBandTitle">Band Info</div>
+                <form id="profileAddBandForm">
+                    <input type="text" name="" id="">
+                    <input type="text" name="" id="">
+                    <input type="text" name="" id="">
+                    <input type="text" name="" id="">
+                    <input type="text" name="" id="">
+                    <input type="text" name="" id="">
+                </form>
+            </div>
+    </div>
+
+
+</div>
+
+
+    -->
+<!--
+</div>
+
+end of new code for user profile-->
+
+</div>
+
+        
+    
+        <div class="mainBottom" id="mainBottom">
+            <div id="saveRecording">
+                <button id="closeRecordingNoSave" onclick="closeRecordNoSave()">Close without<br> Saving</button>
+                <p>Name your new recording</p>
+                <div id="saveInputOutsideWrapper">
+                    <div id="saveInputWrapper">
+                        <input type="text">
+                    </div>
+                    <div id="currentTime"></div>    
+                </div>
+                
+                <button id="saveRecordingBtn">Add to Tracks</button>
+            </div>
+    <!--modified code-->
+            <div id="saveRecording">
+                <h3>Save Tracks</h3>
+                <button id="closeRecordingNoSave" onclick="closeRecordNoSave()">Close without<br> Saving</button>
+                <p>Name your new recording</p>
+                <div id="saveInputOutsideWrapper">
+                    <div id="saveInputWrapper">
+                        <input type="text">
+                    </div>
+                   <!-- <div id="currentTime"></div> -->
+                </div>
+                <button id="saveRecordingBtn">Add to Tracks and<br> Save to Library</button>
+            </div>
+    <!--end of modified code-->            
+            <div id="mixerPanel">
+                <div id="mixerPanelHeading">Tracking</div>
+                <div id="mixerAudioSettings">
+                    <p id="mixerAudioSettingsLabel">Audio Settings</p>
+                    <p id="inputGainLabel">Input Gain</p>
+                    <div id="mixerInputGainColor">
+                        <input type="range" min="1" max="100" value="75" class="mixerInputGainColorSlider">
+                    </div>
+                    <div id="mixerInputGainBlue">
+                        <input type="range" min="1" max="100" value="75" class="mixerInputGainBlueSlider">
+                    </div>
+                    <input type="image" src="mixerInternalMic.png">
+                </div>
+                
+                <div id="mixerMasterMix">
+                    <h3>Master Mix</h3>
+                    <label class="mixerMasterSwitch">
+                        <input type="checkbox" checked>
+                        <span class="mixerMasterSlider round"></span>
+                    </label>
+                    <div id="mixerMasterSwitchToggle">
+                        <p>Disabled</p>
+                        <p>Enabled</p>
+                    </div>
+                     <h4>Master Mix Assign</h4>
+                     <button id="mixerMasterHost">Host</button> 
+                </div>
+                <div id="mixerTrackContainer">
+                    <div class="mixerTrackInner">
+                        <div class="mixerTrackUpper">
+                            <input type="range" min="1" max="100" value="80" class="mixerTrackSlider">
+                        </div>
+                        <div class="mixerTrackLower">Track 1</div>
+                    </div>
+                    <div class="mixerTrackInner">
+                        <div class="mixerTrackUpper">
+                            <input type="range" min="1" max="100" value="80" class="mixerTrackSlider">
+                        </div>
+                        <div class="mixerTrackLower">Track 2</div>
+                    </div>
+                    <div class="mixerTrackInner">
+                        <div class="mixerTrackUpper">
+                            <input type="range" min="1" max="100" value="80" class="mixerTrackSlider">
+                        </div>
+                        <div class="mixerTrackLower">Track 3</div>
+                    </div>
+                    <div class="mixerTrackInner">
+                        <div class="mixerTrackUpper">
+                            <input type="range" min="1" max="100" value="80" class="mixerTrackSlider">
+                        </div>
+                        <div class="mixerTrackLower">Track 4</div>
+                    </div>
+                    <div class="mixerTrackInner">
+                        <div class="mixerTrackUpper">
+                            <input type="range" min="1" max="100" value="80" class="mixerTrackSlider">
+                        </div>
+                        <div class="mixerTrackLower">Track 5</div>
+                    </div>
+                    <div class="mixerTrackInner">
+                        <div class="mixerTrackUpper">
+                            <input type="range" min="1" max="100" value="80" class="mixerTrackSlider">
+                        </div>
+                        <div class="mixerTrackLower">Track 6</div>
+                    </div>
+                    <div class="mixerTrackInner">
+                        <div class="mixerTrackUpper">
+                            <input type="range" min="1" max="100" value="80" class="mixerTrackSlider">
+                        </div>
+                        <div class="mixerTrackLower">Track 7</div>
+                    </div>
+                    <div class="mixerTrackInner">
+                        <div class="mixerTrackUpper">
+                            <input type="range" min="1" max="100" value="80" class="mixerTrackSlider">
+                        </div>
+                        <div class="mixerTrackLower">Track 8</div>
+                    </div>
+                </div>
+                <div id="mixerMasterSliderContainer">
+                    <div id="mixerMasterSliderUpper">
+                        <div id="mixerMasterGray">
+                            <input type="range" min="1" max="100" value="80" class="mixerMasterSliderGray">
+                        </div>
+                        <div id="mixerMasterColor"></div>
+                    </div>
+                    <div id="mixerMasterSliderLower">Master</div>
+                </div>
+                
+                <a href="javascript:void(0)" id="closeMixer" onclick="closeMixer()">&times;</a>
+            </div>   
+        
+    <!--new code-->    
+            <div id="featuresPanel">
+                <h3>Features</h3>
+                <div id="bpmMeasurements">
+                    <div id="bpmLabels">
+                        <p>BPM</p>
+                        <p>Count-in</p>
+                        <p>Time Sig</p>
+                    </div>
+                    <div>
+                        <div id="bpmNum"></div>
+                        <div id="countInNum"></div>
+                        <div id="timeSigContainer">
+                            <div id="timeSigNum1"></div>
+                            <div id="timeSigNum2"></div>
+                        </div>
+                    </div>
+                </div>
+                <button id="startMetronomeContainer">
+                    <div id="startMetronomeBtn">Start<br>Metronome</div>
+                </button>
+            </div>
+            <div id="recordingPanel">
+                <!--new code 10/09/2020-->
+                <a href="javascript:void(0)" id="closeRecordingPanel" onclick="closeRecordingPanel()">&times;</a>
+                <!--end of new code-->
+                <h3>Recording</h3>
+                <div id="followTrackContainer">
+                    <p>Follow Track</p>
+                    <div id="followTrackButtonsContainer">
+                        <button class="followTrackBtns">1</button>
+                        <button class="followTrackBtns">2</button>
+                        <button class="followTrackBtns">3</button>
+                        <button class="followTrackBtns">4</button>
+                        <button class="followTrackBtns">5</button>
+                        <button class="followTrackBtns">6</button>
+                    </div>
+                </div>
+                
+                <div id="recordingPanelText">
+                    <h2>Recording in</h2>
+                    <p>Lead time before count-in</p>
+                </div>
+                <div id="leadTime">
+                    <input type="number" id="leadTimeNum" value="10" min="1"></input>
+                </div>
+                
+                
+                <label>
+                    <input type="radio" name="recordingChoice">
+                    <button class="recordingChoiceBtns" onclick="displayRecordingInProcess()">
+                        <div class="recRecordVideo">Record<br>Audio/ Video</div>
+                    </button>
+                </label>
+                <label>
+                    <input type="radio" name="recordingChoice">
+                    <button class="recordingChoiceBtns" onclick="displayRecordingInProcess()">
+                        <div id="recRecordAudio">Record<br>Audio only</div>
+                    </button>
+                </label>
+                <label>
+                    <input type="radio" name="recordingChoice">
+                    <button class="recordingChoiceBtns" onclick="displayRecordingInProcess()">
+                        <div class="recRecordVideo">Record<br>Video only</div>
+                    </button>
+                </label>
+            </div>
+            
+             <div id="recordingInProcessPanel">
+               <div id="leadTime">
+                    <img src="secondBtn04.png" id="leadTimeBg">
+                    <div id="leadTimeNumCountdown"></div>
+                </div>
+                <input type="image" src="recordingInProcess1.png">
+                <input type="image" src="recordingInProcess2.png">
+                <input type="image" src="recordingInProcess3.png" onclick="displaySaveRecording()">
+            </div>
+            <div id="controlPanelExtra">
+    <!--new code-->            
+                <div>
+                    <a href="#" class="controlPanelExtraLinks" onclick="displayFeatures()">Features</a>
+                    <a href="#" class="controlPanelExtraLinks" onclick="displayMixer()">Mixer</a>
+                    <a href="#" class="controlPanelExtraLinks" onclick="displayRecording()">Recording</a>
+                    <a href="#" class="controlPanelExtraLinks" onclick="displayTracks()">Tracks</a>
+                    <a href="#" class="controlPanelExtraLinks">View</a>
+                </div>
+                <div>
+                    <button class="showStageStudio" onclick="tempChangeScene(1)">Show Stage</button>
+                    <button class="showStageStudio" onclick="tempChangeScene(2)">Show Studio</button>
+                    <button class="showStageStudio" onclick="tempChangeScene(3)">Studio > 5</button>
+                </div>                
+    
+    <!--end of new code-->    
+            </div>
+    <!--end of new code-->
+            <div id="controlPanel">
+                <input type="image" src="mainBtn01.png" class="mainBtns">
+                <input type="image" src="mainBtn02.png" class="mainBtns">
+                <input type="image" src="mainBtn03.png" class="mainBtns">
+                <input type="image" src="mainBtn04.png" class="mainBtns">
+                <input type="image" src="mainBtn05.png" class="mainBtns">
+                <input type="image" src="mainBtn06.png" class="mainBtns">
+                <input type="image" src="mainBtn07.png" class="mainBtns">
+                
+                <input type="image" src="playForAllBtn.png" id="ctrlPlayForAll">
+    <!-- new code 10/09/2020-->            
+    
+                <div id="timer" class="switch">
+                    <div id="timerLabels" class="switch">
+                        <p class="timerBar switch">Bar</p>
+                        <p class="timerBeat switch">Beat</p>
+                        <p class="timerTime switch">Time</p>
+                    </div>
+                    <div id="timerNumbers">
+                        <p class="timerBar switch">1</p>
+                        <p class="timerBeat switch">25</p>
+                        <p class="timerTime switch">00:01:04:69</p>
+                    </div>
+                </div>
+
+                <div id="controlPanelMasterVolume">
+                    <input type="range" min="1" max="10" value="2" id="controlPanelMasterVolumeSlider">
+                </div>
+    <!-- remove next piece for now--> 
+    <!--            <div id="cpmsContainer">
+                    <img src="cpmsSlider.png" id="cpmsSlider">
+                    <p>Master</p>
+                </div>   -->
+    <!--end of new code-->
+            </div>
+
+
+            <div id="tracksContainer">
+                <div id="tracksToolbar">
+                    <button id="shiftingTrackBtn">Shifting track</button>
+                    <button id="cursorBtn">Cursor</button>
+                </div>
+                <a href="javascript:void(0)" id="closeTracks" onclick="closeTracks()">&times;</a>
+     
+                <div id="tracksInner">
+                    <div id="tracksLeftSide">
+                        <div class="trackLeft">
+                            <div class="trackLeftMainLabel">Track 1</div>
+                            <input type="range" min="1" max="100" value="75" class="trackSlider">
+                            <button class="trackLeftBtnM">M</button>
+                            <button class="trackLeftBtnS">S</button>
+                            <button class="trackLeftBtnDelete">Delete</button>
+                        </div>
+                        <div class="trackLeft">
+                            <div class="trackLeftMainLabel">Track 2</div>
+                            <input type="range" min="1" max="100" value="75" class="trackSlider">
+                            <button class="trackLeftBtnM">M</button>
+                            <button class="trackLeftBtnS">S</button>
+                            <button class="trackLeftBtnDelete">Delete</button>
+                        </div>
+                        <div class="trackLeft">
+                            <div class="trackLeftMainLabel">Track 3</div>
+                            <input type="range" min="1" max="100" value="75" class="trackSlider">
+                            <button class="trackLeftBtnM">M</button>
+                            <button class="trackLeftBtnS">S</button>
+                            <button class="trackLeftBtnDelete">Delete</button>
+                        </div>
+                        <div class="trackLeft">
+                            <div class="trackLeftMainLabel">Track 4</div>
+                            <input type="range" min="1" max="100" value="75" class="trackSlider">
+                            <button class="trackLeftBtnM">M</button>
+                            <button class="trackLeftBtnS">S</button>
+                            <button class="trackLeftBtnDelete">Delete</button>
+                        </div>
+                        <div class="trackLeft">
+                            <div class="trackLeftMainLabel">Track 5</div>
+                            <input type="range" min="1" max="100" value="75" class="trackSlider">
+                            <button class="trackLeftBtnM">M</button>
+                            <button class="trackLeftBtnS">S</button>
+                            <button class="trackLeftBtnDelete">Delete</button>
+                        </div>
+                        <div class="trackLeft">
+                            <div class="trackLeftMainLabel">Track 6</div>
+                            <input type="range" min="1" max="100" value="75" class="trackSlider">
+                            <button class="trackLeftBtnM">M</button>
+                            <button class="trackLeftBtnS">S</button>
+                            <button class="trackLeftBtnDelete">Delete</button>
+                        </div>       
+                    </div>
+                    <div class="tracks">
+                        <div id="trackLabels">
+                            <p>Track Name</p>
+                            <p>Track #</p>
+                            <p>Notes</p>
+                        </div>
+                        <div id="trackLineNumbers">
+                            <p>1.0</p>
+                            <p>0.5</p>
+                            <p>0.0</p>
+                            <p>-0.5</p>
+                            <p>-1.0</p>
+                        </div>
+                        <div class="trackLines">
+                            <div id="trackLine1"></div>
+                            <div id="trackLine2"></div>
+                            <div id="trackLine3"></div>
+                            <div id="trackLine4"></div>
+                            <div id="trackLine5"></div>
+                        </div>
+                    </div>
+        
+            </div>
+            </div>
+
+
+        </div>
+     </main>
+
+    <!--new code 10/10/2020-->
+        <div id="mySidepane2" class="sidepane2">
+            <a href="javascript:void(0)" class="closechatbtn" onclick="closeChat()">&times;</a>
+            <div id="chatMessagesName">Jessica</div>
+            <div id="chatMessagesContainer">
+                <div class="chatMessagesReceivedFrom">Jessica</div>                
+                <div class="chatMessagesReceived">hello hello hello hello hello hello hello hello hello hello hello hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+                <div class="chatMessagesReceivedFrom">Jessica</div>
+                <div class="chatMessagesReceived">hello</div>
+                <div class="chatMessagesSentFrom">Richard</div>
+                <div class="chatMessagesSent">hi</div>
+            </div>
+            <div id="chatMessagesSubmitContainer">
+                <form action="#">
+                    <input type="text" class="chatMessageInputText">
+                    <input type="submit" class="chatMessageInputSend" value="Send">
+                </form>
+            </div>
+        </div>    
+    <!--end new code 10/10/2020-->      
+          <button class="openchatbtn" id="openchatbtn" onclick="openChat()">Chat</button> 
+         
+    </div>
+    <!--
+    <div class="bottomContainers">
+    <div class="bottomBox" id="bottomBox01">
+        <div id="firstName">[First Name]</div>
+        <div id="lastName">[Last Name]</div>
+        <p>wants to join session</p>
+        <button class="joinBtns" id="invitePlayerBtn">Invite as Player</button>
+        <button class="joinBtns" id="inviteGuestBtn">Invite as Guest</button>
+        <button class="joinBtns" id="rejectBtn">Reject</button>
+    </div>
+    <div class="bottomBox">2</div>
+    <div class="bottomBox">3</div>
+    <div class="bottomBox">4</div>
+    <div class="bottomBox">5</div>
+    <div class="bottomBox">6</div>
+    <div class="bottomBox">7</div>
+    <div class="bottomBox">8</div>
+    <div class="bottomBox">9</div>
+    <div class="bottomBox">10</div>
+    </div>    
+    -->
+    <!--<div id="dashboard"></div>  -->    
+
+
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Epic Riff Contest</title>
+</head>
+<body"> 
+    <div id="container">
+        <!--new 02/22-->
+    <header id="epicRiffHeader">
+        <div>
+            <img src="logo.png" alt="Stagetrack Studio" id="logo">
+        </div>
+        <!--end new 02/22-->
+        <div id="session">
+            <input type="image" src="sessionLeave.png" class="session" alt="Leave Session">
+            <input type="image" src="sessionPause.png" class="session" alt="Pause Session">
+            <input type="image" src="sessionStart.png" class="session" alt="Start Session">
+        </div>
+        <div id="headerBandContainer">
+            <div id="epicRiffContestTitle">Epic Riff Contest</div>
+        </div>
+    </header>
+     <div id="contentContainer">  
+
+        <aside id="nav_sideContest"></aside>
+
+                
+            
+     <main>
+        <div class="mainTop">
+            
+            <div id="epicRiffContainer">
+<!--new 02/22-->                
+                <div class="epicRiffSides"></div>
+                <div id="epicRiffOuterContainer">
+                    <div id="epicRiffInnerContainer">
+                        <img src="contestMic.png">
+                    </div>
+                </div>
+                <div class="epicRiffSides">
+                    <a href="#" class="epicRiffSidesBtns">Start Session</a>
+                    <a href="#" class="epicRiffSidesBtns">About Contest</a>
+                </div>
+<!--end new 02/22-->            
+            </div>
+<!--new 02/22 may be used later
+            <div id="newRecordingProcessContainer">
+                <a href="javascript:void(0)" id="closeNewRecording" onclick="closeNewRecordingContest()">&times;</a>
+                <div id="newRecordingPanelOneContainer">
+                    <div id="newRecordingPanelOneTop">
+                        <input type="image" src="backBtn.png" onclick="closeNewRecordingContest()">
+                    </div>
+                    <div id="newRecordingPanelOneMiddle">Select how to Record</div>
+                    <div id="newRecordingPanelOneBottom">
+                        <div class="newRecordingChoiceBtns">
+                            <button id="newRecordingChoiceBoth" onclick="newRecordingPanelTwoContest(2)">Record<br>Audio & Video</button>
+                        </div>
+                        <div class="newRecordingChoiceBtns">
+                            <button id="newRecordingChoiceAudio" onclick="newRecordingPanelTwoContest(1)">Record<br>Audio Only</button>
+                        </div>
+                        <div class="newRecordingChoiceBtns">
+                            <button id="newRecordingChoiceVideo" onclick="newRecordingPanelTwoContest(2)">Record<br>Video Only</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="newRecordingPanelTwoContainer">
+                    <div id="newRecordingPanelTwoTop">
+                        <input type="image" src="backBtn.png" onclick="goBackToNewRecordingPanelOneContest()">
+                    </div>
+                    <div id="newRecordingPanelTwoMiddle">Select Other Recording Features</div>
+                    <div class="tempTrackButtons">
+                        <button onclick="tempTrackButtons(0)">0</button>
+                        <button onclick="tempTrackButtons(1)">1</button>
+                    </div>
+                    <div id="newRecordingPanelTwoBottom">
+                       <div class="newRecordingPanelTwoOuterContainer">
+                            <div id="newRecordingPanelTwoInnerContainerLeft">
+                                <h5>Recording will<br>start</h5>
+                                <p>After start button is activated</p>
+                                <div id="newRecordingLeadTime">
+                                    <input type="number" id="newRecordingLeadTimeNum" value="20" min="1"></input>
+                                </div>
+                                <h5>Seconds</h5>
+                                <p style="margin-top: 10px;">Change Start Lead Time?</p>
+                                <div id="changeLeadTimeBtns">
+                                    <input type="image" src="changeLeadTimeMinus.png" onclick="newRecordingChangeLeadTime(1)">
+                                    <input type="image" src="changeLeadTimePlus.png" onclick="newRecordingChangeLeadTime(2)">
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="newRecordingPanelTwoOuterContainer" id="newRecordingPanelTwoWithoutTracks">
+                            <div id="newRecordingPanelTwoInnerContainerMiddle">
+                                <h5>You are<br>creating a<br>Follow Track</h5>
+                                <div id="newRecordingPanelTwoInnerContainerMiddleContent">When video<br>starts, be sure to<br>start with a<br>count-in for<br>other<br>bandmates</div>
+                            </div>
+                        </div>  
+                        <div class="newRecordingPanelTwoOuterContainer" id="newRecordingPanelTwoWithTracks">
+                            <div id="newRecordingPanelTwoInnerContainerMiddle">
+                                <h5>Your<br>Follow Track<br>is ready.</h5>
+                                <button class="newRecordingIncludeOtherTracks">Click to include<br> other track(s)</button>
+                                <button class="newRecordingFollowAllTracks">Follow All Tracks</button>
+                                <h6 class="newRecordingNameOfTrack">[Name of track to follow]</h6>
+                                <h6 class="newRecordingNameOfTrack">[Name of track to follow]</h6>
+                            </div>
+                        </div>
+                        <div class="newRecordingPanelTwoOuterContainer">
+                            <div id="newRecordingPanelTwoInnerContainerRight">
+                                <h5>Metronome</h5>
+                                <p>Leave blank to exclude from recording</p>
+                                <div id="newRecordingBPMLabel">BPM</div>
+                                <input type="text"></input>
+                                <h4>Time Signature</h4>
+                                <div id="newRecordingTimeSignatureContainer">
+                                    <input type="text" class="newRecordingTimeSignatureNum"></input>
+                                    <div id="newRecordingSlash">/</div>
+                                    <input type="text" class="newRecordingTimeSignatureNum"></input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="newRecordingPanelTwoContinueContainer">
+                        <button id="newRecordingPanelTwoSelectionsCompleteBtn1" onclick="newRecordingPanelThreeContest()"></button>
+                    </div>
+                </div>
+                        <div id="newRecordingPanelThreeContainer">
+                            <div id="newRecordingPanelThreeTop">
+                                <input type="image" src="backBtn.png" onclick="goBackToNewRecordingPanelTwoContest()">
+                            </div>
+                            <div id="newRecordingPanelThreeMiddle">Camera Set-up</div>
+                            <div id="newRecordingPanelThreeBottom">
+                                <div id="newRecordingPanelThreeBottomLeft">
+                                    <div id="newRecordingPanelThreeBottomLeft1">
+                                    <p>Line up frame view</p>
+                                    <p>inside green screen</p>
+                                    <p>Make sure lighting</p>
+                                    <p>is adequate, not too</p>
+                                    <p>bright or dark</p>    
+                                    </div>
+                            </div>
+                                <div id="newRecordingPanelThreeBottomMiddleContainer">
+                                    <div id="threeBottomMiddleOuter">
+                                        <div id="threeBottomMiddleInner">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="newRecordingPanelThreeBottomLeft">
+                                <div id="newRecordingPanelThreeBottomLeft2">
+                                    <p>Find where you</p>
+                                    <p>want to stand and</p>
+                                    <p>use masking tape</p>
+                                    <p>on floor as a guide</p>
+                                    <p>Once satisfied, click</p>
+                                    <p><span id="brightGreenText">Camera Ready <img src="smallGreenArrow.png"></span></p>
+                                    <p>for next screen</p>
+                                </div>
+                            </div>
+                            </div>
+                            <div id="newRecordingPanelThreeContinueContainer">
+                                <button id="newRecordingPanelThreeSelectionsCompleteBtn2" onclick="newRecordingPanelFourContest()"></button>
+                            </div>
+                        </div>
+                                <div id="newRecordingPanelFourContainer2">
+                                    <div class="newRecordingPanelFourSide">
+                                        <div class="newRecordingContentCaptureWrapper2">
+                                            <div class="newRecordingContentCaptureInner"></div>
+                                        </div>
+                                        <div id="newRecordingPanelFourBLeft">
+                                            <h5>1</h5>
+                                            <h5 class="newFourActive">2</h5>
+                                            <h5>3</h5>
+                                            <h5>4</h5>
+                                        </div>
+                                    </div>
+                                        <div class="newMainContentNotes">
+                                            <div id="manyGLnotes">
+                                                <textarea id="newContentTextarea" placeholder="..."></textarea>
+                                            </div>
+                                            <div class="newRecordingTwoGLBtns">
+                                                <button class="textareaNotesBtns">Keep</button>
+                                                <button class="textareaNotesBtns">Open</button>
+                                                <button class="textareaNotesBtns">Upload</button>
+                                 
+                                            </div> 
+                                        </div>
+                                        <div class="newRecordingPanelFourSide">
+                                            <div class="newRecordingContentCaptureWrapper2">
+                                                <div class="newRecordingContentCaptureInner"></div>
+                                            </div>
+                                            <div class="newRecordingPanelFourBRight" onclick="newRecordingPanelFiveContest()">
+                                                <h4>Click to Start Recording</h4>
+                                                <p>in <span id="newRecordingActualLeadTime2">20</span> Seconds</p>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div id="newRecordingPanelFiveContainer2">
+                                    <div class="newRecordingPanelFiveUpper">
+                                    <div class="newRecordingPanelFiveSide">
+                                        <div class="newRecordingContentCaptureWrapperFive2">
+                                            <div class="newRecordingContentCaptureInner"></div>
+                                        </div>
+                                    </div>
+                                        <div class="newMainContentNotesFive">
+                                            <div id="manyGLnotes">
+                                                <textarea id="newContentTextareaFive" placeholder="..."></textarea>
+                                            </div>
+                                            <div class="newRecordingTwoGLBtns">
+                                                <button class="textareaNotesBtns">Keep</button>
+                                                <button class="textareaNotesBtns">Open</button>
+                                                <button class="textareaNotesBtns">Upload</button>
+                                            </div> 
+                                        </div>
+                                        <div class="newRecordingPanelFiveSide">
+                                            <div class="newRecordingContentCaptureWrapperFive2">
+                                                <div class="newRecordingContentCaptureInner"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="newRecordingPanelFiveLower">
+                                        <a href="javascript:void(0)" id="closeNewRecording" onclick="closeNewRecordingContest()">&times;</a>
+                                        <div id="panelFiveLowerText">Recording starts in...</div>
+                                        <div id="panelFiveLeadTime2">20</div>
+                                    </div>
+                                </div>
+                                <div id="newRecordingPanelSixContainer2">
+                                    <div class="newRecordingPanelFourSide">
+                                        <div class="newRecordingContentCaptureWrapper2">
+                                            <div class="newRecordingContentCaptureInner"></div>
+                                        </div>
+                                        <div id="newRecordingPanelSixBLeft">
+                                            <h5>1</h5>
+                                            <h5 class="newFourActive">2</h5>
+                                            <h5>3</h5>
+                                            <h5>4</h5>
+                                        </div>
+                                    </div>
+                                        <div class="newMainContentNotes">
+                                            <div id="manyGLnotes">
+                                                <textarea id="newContentTextarea" placeholder="..."></textarea>
+                                            </div>
+                                            <div class="newRecordingTwoGLBtns">
+                                                <button class="textareaNotesBtns">Keep</button>
+                                                <button class="textareaNotesBtns">Open</button>
+                                                <button class="textareaNotesBtns">Upload</button>
+                                            </div> 
+                                        </div>
+                                        <div class="newRecordingPanelFourSide">
+                                            <div class="newRecordingContentCaptureWrapper2">
+                                                <div class="newRecordingContentCaptureInner"></div>
+                                            </div>
+                                            <div class="borderBlink newRecordingPanelSixBRight" onclick="newRecordingPanel7Contest()">
+                                                <h4>Stop Recording</h4>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div id="newRecordingPanel7Container">
+                                    <div class="saveOrNotContainer">
+                                        <button class="newRecordingPanel7Btns" onclick="newRecordingPanel8Contest()">Close without Saving</button>
+                                        <div id="newRecordingPanel7InputContainer">
+                                            <input type="text" class="newRecordingPanel7Input">
+                                            <h6>Name of New Recording</h6>
+                                        </div>                                        
+                                        <button class="newRecordingPanel7Btns" onclick="newRecordingPanel9Contest()">Save Recording</button>
+                                    </div>
+                                </div>
+                                <div id="newRecordingPanel8Container">
+                                    <div class="saveOrNotContainer">
+                                        <button class="newRecordingPanel7Btns" onclick="closeNewRecordingContest()">Click Again to Confirm<br>Close without Saving<br><span class="blinkingText">This track will not be retrievable</span></button>
+                                        <button id="newRecordingPanel8Cancel" onclick="newRecordingPanel7Contest()">Cancel this action</button>
+                                    </div>
+                                </div>
+                                <div id="newRecordingPanel9Container">
+                                    <div class="saveOrNotContainer">
+                                        <h5>Your contest Recording is saved.</h5>
+                                        <h5>Thank you for your participation.</h5>
+                                        <h5>Click <button class="contestPanel9Btn">here</button> to listen to your recording.</h5>
+                                        <h5>Click <button class="contestPanel9Btn" onclick="newRecordingProcessContest()">here</button> to record again.</h5>
+                                        <h5>If you would like to try<br>Stagetrack Studio<br>for free, click <button class="contestPanel9Btn">here</button>.</h5>                                        
+                                    </div>
+                                </div>
+
+            </div>
+
+            <div id="newMainToolbarExtraContest">
+                <div class="noGoExplanation">
+                    <input type="image" src="newExtraMainContestBtn1.png">
+                    <span class="tooltiptext">Functionality availabe in Studio Mode</span>
+                </div>
+                <div class="noGoExplanation">
+                    <input type="image" src="newExtraMainContestBtn2.png">
+                    <span class="tooltiptext">Functionality availabe in Studio Mode</span>
+                </div>
+                <div class="noGoExplanation">
+                    <input type="image" src="newExtraMainContestBtn3.png">
+                    <span class="tooltiptext">Functionality availabe in Studio Mode</span>
+                </div>
+                <input type="image" src="newExtraMainContestBtn4.png" onclick="newRecordingProcessContest()">
+                <div class="noGoExplanation">
+                    <input type="image" src="newExtraMainContestBtn5.png">
+                    <span class="tooltiptext">Functionality availabe in Studio Mode</span>
+                </div>
+                <div class="noGoExplanation">
+                    <input type="image" src="newExtraMainContestBtn6.png">
+                    <span class="tooltiptext">Functionality availabe in Studio Mode</span>
+                </div>
+                <div class="noGoExplanation">
+                    <button id="openchatbtnContest">Chat</button>
+                </div>
+            </div>
+            <div id="newMainToolbar">
+                <input type="image" src="newMainBtn1.png">
+                <input type="image" src="newMainBtn2.png">
+                <input type="image" src="newMainBtn3.png">
+                <input type="image" src="newMainBtn4.png">
+                <input type="image" src="newMainBtn5.png">
+                <input type="image" src="newMainBtn6.png">
+                <input type="image" src="newMainBtn7.png">
+                <input type="image" src="newMainBtn8.png">
+            </div>
+-->            
+        </div>    
+    </main>
+        <div id="contestRightSide"></div>
+                       
+    </div>
+   
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
