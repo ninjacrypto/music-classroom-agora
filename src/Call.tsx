@@ -41,7 +41,7 @@ function Call(props: RouteComponentProps) {
   const { videos, screenStream } = useSelector((state: RootState) => state.meeting);
   console.log(' this is videos >>>>>>>>', videos);
   const getVideos = () => {
-    if (videos.length !== 0) return videos.map((vi) => video(vi.stream, vi.v_id, isHost(vi.v_id)));
+    if (videos.length !== 0) return videos.map((vi) => video(vi.stream, vi.v_id, isHost(vi.v_id), vi.raisehand));
     return [];
   };
 
@@ -80,12 +80,13 @@ function Call(props: RouteComponentProps) {
     );
   };
 
-  const video = (stream: streamInterface, id: string | number, muted: Boolean) => {
+  const video = (stream: streamInterface, id: string | number, muted: Boolean, visibility: Boolean) => {
     return (
       <MediaPlayer
         id={id}
         videoTrack={stream.video}
         audioTrack={stream.audio}
+        raiseHandvisibility={visibility}
         muted={muted}
         // handleRemoteActiveVideoClick={handleRemoteActiveVideoClick}
       ></MediaPlayer>

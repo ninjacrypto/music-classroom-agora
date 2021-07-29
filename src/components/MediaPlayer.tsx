@@ -1,12 +1,13 @@
 import { ILocalVideoTrack, IRemoteVideoTrack, ILocalAudioTrack, IRemoteAudioTrack } from 'agora-rtc-sdk-ng';
 import { useRef, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+import RaiseHand from './RaiseHand/RaiseHand';
 
 export interface VideoPlayerProps {
   videoTrack: ILocalVideoTrack | IRemoteVideoTrack | undefined;
   audioTrack: ILocalAudioTrack | IRemoteAudioTrack | undefined;
   id: string | number;
   muted: Boolean;
+  raiseHandvisibility: Boolean;
   handleRemoteActiveVideoClick?: (connectionId: any) => void;
 }
 
@@ -26,14 +27,26 @@ const MediaPlayer = (props: VideoPlayerProps) => {
       props.audioTrack?.stop();
     };
   }, [props.audioTrack]);
-  return (
+  return props.muted ? (
     <div
       id={`container-player-${props.id}`}
       className='video-player'
       onClick={() => {
         props.handleRemoteActiveVideoClick?.(props.id);
       }}
-      style={{ width: '100%', height: '100%' }}></div>
+      style={{ width: '100%', height: '100%', position: 'relative' }}>
+      <RaiseHand visibility={props.raiseHandvisibility} />
+    </div>
+  ) : (
+    <div
+      id={`container-player-${props.id}`}
+      className='video-player'
+      onClick={() => {
+        props.handleRemoteActiveVideoClick?.(props.id);
+      }}
+      style={{ width: '100%', height: '100%', transform: 'rotateY(180deg)' }}>
+      <RaiseHand visibility={props.raiseHandvisibility} />
+    </div>
   );
 };
 

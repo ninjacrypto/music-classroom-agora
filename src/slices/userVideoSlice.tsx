@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, current, PayloadAction } from '@reduxjs/toolkit';
 import { IAgoraRTCRemoteUser, ILocalAudioTrack, ILocalVideoTrack, IRemoteAudioTrack, IRemoteVideoTrack } from 'agora-rtc-sdk-ng';
 import { cloneDeep, find, findIndex, map, pull, reject, some } from 'lodash';
 import { VideoKind } from '../hooks/useAgora';
@@ -71,6 +71,7 @@ export const meetingSlice = createSlice({
     replaceRaiseHand: (state, action: PayloadAction<any>) => {
       const video = find(state.videos, { v_id: action.payload.id });
       if (video) {
+        console.log('hi check here if video found', current(video), action);
         video.raisehand = action.payload.raisehand;
       }
       return;
@@ -86,6 +87,15 @@ export const meetingSlice = createSlice({
   },
 });
 
-export const { pushVideo, pullVideo, replaceAllVideos, pushScreenStream, pullScreenShare, replaceChannelName, replaceActiveVideo,replaceRaiseHand, reset } =
-  meetingSlice.actions;
+export const {
+  pushVideo,
+  pullVideo,
+  replaceAllVideos,
+  pushScreenStream,
+  pullScreenShare,
+  replaceChannelName,
+  replaceActiveVideo,
+  replaceRaiseHand,
+  reset,
+} = meetingSlice.actions;
 export default meetingSlice.reducer;

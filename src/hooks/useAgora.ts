@@ -106,8 +106,8 @@ export default function useAgora(
     const [initialVideo, connectionId] = createVideo(nanoid(6), microphoneTrack, cameraTrack);
     setLocalVideoId(connectionId);
     dispatch(pushVideo(initialVideo));
-    // await client.join(appid, channel, token || null, connectionId);
-    // await client.publish([microphoneTrack, cameraTrack]);
+    await client.join(appid, channel, token || null, connectionId);
+    await client.publish([microphoneTrack, cameraTrack]);
 
     (window as any).client = client;
     (window as any).videoTrack = cameraTrack;
@@ -145,13 +145,17 @@ export default function useAgora(
   const handleRemoteRaiseHand = (meetingId: string) => {
     socket.raiseHand.subscribe(meetingId, (connectionId) => {
       dispatch(replaceRaiseHand({ id: connectionId, raisehand: true }));
+      setTimeout(() => {
+        dispatch(replaceRaiseHand({ id: connectionId, raisehand: false }));
+      }, 15000);
+
       // this.props.replaceVideoRaiseHand(connectionId, true);
       console.log('this is fucking id of user >>>>>>>>>>>>>', connectionId);
     });
   };
 
   const handleRemoteRaiseHandClick = () => {
-    socket.raiseHand.publish(ChannelName, '21349123');
+    socket.raiseHand.publish(ChannelName, localVideoId);
   };
 
   const handleRemoteActiveVideo = (meetingId: string) => {
