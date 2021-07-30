@@ -13,18 +13,17 @@ import ActiveVideoElement from './components/ActiveVideoBlock/ActiveVideoBlock';
 
 const client = AgoraRTC.createClient({ codec: 'h264', mode: 'rtc' });
 const screenClient = AgoraRTC.createClient({ codec: 'vp8', mode: 'rtc' });
-client.setLowStreamParameter({
-  width: 160,
-  height: 120,
-  framerate: 15,
-  bitrate: 20,
-});
+// client.setLowStreamParameter({
+//   width: 160,
+//   height: 120,
+//   framerate: 15,
+//   bitrate: 20,
+// });
 
 function Call(props: RouteComponentProps) {
   const appid = '4d5d68e2022f4acbbc091609970b93f9';
-  const token = '0064d5d68e2022f4acbbc091609970b93f9IAAtJqPrUreFJSNOoKVeYj6cQSFxlWOqV95J+1kJRpTyQIVr5aIAAAAAEAAZP2Q5cxUDYQEAAQBzFQNh';
+  const token = '0064d5d68e2022f4acbbc091609970b93f9IABvb7mwjzfX1UByp+2mGZLxrhVK7CpUMuqZrcWsat88TYVr5aIAAAAAEAAFSFUjp7sFYQEAAQCnuwVh';
 
-  const { channel } = useSelector((state: RootState) => state.meeting);
   const {
     stopScreenShare,
     handleRemoteRaiseHandClick,
@@ -37,26 +36,30 @@ function Call(props: RouteComponentProps) {
     unMuteAudio,
     unMuteCamera,
     localVideoId,
+    handleClickOnVideoBorderChange,
   } = useAgora(client, screenClient, props);
-  const { videos, screenStream } = useSelector((state: RootState) => state.meeting);
-  console.log(' this is videos >>>>>>>>', videos);
+
+  const { videos, screenStream, channel } = useSelector((state: RootState) => state.meeting);
+
   const getVideos = () => {
     if (videos.length !== 0) return videos.map((vi) => video(vi.stream, vi.v_id, isHost(vi.v_id), vi.raisehand));
     return [];
   };
 
-  const getScreenShareVideoFlag = () => {
+  const canScreenShare = () => {
     const video = screenStream;
     if (video) return true;
     return false;
   };
-
+  // const canMuteAudio = () => {
+  //   const muted = videos.find(()=>{})
+  // }
   const getScreenShareVideo = (): VideoState | null => {
     return screenStream;
   };
 
   const getActiveVideo = (): VideoState | null | undefined => {
-    if (getScreenShareVideoFlag()) {
+    if (canScreenShare()) {
       return getScreenShareVideo();
     }
     const vid = find(videos, { active: true });
@@ -126,7 +129,7 @@ function Call(props: RouteComponentProps) {
         videos={getVideos()}
         meetingVideos={videos}
         activeVideo={ActiveVideoBlock()}
-        canScreenShare={getScreenShareVideoFlag}
+        canScreenShare={canScreenShare()}
         handleScreenShareClick={() => screenJoin(appid, channel, token)}
         handleStopScreenShareClick={stopScreenShare}
         handleEndMeetingClick={leave}
@@ -136,6 +139,7 @@ function Call(props: RouteComponentProps) {
         handleUnMutevideoClick={unMuteCamera}
         inviteText={inviteText()}
         handleRemoteRaiseHandClick={handleRemoteRaiseHandClick}
+        changeBorder={handleClickOnVideoBorderChange}
       />
     </div>
   );

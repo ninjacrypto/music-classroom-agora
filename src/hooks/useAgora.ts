@@ -20,6 +20,7 @@ import {
   replaceRaiseHand,
   VideoState,
   replaceActiveVideo,
+  replaceBorderColor,
   reset,
 } from '../slices/userVideoSlice';
 // import { VideoState } from '../slices/userVideoSlice';
@@ -74,15 +75,17 @@ export default function useAgora(
   unMuteAudio: Function;
   handleRemoteRaiseHandClick: Function;
   handleRemoteActiveVideoClick: (connectionId: any) => void;
+  handleClickOnVideoBorderChange: Function;
 } {
   const [localVideoTrack, setLocalVideoTrack] = useState<ILocalVideoTrack | undefined>(undefined);
   const [localAudioTrack, setLocalAudioTrack] = useState<ILocalAudioTrack | undefined>(undefined);
+  const [localVideo, setLocalVideo] = useState<VideoState | undefined>(undefined);
   const [localVideoId, setLocalVideoId] = useState('');
   const [localScreenStreamTrack, setlocalScreenStreamTrack] = useState<any>(undefined);
   const [joinState, setJoinState] = useState(false);
   const [screenShareMode, setScreenShareMode] = useState(false);
   const [remoteUsers, setRemoteUsers] = useState<IAgoraRTCRemoteUser[]>([]);
-  const { channel: ChannelName } = useSelector((state: RootState) => state.meeting);
+  const { channel: ChannelName, screenStream } = useSelector((state: RootState) => state.meeting);
   const dispatch = useDispatch();
   const rtm: any = new AgoraClient();
   const AlertService = useAlertService();
@@ -95,6 +98,7 @@ export default function useAgora(
     videoConfig?: CameraVideoTrackInitConfig
   ): Promise<[IMicrophoneAudioTrack, ICameraVideoTrack]> {
     const [microphoneTrack, cameraTrack] = await AgoraRTC.createMicrophoneAndCameraTracks(audioConfig, videoConfig);
+    cameraTrack.setEncoderConfiguration('120p');
     setLocalAudioTrack(microphoneTrack);
     setLocalVideoTrack(cameraTrack);
     return [microphoneTrack, cameraTrack];
@@ -104,8 +108,11 @@ export default function useAgora(
     if (!client) return;
     const [microphoneTrack, cameraTrack] = await createLocalTracks();
     const [initialVideo, connectionId] = createVideo(nanoid(6), microphoneTrack, cameraTrack);
+
     setLocalVideoId(connectionId);
+    setLocalVideo(initialVideo);
     dispatch(pushVideo(initialVideo));
+
     await client.join(appid, channel, token || null, connectionId);
     await client.publish([microphoneTrack, cameraTrack]);
 
@@ -117,7 +124,7 @@ export default function useAgora(
 
   async function screenJoin(appid: string, channel: string, token?: string, uid?: string | number | null) {
     if (!screenClient) return;
-    const screenVideo = await AgoraRTC.createScreenVideoTrack({ encoderConfig: '480p_2' });
+    const screenVideo = await AgoraRTC.createScreenVideoTrack({ encoderConfig: '480p_1' });
     const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, screenVideo);
     dispatch(pushScreenStream(initialVideo));
     setlocalScreenStreamTrack(screenVideo);
@@ -148,9 +155,6 @@ export default function useAgora(
       setTimeout(() => {
         dispatch(replaceRaiseHand({ id: connectionId, raisehand: false }));
       }, 15000);
-
-      // this.props.replaceVideoRaiseHand(connectionId, true);
-      console.log('this is fucking id of user >>>>>>>>>>>>>', connectionId);
     });
   };
 
@@ -161,13 +165,25 @@ export default function useAgora(
   const handleRemoteActiveVideo = (meetingId: string) => {
     socket.replaceActiveVideoBlock.subscribe(meetingId, (connectionId) => {
       dispatch(replaceActiveVideo(connectionId));
-      // console.log('this is fucking id of user for active block ', connectionId);
     });
   };
 
   const handleRemoteActiveVideoClick = (connectionId: any) => {
     console.log(connectionId);
     socket.replaceActiveVideoBlock.publish(ChannelName, connectionId);
+  };
+  const handleMenuVideoBorderChange = (meetingId: string) => {
+    socket.videoBorderChange.subscribe(meetingId, (payload) => {
+      dispatch(replaceBorderColor(payload));
+    });
+  };
+  const handleClickOnVideoBorderChange = (event: any) => {
+    const { id: color } = event.target;
+    const payload = {
+      connectionId: localVideoId,
+      borderColor: color,
+    };
+    socket.videoBorderChange.publish(ChannelName, payload);
   };
 
   async function leave() {
@@ -186,17 +202,6 @@ export default function useAgora(
     setJoinState(false);
     await client?.leave();
     props.history.push('/');
-    if (!rtm._logined) {
-      return;
-    }
-    rtm
-      .logout()
-      .then(() => {
-        // console.log('logout');
-      })
-      .catch((err: any) => {
-        // console.log(err);
-      });
   }
 
   async function stopScreenShare() {
@@ -213,29 +218,18 @@ export default function useAgora(
   useEffect(() => {
     if (!client) return;
     setRemoteUsers(client.remoteUsers);
-    try {
-      rtm.init(appId);
-      (window as any).rtm = rtm;
-      rtm
-        .login(accountName, rtmtoken)
-        .then(() => {
-          console.log('login');
-          rtm._logined = true;
-          AlertService.push('Rtm Login successful');
-        })
-        .catch((err: any) => {
-          console.log(err);
-        });
-    } catch (err) {
-      // Toast.error('Login failed, please open console see more details');
-      // console.error(err);
-    }
+
     const handleUserPublished = async (user: IAgoraRTCRemoteUser, mediaType: 'audio' | 'video') => {
-      const screenVideo = store.getState().meeting.screenStream;
-      if (!screenVideo) {
+      if (!screenStream) {
         await client.subscribe(user, mediaType);
-        // console.log('>>>>>>>>>> user published trigerred >>>>>>>>>>>>');
-        // console.log('>>>>>>>>>>>>>track type>>>>>>>>>>>', user.videoTrack);
+        //   // console.log('>>>>>>>>>> user published trigerred >>>>>>>>>>>>');
+        let videos = client.remoteUsers;
+        videos.map((user) => {
+          const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
+          dispatch(pushVideo(initialVideo));
+        });
+        console.log('###################', videos);
+
         if (user.uid === SHARE_ID) {
           const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
           dispatch(pushScreenStream(initialVideo));
@@ -249,58 +243,42 @@ export default function useAgora(
 
     const handleUserUnpublished = (user: IAgoraRTCRemoteUser) => {
       dispatch(pullVideo(user.uid));
-      // console.log('>>>>>>>>>> user unpublished trigerred >>>>>>>>>>>>', user.uid);
+      console.log('this is the console for remote users from user published >>.', client?.remoteUsers);
     };
 
     const handleUserJoined = (user: IAgoraRTCRemoteUser) => {
-      const screenVideo = store.getState().meeting.screenStream;
-      if (!screenVideo) {
+      if (!screenStream) {
         if (user.uid === SHARE_ID) {
-          const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
-          dispatch(pushScreenStream(initialVideo));
+          // const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
+          // dispatch(pushScreenStream(initialVideo));
         } else {
-          const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
-          dispatch(pushVideo(initialVideo));
+          let videos = client.remoteUsers;
+          videos.map((user) => {
+            const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
+            dispatch(pushVideo(initialVideo));
+          });
         }
         // console.log('>>>>>>>>>> user join trigerred >>>>>>>>>>>>');
       }
+      console.log('videos from user joined');
     };
 
     const handleUserLeft = (user: IAgoraRTCRemoteUser) => {
       dispatch(pullVideo(user.uid));
+      console.log('this is the console for remote users from user left >>.', client?.remoteUsers);
+
       // console.log('>>>>>>>>>> user left trigerred >>>>>>>>>>>>', user.uid);
     };
 
     const handleConnectionStateChange = (connectionState: any) => {
       if (connectionState === 'DISCONNECTED') {
-        // leave();
-      }
-    };
-    const RTMConnectionStateChanged = async (newState: any, reason: any) => {
-      // console.log('reason', reason);
-
-      if (newState === 'ABORTED') {
-        if (reason === 'REMOTE_LOGIN') {
-        }
-      }
-    };
-    const RTMMemberLeft = async ({ channelName, args }: any) => {};
-    const RTMMemberJoined = async ({ channelName, args }: any) => {};
-    const RTMChannelMessage = async ({ channelName, args }: any) => {
-      const [message, memberId] = args;
-      if (message.messageType === 'IMAGE') {
-      } else {
-      }
-    };
-    const RTMMessageFromPeer = async (message: any, peerId: any) => {
-      if (message.messageType === 'IMAGE') {
-      } else {
-        // console.log('message ' + message.text + ' peerId' + peerId);
+        leave();
       }
     };
 
     handleRemoteRaiseHand(ChannelName);
     handleRemoteActiveVideo(ChannelName);
+    handleMenuVideoBorderChange(ChannelName);
 
     client.on('connection-state-change', handleConnectionStateChange);
     client.on('user-published', handleUserPublished);
@@ -308,19 +286,7 @@ export default function useAgora(
     client.on('user-joined', handleUserJoined);
     client.on('user-left', handleUserLeft);
 
-    rtm.on('MessageFromPeer', RTMMessageFromPeer);
-    rtm.on('ConnectionStateChanged', RTMConnectionStateChanged);
-    rtm.on('MemberJoined', RTMMemberJoined);
-    rtm.on('MemberLeft', RTMMemberLeft);
-    rtm.on('ChannelMessage', RTMChannelMessage);
-
     return () => {
-      rtm.off('MemberJoined', RTMMemberJoined);
-      rtm.off('MemberLeft', RTMMemberLeft);
-      rtm.off('ChannelMessage', RTMChannelMessage);
-      rtm.off('ConnectionStateChanged', RTMConnectionStateChanged);
-      rtm.off('MessageFromPeer', RTMMessageFromPeer);
-
       client.off('connection-state-change', handleUserPublished);
       client.off('user-published', handleUserPublished);
       client.off('user-unpublished', handleUserUnpublished);
@@ -346,5 +312,6 @@ export default function useAgora(
     stopScreenShare,
     handleRemoteRaiseHandClick,
     handleRemoteActiveVideoClick,
+    handleClickOnVideoBorderChange,
   };
 }

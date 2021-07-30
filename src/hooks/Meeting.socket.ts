@@ -7,10 +7,10 @@ import SocketService from './SocketService';
 //   kind: VideoStateKind;
 // }
 
-// interface BorderColorReplacedPayload {
-//   connectionId: string;
-//   borderColor: string;
-// }
+interface BorderColorReplacedPayload {
+  connectionId: string;
+  borderColor: string;
+}
 // export interface WhiteboardSync {
 //   drawings: MeetingWhiteboardDrawingsState;
 //   whiteboardEnabled: boolean;
@@ -148,20 +148,20 @@ export default {
   //     SocketService.publish(this.channel(meetingId), videoKind);
   //   },
   // },
-  // videoBorderChange: {
-  //   channel(meetingId: string) {
-  //     return `/videoBorderChange/${meetingId}`;
-  //   },
-  //   subscribe(meetingId: string, callback: (payload: BorderColorReplacedPayload) => void) {
-  //     SocketService.subscribe(this.channel(meetingId), (payload: BorderColorReplacedPayload) => callback(payload));
-  //   },
-  //   unsubscribe(meetingId: string) {
-  //     SocketService.unsubscribe(this.channel(meetingId));
-  //   },
-  //   publish(meetingId: string, payload: BorderColorReplacedPayload) {
-  //     SocketService.publish(this.channel(meetingId), payload);
-  //   },
-  // },
+  videoBorderChange: {
+    channel(meetingId: string) {
+      return `/videoBorderChange/${meetingId}`;
+    },
+    subscribe(meetingId: string, callback: (payload: BorderColorReplacedPayload) => void) {
+      SocketService.subscribe(this.channel(meetingId), (payload: BorderColorReplacedPayload) => callback(payload));
+    },
+    unsubscribe(meetingId: string) {
+      SocketService.unsubscribe(this.channel(meetingId));
+    },
+    publish(meetingId: string, payload: BorderColorReplacedPayload) {
+      SocketService.publish(this.channel(meetingId), payload);
+    },
+  },
   // ActiveVideoBlockSync: {
   //   channel(meetingId: string) {
   //     return `/ActiveVideoBlockSync/${meetingId}`;

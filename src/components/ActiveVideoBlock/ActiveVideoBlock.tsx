@@ -16,14 +16,9 @@ const ActiveVideoBlock = (props: VideoPlayerProps) => {
     return () => {
       props.videoTrack?.stop();
     };
-  }, [container, props.videoTrack]);
-  //   useEffect(() => {
-  //     !props.muted && props.audioTrack?.play();
-  //     return () => {
-  //       props.audioTrack?.stop();
-  //     };
-  //   }, [props.audioTrack]);
-  return <div id={`container-player-${props.id}`} className='video-player' style={{ width: '100%', height: '100%' }}></div>;
+  }, [props.videoTrack]);
+
+  return <div id={`active-player-${props.id}`} className='video-player' style={{ width: '100%', height: '100%' }}></div>;
 };
 
 export default ActiveVideoBlock;

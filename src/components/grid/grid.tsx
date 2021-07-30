@@ -24,7 +24,7 @@ function Grid(props) {
     inviteText,
     // handleRaiseHandClick,
     handleEndMeetingClick,
-    // changeBorder,
+    changeBorder,
     // handleMenuVideoClick,
     // handleAudioClick,
     handleScreenShareClick,
@@ -189,14 +189,14 @@ function Grid(props) {
                     Today's Colors
                   </div>
                   <hr className='horizontal' /> */}
-                  <div className={`menuItemSidebar active`} onClick={canScreenShare ? handleScreenShareClick : handleStopScreenShareClick}>
-                    {canScreenShare ? 'Screenshare' : 'Stop Screenshare'}
+                  <div className={`menuItemSidebar active`} onClick={!canScreenShare ? handleScreenShareClick : handleStopScreenShareClick}>
+                    {!canScreenShare ? 'Screenshare' : 'Stop Screenshare'}
                   </div>
                   <hr className='horizontal' />
-                  <div className={`menuItemSidebar active`} onClick={handleStopScreenShareClick}>
+                  {/* <div className={`menuItemSidebar active`} onClick={handleStopScreenShareClick}>
                     {'Stop Screenshare'}
                   </div>
-                  <hr className='horizontal' />
+                  <hr className='horizontal' /> */}
                   <div className={`menuItemSidebar active`} onClick={handleMuteClick}>
                     {'Mute Audio'}
                   </div>
@@ -211,6 +211,10 @@ function Grid(props) {
                   <hr className='horizontal' />
                   <div className={`menuItemSidebar active`} onClick={handleRemoteRaiseHandClick}>
                     {'Raise Hand'}
+                  </div>
+                  <hr className='horizontal' />
+                  <div className={`menuItemSidebar active`} onClick={handleOnTodaysColor}>
+                    {"  Today's Colors"}
                   </div>
                   <hr className='horizontal' />
                 </div>

@@ -8,6 +8,10 @@ export interface streamInterface {
   video: ILocalVideoTrack | IRemoteVideoTrack | undefined;
 }
 
+export interface streamStateInteface {
+  audio: Boolean;
+  video: Boolean;
+}
 export interface VideoState {
   v_id: string | number;
   stream: streamInterface;
@@ -49,6 +53,7 @@ export const meetingSlice = createSlice({
         const indexOfVideo = findIndex(state.videos, (video) => video.v_id === action.payload.v_id);
         state.videos[indexOfVideo] = action.payload;
       }
+      // state.videos = action.payload;
     },
     pullVideo: (state, action: PayloadAction<any>) => {
       state.videos = reject(state.videos, { v_id: action.payload });
@@ -71,10 +76,14 @@ export const meetingSlice = createSlice({
     replaceRaiseHand: (state, action: PayloadAction<any>) => {
       const video = find(state.videos, { v_id: action.payload.id });
       if (video) {
-        console.log('hi check here if video found', current(video), action);
         video.raisehand = action.payload.raisehand;
       }
-      return;
+    },
+    replaceBorderColor: (state, action: PayloadAction<any>) => {
+      const video = find(state.videos, { v_id: action.payload.connectionId });
+      if (video) {
+        video.borderColor = action.payload.borderColor;
+      }
     },
     pullScreenShare: (state) => {
       state.screenStream = null;
@@ -96,6 +105,7 @@ export const {
   replaceChannelName,
   replaceActiveVideo,
   replaceRaiseHand,
+  replaceBorderColor,
   reset,
 } = meetingSlice.actions;
 export default meetingSlice.reducer;
