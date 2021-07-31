@@ -6,11 +6,13 @@ import { replaceChannelName } from '../../slices/userVideoSlice';
 import styles from './start.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
+import { useAlert } from 'react-alert';
 
 function Start(props: RouteComponentProps) {
   const { clicked, username, password } = useSelector((state: RootState) => state.start);
   const { channel } = useSelector((state: RootState) => state.meeting);
   const dispatch = useDispatch();
+  const alert = useAlert();
 
   const clearForm = () => {
     dispatch(replaceUsername(''));
@@ -46,7 +48,10 @@ function Start(props: RouteComponentProps) {
   };
   const handleStartClick = () => {
     if (username === 'admin' && password === 'Qwertyuiop!') {
+      alert.show('Login successfully', { type: 'success' });
       props.history.push('/meeting');
+    } else {
+      alert.show('Invalid Credentials', { type: 'error' });
     }
   };
 

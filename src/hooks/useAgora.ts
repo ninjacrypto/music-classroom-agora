@@ -27,11 +27,13 @@ import {
 import { nanoid } from 'nanoid';
 import { RootState, store } from '../store/store';
 import { RouteComponentProps } from 'react-router-dom';
-// import { find } from 'lodash';
 import AgoraClient from './rtm-client';
 import useAlertService from './AlertService';
 import { SHARE_ID } from '../utils/settings';
 import socket from './Meeting.socket';
+import useNotifacationService from '../hooks/notificationService';
+import { useAlert } from 'react-alert';
+import { find } from 'lodash';
 
 export type VideoKind = 'screen' | 'media';
 const createVideo = (
@@ -85,20 +87,20 @@ export default function useAgora(
   const [joinState, setJoinState] = useState(false);
   const [screenShareMode, setScreenShareMode] = useState(false);
   const [remoteUsers, setRemoteUsers] = useState<IAgoraRTCRemoteUser[]>([]);
-  const { channel: ChannelName, screenStream } = useSelector((state: RootState) => state.meeting);
+  const { channel: ChannelName, screenStream, videos } = useSelector((state: RootState) => state.meeting);
   const dispatch = useDispatch();
-  const rtm: any = new AgoraClient();
-  const AlertService = useAlertService();
-  const appId = '4d5d68e2022f4acbbc091609970b93f9';
-  const accountName = 'testuser1';
-  const rtmtoken = '0064d5d68e2022f4acbbc091609970b93f9IAB+9VUtHbGUcgYXF+Gc8kc1MCdx3Aqc6VdVCwuQoiu3oYHfDdQAAAAAEACTZ1E8BKwBYQEA6AMErAFh';
+  const { playNotification } = useNotifacationService();
+  // const alert = useAlert();
 
   async function createLocalTracks(
     audioConfig?: MicrophoneAudioTrackInitConfig,
     videoConfig?: CameraVideoTrackInitConfig
   ): Promise<[IMicrophoneAudioTrack, ICameraVideoTrack]> {
-    const [microphoneTrack, cameraTrack] = await AgoraRTC.createMicrophoneAndCameraTracks(audioConfig, videoConfig);
-    cameraTrack.setEncoderConfiguration('120p');
+    // const [microphoneTrack, cameraTrack] = await AgoraRTC.createMicrophoneAndCameraTracks(audioConfig, videoConfig);
+    const cameraTrack = await AgoraRTC.createCameraVideoTrack();
+    const microphoneTrack = await AgoraRTC.createMicrophoneAudioTrack();
+
+    cameraTrack.setEncoderConfiguration('360p_1');
     setLocalAudioTrack(microphoneTrack);
     setLocalVideoTrack(cameraTrack);
     return [microphoneTrack, cameraTrack];
@@ -124,7 +126,7 @@ export default function useAgora(
 
   async function screenJoin(appid: string, channel: string, token?: string, uid?: string | number | null) {
     if (!screenClient) return;
-    const screenVideo = await AgoraRTC.createScreenVideoTrack({ encoderConfig: '480p_1' });
+    const screenVideo = await AgoraRTC.createScreenVideoTrack({ encoderConfig: '480p' });
     const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, screenVideo);
     dispatch(pushScreenStream(initialVideo));
     setlocalScreenStreamTrack(screenVideo);
@@ -136,18 +138,17 @@ export default function useAgora(
     (window as any).videoTrack = screenVideo;
     setScreenShareMode(true);
   }
-  // TODO IMPLEMENT TO DUAL STREAM MODE
   const MuteCamera = async () => {
-    await localVideoTrack?.setEnabled(false);
+    await localVideoTrack?.setMuted(true);
   };
   const unMuteCamera = async () => {
-    await localVideoTrack?.setEnabled(true);
+    await localVideoTrack?.setMuted(false);
   };
   const MuteAudio = async () => {
-    await localAudioTrack?.setEnabled(false);
+    await localAudioTrack?.setMuted(true);
   };
   const unMuteAudio = async () => {
-    await localAudioTrack?.setEnabled(true);
+    await localAudioTrack?.setMuted(false);
   };
   const handleRemoteRaiseHand = (meetingId: string) => {
     socket.raiseHand.subscribe(meetingId, (connectionId) => {
@@ -222,21 +223,25 @@ export default function useAgora(
     const handleUserPublished = async (user: IAgoraRTCRemoteUser, mediaType: 'audio' | 'video') => {
       if (!screenStream) {
         await client.subscribe(user, mediaType);
-        //   // console.log('>>>>>>>>>> user published trigerred >>>>>>>>>>>>');
         let videos = client.remoteUsers;
         videos.map((user) => {
-          const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
-          dispatch(pushVideo(initialVideo));
+          if (user.uid === SHARE_ID) {
+            const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
+            dispatch(pushScreenStream(initialVideo));
+          } else {
+            const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
+            dispatch(pushVideo(initialVideo));
+          }
         });
         console.log('###################', videos);
 
-        if (user.uid === SHARE_ID) {
-          const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
-          dispatch(pushScreenStream(initialVideo));
-        } else {
-          const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
-          dispatch(pushVideo(initialVideo));
-        }
+        // if (user.uid === SHARE_ID) {
+        //   const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
+        //   dispatch(pushScreenStream(initialVideo));
+        // } else {
+        //   const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
+        //   dispatch(pushVideo(initialVideo));
+        // }
       }
       // toggle rerender while state of remoteUsers changed.
     };
@@ -248,16 +253,27 @@ export default function useAgora(
 
     const handleUserJoined = (user: IAgoraRTCRemoteUser) => {
       if (!screenStream) {
-        if (user.uid === SHARE_ID) {
-          // const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
-          // dispatch(pushScreenStream(initialVideo));
-        } else {
-          let videos = client.remoteUsers;
-          videos.map((user) => {
+        // if (user.uid === SHARE_ID) {
+        //   // const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
+        //   // dispatch(pushScreenStream(initialVideo));
+        // } else {
+        //   let videos = client.remoteUsers;
+        //   videos.map((user) => {
+        //     const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
+        //     dispatch(pushVideo(initialVideo));
+        //   });
+        // }
+        playNotification();
+        let videos = client.remoteUsers;
+        videos.map((user) => {
+          if (user.uid === SHARE_ID) {
+            const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
+            dispatch(pushScreenStream(initialVideo));
+          } else {
             const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
             dispatch(pushVideo(initialVideo));
-          });
-        }
+          }
+        });
         // console.log('>>>>>>>>>> user join trigerred >>>>>>>>>>>>');
       }
       console.log('videos from user joined');

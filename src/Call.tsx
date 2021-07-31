@@ -13,16 +13,10 @@ import ActiveVideoElement from './components/ActiveVideoBlock/ActiveVideoBlock';
 
 const client = AgoraRTC.createClient({ codec: 'h264', mode: 'rtc' });
 const screenClient = AgoraRTC.createClient({ codec: 'vp8', mode: 'rtc' });
-// client.setLowStreamParameter({
-//   width: 160,
-//   height: 120,
-//   framerate: 15,
-//   bitrate: 20,
-// });
 
 function Call(props: RouteComponentProps) {
   const appid = '4d5d68e2022f4acbbc091609970b93f9';
-  const token = '0064d5d68e2022f4acbbc091609970b93f9IABvb7mwjzfX1UByp+2mGZLxrhVK7CpUMuqZrcWsat88TYVr5aIAAAAAEAAFSFUjp7sFYQEAAQCnuwVh';
+  const token = '0064d5d68e2022f4acbbc091609970b93f9IADZElRnXC/AMtwzxZcPn3/mG5z9MFbX3i+h4YNbpPaGsr2No/cAAAAAEAC1UnliNr8GYQEAAQA1vwZh';
 
   const {
     stopScreenShare,

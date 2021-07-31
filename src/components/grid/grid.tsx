@@ -6,6 +6,8 @@ import copyToClipboard from 'copy-to-clipboard';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import useAlertService from '../../hooks/AlertService';
 import Accordion from '../../components/Accordion/Accordion';
+import { useAlert } from 'react-alert';
+
 function Grid(props) {
   var {
     values,
@@ -48,7 +50,7 @@ function Grid(props) {
   const [open2nav, set2Nav] = useState(false);
   // flag for the title change in banner
   const [title, setTitle] = useState(true);
-  const AlertService = useAlertService();
+  const alert = useAlert();
 
   const handleOnOpenNav = () => {
     setOpenNav(!openNav);
@@ -105,7 +107,9 @@ function Grid(props) {
     // if (!canInviteMember) return;
     // if (isPlatform('hybrid')) SocialSharing.share(inviteText);
     // else {
+
     copyToClipboard(inviteText);
+    alert.show('Invitation Copied!', { type: 'success' });
 
     // AlertService.push('Invitation copied.');
     // }

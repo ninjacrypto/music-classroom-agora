@@ -6,25 +6,26 @@ import routes, { renderRoutes } from './Routes';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import { IonRouterOutlet } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import SocketService from './hooks/SocketService';
-// import './theme/bootstrap.scss';
+import AlertTemplate from './components/AlertTemplate/AlertTemplate';
+const options = {
+  position: positions.TOP_RIGHT,
+  timeout: 5000,
+  transition: transitions.SCALE,
+};
 
 function App() {
   const history = createBrowserHistory();
   SocketService.connect();
 
-  // useEffect(() => {}, []);
   return (
     <Provider store={store}>
-      <IonReactRouter>
-        <IonRouterOutlet>
-          <BrowserRouter>
-            <Router history={history}> {renderRoutes(routes)}</Router>
-          </BrowserRouter>
-        </IonRouterOutlet>
-      </IonReactRouter>
+      <BrowserRouter>
+        <AlertProvider template={AlertTemplate} {...options}>
+          <Router history={history}> {renderRoutes(routes)}</Router>
+        </AlertProvider>
+      </BrowserRouter>
     </Provider>
   );
 }
