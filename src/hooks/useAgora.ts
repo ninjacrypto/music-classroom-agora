@@ -23,17 +23,13 @@ import {
   replaceBorderColor,
   reset,
 } from '../slices/userVideoSlice';
-// import { VideoState } from '../slices/userVideoSlice';
 import { nanoid } from 'nanoid';
 import { RootState, store } from '../store/store';
 import { RouteComponentProps } from 'react-router-dom';
-import AgoraClient from './rtm-client';
-import useAlertService from './AlertService';
 import { SHARE_ID } from '../utils/settings';
 import socket from './Meeting.socket';
 import useNotifacationService from '../hooks/notificationService';
 import { useAlert } from 'react-alert';
-import { find } from 'lodash';
 
 export type VideoKind = 'screen' | 'media';
 const createVideo = (
@@ -81,7 +77,6 @@ export default function useAgora(
 } {
   const [localVideoTrack, setLocalVideoTrack] = useState<ILocalVideoTrack | undefined>(undefined);
   const [localAudioTrack, setLocalAudioTrack] = useState<ILocalAudioTrack | undefined>(undefined);
-  const [localVideo, setLocalVideo] = useState<VideoState | undefined>(undefined);
   const [localVideoId, setLocalVideoId] = useState('');
   const [localScreenStreamTrack, setlocalScreenStreamTrack] = useState<any>(undefined);
   const [joinState, setJoinState] = useState(false);
@@ -90,16 +85,14 @@ export default function useAgora(
   const { channel: ChannelName, screenStream, videos } = useSelector((state: RootState) => state.meeting);
   const dispatch = useDispatch();
   const { playNotification } = useNotifacationService();
+  const alert = useAlert();
   // const alert = useAlert();
 
   async function createLocalTracks(
     audioConfig?: MicrophoneAudioTrackInitConfig,
     videoConfig?: CameraVideoTrackInitConfig
   ): Promise<[IMicrophoneAudioTrack, ICameraVideoTrack]> {
-    // const [microphoneTrack, cameraTrack] = await AgoraRTC.createMicrophoneAndCameraTracks(audioConfig, videoConfig);
-    const cameraTrack = await AgoraRTC.createCameraVideoTrack();
-    const microphoneTrack = await AgoraRTC.createMicrophoneAudioTrack();
-
+    const [microphoneTrack, cameraTrack] = await AgoraRTC.createMicrophoneAndCameraTracks(audioConfig, { optimizationMode: 'motion' });
     cameraTrack.setEncoderConfiguration('360p_1');
     setLocalAudioTrack(microphoneTrack);
     setLocalVideoTrack(cameraTrack);
@@ -110,9 +103,7 @@ export default function useAgora(
     if (!client) return;
     const [microphoneTrack, cameraTrack] = await createLocalTracks();
     const [initialVideo, connectionId] = createVideo(nanoid(6), microphoneTrack, cameraTrack);
-
     setLocalVideoId(connectionId);
-    setLocalVideo(initialVideo);
     dispatch(pushVideo(initialVideo));
 
     await client.join(appid, channel, token || null, connectionId);
@@ -126,7 +117,11 @@ export default function useAgora(
 
   async function screenJoin(appid: string, channel: string, token?: string, uid?: string | number | null) {
     if (!screenClient) return;
-    const screenVideo = await AgoraRTC.createScreenVideoTrack({ encoderConfig: '480p' });
+    const screenVideo = await AgoraRTC.createScreenVideoTrack({ optimizationMode: 'motion' }, 'disable');
+    screenVideo.getMediaStreamTrack().onended = (tracks) => {
+      stopScreenShare();
+    };
+    // console.log('from screen join >>>>>>>>>>>', screenVideo);
     const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, screenVideo);
     dispatch(pushScreenStream(initialVideo));
     setlocalScreenStreamTrack(screenVideo);
@@ -198,7 +193,9 @@ export default function useAgora(
       localVideoTrack.close();
       await client?.unpublish(localVideoTrack);
     }
-
+    if (localScreenStreamTrack) {
+      stopScreenShare();
+    }
     dispatch(reset());
     setJoinState(false);
     await client?.leave();
@@ -221,6 +218,9 @@ export default function useAgora(
     setRemoteUsers(client.remoteUsers);
 
     const handleUserPublished = async (user: IAgoraRTCRemoteUser, mediaType: 'audio' | 'video') => {
+      const screenVideo = store.getState().meeting.screenStream;
+      // console.log('inside the chuss >>>>>>>>>>>>>>>>', screenVideo);
+
       if (!screenStream) {
         await client.subscribe(user, mediaType);
         let videos = client.remoteUsers;
@@ -233,8 +233,6 @@ export default function useAgora(
             dispatch(pushVideo(initialVideo));
           }
         });
-        console.log('###################', videos);
-
         // if (user.uid === SHARE_ID) {
         //   const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
         //   dispatch(pushScreenStream(initialVideo));
@@ -249,9 +247,33 @@ export default function useAgora(
     const handleUserUnpublished = (user: IAgoraRTCRemoteUser) => {
       dispatch(pullVideo(user.uid));
       console.log('this is the console for remote users from user published >>.', client?.remoteUsers);
+      // const screenVideo = store.getState().meeting.screenStream;
+      // if (user.uid === SHARE_ID) {
+      //   // const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
+      //   // dispatch(pushScreenStream(initialVideo));
+      // } else {
+      //   let videos = client.remoteUsers;
+      //   videos.map((user) => {
+      //     const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
+      //     dispatch(pushVideo(initialVideo));
+      //   });
+      // }
+      // playNotification();
+      let videos = client.remoteUsers;
+      videos.map((user) => {
+        if (user.uid === SHARE_ID) {
+          const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
+          dispatch(pushScreenStream(initialVideo));
+        } else {
+          const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
+          dispatch(pushVideo(initialVideo));
+        }
+      });
+      console.log('>>>>>>>>>> user unpublished trigerred >>>>>>>>>>>>');
     };
 
     const handleUserJoined = (user: IAgoraRTCRemoteUser) => {
+      const screenVideo = store.getState().meeting.screenStream;
       if (!screenStream) {
         // if (user.uid === SHARE_ID) {
         //   // const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
@@ -281,9 +303,32 @@ export default function useAgora(
 
     const handleUserLeft = (user: IAgoraRTCRemoteUser) => {
       dispatch(pullVideo(user.uid));
-      console.log('this is the console for remote users from user left >>.', client?.remoteUsers);
+      // const screenVideo = store.getState().meeting.screenStream;
 
-      // console.log('>>>>>>>>>> user left trigerred >>>>>>>>>>>>', user.uid);
+      // if (user.uid === SHARE_ID) {
+      //   // const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
+      //   // dispatch(pushScreenStream(initialVideo));
+      // } else {
+      //   let videos = client.remoteUsers;
+      //   videos.map((user) => {
+      //     const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
+      //     dispatch(pushVideo(initialVideo));
+      //   });
+      // }
+      // playNotification();
+      let videos = client.remoteUsers;
+      videos.map((user) => {
+        if (user.uid === SHARE_ID) {
+          const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, user.videoTrack);
+          dispatch(pushScreenStream(initialVideo));
+        } else {
+          const [initialVideo, connectionId] = createVideo(user.uid, user.audioTrack, user.videoTrack);
+          dispatch(pushVideo(initialVideo));
+        }
+      });
+      // console.log('>>>>>>>>>> user join trigerred >>>>>>>>>>>>');
+
+      console.log('>>>>>>>>>> user left trigerred >>>>>>>>>>>>', user.uid);
     };
 
     const handleConnectionStateChange = (connectionState: any) => {
@@ -292,9 +337,22 @@ export default function useAgora(
       }
     };
 
+    const handleTokenPrivilegeDidExpire = () => {
+      console.log('token is expiring in 15 mins');
+    };
+
+    const handleTokenPrivilegeWillExpire = () => {};
+
     handleRemoteRaiseHand(ChannelName);
     handleRemoteActiveVideo(ChannelName);
     handleMenuVideoBorderChange(ChannelName);
+    client.on('token-privilege-did-expire', handleTokenPrivilegeDidExpire);
+    client.on('token-privilege-will-expire', handleTokenPrivilegeWillExpire);
+
+    client.on('error', (err: any) => {
+      alert.show(err, { type: 'error' });
+    });
+    // client.on('token-privilege-did-expire', () => {});
 
     client.on('connection-state-change', handleConnectionStateChange);
     client.on('user-published', handleUserPublished);

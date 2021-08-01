@@ -16,7 +16,7 @@ const screenClient = AgoraRTC.createClient({ codec: 'vp8', mode: 'rtc' });
 
 function Call(props: RouteComponentProps) {
   const appid = '4d5d68e2022f4acbbc091609970b93f9';
-  const token = '0064d5d68e2022f4acbbc091609970b93f9IADZElRnXC/AMtwzxZcPn3/mG5z9MFbX3i+h4YNbpPaGsr2No/cAAAAAEAC1UnliNr8GYQEAAQA1vwZh';
+  const token = '0064d5d68e2022f4acbbc091609970b93f9IABcsTOfNGnICax3bQGMMKEixLYSUN2l5+VhmmgVhDksI72No/cAAAAAEACwfmgriSEIYQEAAQCJIQhh';
 
   const {
     stopScreenShare,
@@ -78,6 +78,8 @@ function Call(props: RouteComponentProps) {
   };
 
   const video = (stream: streamInterface, id: string | number, muted: Boolean, visibility: Boolean) => {
+    // let q = stream.video?.getMediaStreamTrack().clone();
+    // console.log('>>>>>>>>>>>media stream track', q);
     return (
       <MediaPlayer
         id={id}

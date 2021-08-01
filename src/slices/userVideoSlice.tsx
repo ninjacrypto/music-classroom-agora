@@ -2,6 +2,7 @@ import { createSlice, current, PayloadAction } from '@reduxjs/toolkit';
 import { IAgoraRTCRemoteUser, ILocalAudioTrack, ILocalVideoTrack, IRemoteAudioTrack, IRemoteVideoTrack } from 'agora-rtc-sdk-ng';
 import { cloneDeep, find, findIndex, map, pull, reject, some } from 'lodash';
 import { VideoKind } from '../hooks/useAgora';
+import { fabric } from 'fabric';
 
 export interface streamInterface {
   audio: ILocalAudioTrack | IRemoteAudioTrack | undefined;
@@ -22,6 +23,9 @@ export interface VideoState {
   renderId: string | number;
 }
 
+export type MeetingWhiteboardDrawingState = fabric.Object;
+export type MeetingWhiteboardDrawingsState = MeetingWhiteboardDrawingState[];
+
 export interface MeetingStateInterface {
   app_Id: string;
   channel: string;
@@ -30,6 +34,7 @@ export interface MeetingStateInterface {
   screenStream: VideoState | null;
   calls: [];
   whiteboardEnabled: Boolean;
+  whiteboardDrawings: MeetingWhiteboardDrawingsState;
 }
 export const meetingInitailState: MeetingStateInterface = {
   app_Id: '',
@@ -38,7 +43,8 @@ export const meetingInitailState: MeetingStateInterface = {
   videos: [],
   screenStream: null,
   calls: [],
-  whiteboardEnabled: false,
+  whiteboardDrawings: [],
+  whiteboardEnabled: true,
 };
 
 export const meetingSlice = createSlice({
