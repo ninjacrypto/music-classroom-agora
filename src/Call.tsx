@@ -1,22 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 import useAgora from './hooks/useAgora';
 import MediaPlayer from './components/MediaPlayer';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import './call.css';
 import { RootState } from './store/store';
 import GridContainer from './components/grid/grid';
-import { streamInterface, VideoState } from './slices/userVideoSlice';
+import { replaceMeetingMode, streamInterface, VideoState } from './slices/userVideoSlice';
 import { find } from 'lodash';
 import ActiveVideoElement from './components/ActiveVideoBlock/ActiveVideoBlock';
+import WhiteboardDrawingService from './hooks/Whiteboard/WhiteboardDrawingService';
+import socket from './hooks/Meeting.socket';
+import { IEvent } from 'fabric/fabric-impl';
+import {
+  MeetingWhiteboardDrawingState,
+  replaceWhiteboardDrawings,
+  pushWhiteboardDrawing,
+  replaceMeetingImage,
+  replaceWhiteboardEnabled,
+} from './slices/userVideoSlice';
+import WhiteboardCanvasService from './hooks/Whiteboard/WhiteboardCanvasService';
+import Whiteboard from './components/Whiteboard/Whiteboard';
+import { useAlert } from 'react-alert';
+import DragDrop from './components/dragDrop/DragDrop';
 
 const client = AgoraRTC.createClient({ codec: 'h264', mode: 'rtc' });
 const screenClient = AgoraRTC.createClient({ codec: 'vp8', mode: 'rtc' });
 
 function Call(props: RouteComponentProps) {
   const appid = '4d5d68e2022f4acbbc091609970b93f9';
-  const token = '0064d5d68e2022f4acbbc091609970b93f9IABcsTOfNGnICax3bQGMMKEixLYSUN2l5+VhmmgVhDksI72No/cAAAAAEACwfmgriSEIYQEAAQCJIQhh';
+  const token = '0064d5d68e2022f4acbbc091609970b93f9IADxcR4moyUWtkULKOyUFXUWEPJkXT1jeQ0ZjM0ynjQGOr2No/cAAAAAEACZZ/Ce76YOYQEAAQDupg5h';
 
   const {
     stopScreenShare,
@@ -33,8 +47,11 @@ function Call(props: RouteComponentProps) {
     handleClickOnVideoBorderChange,
   } = useAgora(client, screenClient, props);
 
-  const { videos, screenStream, channel } = useSelector((state: RootState) => state.meeting);
-
+  const dispatch = useDispatch();
+  const { videos, screenStream, channel, whiteboardDrawings, whiteboardEnabled, mode } = useSelector((state: RootState) => state.meeting);
+  const whiteboardCanvasService = new WhiteboardCanvasService();
+  const whiteboardDrawingService = new WhiteboardDrawingService();
+  const alert = useAlert();
   const getVideos = () => {
     if (videos.length !== 0) return videos.map((vi) => video(vi.stream, vi.v_id, isHost(vi.v_id), vi.raisehand));
     return [];
@@ -45,9 +62,10 @@ function Call(props: RouteComponentProps) {
     if (video) return true;
     return false;
   };
-  // const canMuteAudio = () => {
-  //   const muted = videos.find(()=>{})
-  // }
+  const canEnableWhiteboard = () => {
+    return !whiteboardEnabled;
+  };
+
   const getScreenShareVideo = (): VideoState | null => {
     return screenStream;
   };
@@ -69,17 +87,101 @@ function Call(props: RouteComponentProps) {
 
   const ActiveVideoBlock = () => {
     const activeVideo = getActiveVideo();
-    console.log('this is active video >>>>>>', activeVideo);
-    return (
-      activeVideo && (
-        <ActiveVideoElement id={activeVideo.v_id} videoTrack={activeVideo.stream.video} audioTrack={activeVideo.stream.audio}></ActiveVideoElement>
-      )
-    );
+    switch (mode) {
+      case 'image':
+        return <DragDrop />;
+      case 'pdf':
+        return 0;
+      case 'screenshare':
+        return (
+          activeVideo && (
+            <ActiveVideoElement
+              id={activeVideo.v_id}
+              videoTrack={activeVideo.stream.video}
+              audioTrack={activeVideo.stream.audio}></ActiveVideoElement>
+          )
+        );
+      case 'video':
+        return 0;
+      case 'whiteboard':
+        return (
+          <Whiteboard
+            drawings={whiteboardDrawings}
+            handleCanvasClearClick={handleWhiteboardCanvasClearClick}
+            handleDrawingAdd={handleWhiteboardDrawingAdd}
+          />
+        );
+    }
+  };
+
+  const handleRemoteWhiteboardCanvasClear = useCallback(
+    (meetingId: string) => {
+      socket.whiteboardCanvasClear.subscribe(meetingId, () => {
+        whiteboardCanvasService.clear();
+        dispatch(replaceWhiteboardDrawings([]));
+      });
+    },
+    [channel]
+  );
+
+  const handleWhiteboardCanvasClearClick = useCallback(() => {
+    socket.whiteboardCanvasClear.publish(channel);
+  }, [channel]);
+
+  const handleRemoteWhiteboardDrawingAdd = (meetingId: string) => {
+    socket.whiteboardDrawingAdd.subscribe(meetingId, (drawing) => {
+      const isDrawingExists = whiteboardDrawingService.isExists(drawing);
+      if (!isDrawingExists) {
+        whiteboardDrawingService.parse(drawing, (drawings) => {
+          whiteboardDrawingService.add(drawings);
+        });
+      }
+    });
+  };
+
+  const handleRemoteMeetingMode = (meetingId: string) => {
+    socket.meetingMode.subscribe(meetingId, (mode) => {
+      dispatch(replaceMeetingMode(mode));
+    });
+  };
+
+  const handleRemoteWhiteboardEnabled = (meetingId: string) => {
+    socket.whiteboardEnabled.subscribe(meetingId, (whiteboardEnabled) => {
+      dispatch(replaceWhiteboardEnabled(whiteboardEnabled));
+    });
+  };
+
+  const handleWhiteboardClick = () => {
+    if (canScreenShare()) {
+      stopScreenShare();
+    }
+    socket.whiteboardEnabled.publish(channel, true);
+    socket.meetingMode.publish(channel, 'whiteboard');
+  };
+
+  const handleWhiteboardDrawingAdd = useCallback(
+    (event: IEvent) => {
+      const drawing = event.target as MeetingWhiteboardDrawingState;
+      dispatch(pushWhiteboardDrawing(drawing));
+      socket.whiteboardDrawingAdd.publish(channel, drawing);
+    },
+    [channel]
+  );
+
+  const handleRemoteImageModeClick = () => {
+    dispatch(replaceMeetingMode('image'));
+    socket.whiteboardEnabled.publish(channel, false);
+    socket.meetingMode.publish(channel, 'image');
+  };
+
+  const handleOnRemoteImage = (meetingId: string) => {
+    socket.shareImageToPeer.subscribe(meetingId, (payload) => {
+      console.log('payload from image >>>>>>>>>>', payload);
+      dispatch(replaceMeetingImage(payload));
+    });
   };
 
   const video = (stream: streamInterface, id: string | number, muted: Boolean, visibility: Boolean) => {
-    // let q = stream.video?.getMediaStreamTrack().clone();
-    // console.log('>>>>>>>>>>>media stream track', q);
     return (
       <MediaPlayer
         id={id}
@@ -112,6 +214,11 @@ function Call(props: RouteComponentProps) {
         leave();
       }
     }
+    handleOnRemoteImage(channel);
+    handleRemoteWhiteboardCanvasClear(channel);
+    handleRemoteWhiteboardDrawingAdd(channel);
+    handleRemoteWhiteboardEnabled(channel);
+    handleRemoteMeetingMode(channel);
 
     return () => {
       leave();
@@ -126,6 +233,7 @@ function Call(props: RouteComponentProps) {
         meetingVideos={videos}
         activeVideo={ActiveVideoBlock()}
         canScreenShare={canScreenShare()}
+        canEnableWhiteboard={canEnableWhiteboard()}
         handleScreenShareClick={() => screenJoin(appid, channel, token)}
         handleStopScreenShareClick={stopScreenShare}
         handleEndMeetingClick={leave}
@@ -136,6 +244,8 @@ function Call(props: RouteComponentProps) {
         inviteText={inviteText()}
         handleRemoteRaiseHandClick={handleRemoteRaiseHandClick}
         changeBorder={handleClickOnVideoBorderChange}
+        handleWhiteboardClick={handleWhiteboardClick}
+        handleRemoteImageModeClick={handleRemoteImageModeClick}
       />
     </div>
   );

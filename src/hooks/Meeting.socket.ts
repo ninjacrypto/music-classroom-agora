@@ -1,5 +1,6 @@
 import { call } from 'ionicons/icons';
 import SocketService from './SocketService';
+import { MeetingMode, MeetingWhiteboardDrawingsState, MeetingWhiteboardDrawingState } from '../slices/userVideoSlice';
 // import { MeetingWhiteboardDrawingsState, MeetingWhiteboardDrawingState, VideoStateKind, VideoState } from './Meeting.state';
 
 // interface RTPTrackReplacedPayload {
@@ -11,10 +12,10 @@ interface BorderColorReplacedPayload {
   connectionId: string;
   borderColor: string;
 }
-// export interface WhiteboardSync {
-//   drawings: MeetingWhiteboardDrawingsState;
-//   whiteboardEnabled: boolean;
-// }
+export interface WhiteboardSync {
+  drawings: MeetingWhiteboardDrawingsState;
+  whiteboardEnabled: boolean;
+}
 
 export default {
   raiseHand: {
@@ -105,20 +106,20 @@ export default {
     },
   },
 
-  muteUsers: {
-    channel(meetingId: string) {
-      return `/muteUsers/${meetingId}`;
-    },
-    subscribe(meetingId: string, callback: (connectionId: string) => void) {
-      SocketService.subscribe(this.channel(meetingId), (connectionId: string) => callback(connectionId));
-    },
-    unsubscribe(meetingId: string) {
-      SocketService.unsubscribe(this.channel(meetingId));
-    },
-    publish(meetingId: string, connectionId: string) {
-      SocketService.publish(this.channel(meetingId), connectionId);
-    },
-  },
+  // muteUsers: {
+  //   channel(meetingId: string) {
+  //     return `/muteUsers/${meetingId}`;
+  //   },
+  //   subscribe(meetingId: string, callback: (connectionId: string) => void) {
+  //     SocketService.subscribe(this.channel(meetingId), (connectionId: string) => callback(connectionId));
+  //   },
+  //   unsubscribe(meetingId: string) {
+  //     SocketService.unsubscribe(this.channel(meetingId));
+  //   },
+  //   publish(meetingId: string, connectionId: string) {
+  //     SocketService.publish(this.channel(meetingId), connectionId);
+  //   },
+  // },
 
   replaceActiveVideoBlock: {
     channel(meetingId: string) {
@@ -162,6 +163,21 @@ export default {
       SocketService.publish(this.channel(meetingId), payload);
     },
   },
+
+  shareImageToPeer: {
+    channel(meetingId: string) {
+      return `/shareImageToPeer/${meetingId}`;
+    },
+    subscribe(meetingId: string, callback: (payload: string | null) => void) {
+      SocketService.subscribe(this.channel(meetingId), (payload: string | null) => callback(payload));
+    },
+    unsubscribe(meetingId: string) {
+      SocketService.unsubscribe(this.channel(meetingId));
+    },
+    publish(meetingId: string, payload: string | null) {
+      SocketService.publish(this.channel(meetingId), payload);
+    },
+  },
   // ActiveVideoBlockSync: {
   //   channel(meetingId: string) {
   //     return `/ActiveVideoBlockSync/${meetingId}`;
@@ -177,78 +193,78 @@ export default {
   //   },
   // },
 
-  // rtpTrackReplaced: {
-  //   channel(meetingId: string) {
-  //     return `/rtpTrackReplaced/${meetingId}`;
-  //   },
-  //   subscribe(meetingId: string, callback: (payload: RTPTrackReplacedPayload) => void) {
-  //     SocketService.subscribe(this.channel(meetingId), (payload: RTPTrackReplacedPayload) => callback(payload));
-  //   },
-  //   unsubscribe(meetingId: string) {
-  //     SocketService.unsubscribe(this.channel(meetingId));
-  //   },
-  //   publish(meetingId: string, payload: RTPTrackReplacedPayload) {
-  //     SocketService.publish(this.channel(meetingId), payload);
-  //   },
-  // },
+  meetingMode: {
+    channel(meetingId: string) {
+      return `/meetingMode/${meetingId}`;
+    },
+    subscribe(meetingId: string, callback: (payload: MeetingMode) => void) {
+      SocketService.subscribe(this.channel(meetingId), (payload: MeetingMode) => callback(payload));
+    },
+    unsubscribe(meetingId: string) {
+      SocketService.unsubscribe(this.channel(meetingId));
+    },
+    publish(meetingId: string, payload: MeetingMode) {
+      SocketService.publish(this.channel(meetingId), payload);
+    },
+  },
 
-  // whiteboardEnabled: {
-  //   channel(meetingId: string) {
-  //     return `/whiteboardEnabled/${meetingId}`;
-  //   },
-  //   subscribe(meetingId: string, callback: (whiteboardEnabled: boolean) => void) {
-  //     SocketService.subscribe(this.channel(meetingId), (whiteboardEnabled: boolean) => callback(whiteboardEnabled));
-  //   },
-  //   unsubscribe(meetingId: string) {
-  //     SocketService.unsubscribe(this.channel(meetingId));
-  //   },
-  //   publish(meetingId: string, whiteboardEnabled: boolean) {
-  //     SocketService.publish(this.channel(meetingId), whiteboardEnabled);
-  //   },
-  // },
+  whiteboardEnabled: {
+    channel(meetingId: string) {
+      return `/whiteboardEnabled/${meetingId}`;
+    },
+    subscribe(meetingId: string, callback: (whiteboardEnabled: boolean) => void) {
+      SocketService.subscribe(this.channel(meetingId), (whiteboardEnabled: boolean) => callback(whiteboardEnabled));
+    },
+    unsubscribe(meetingId: string) {
+      SocketService.unsubscribe(this.channel(meetingId));
+    },
+    publish(meetingId: string, whiteboardEnabled: boolean) {
+      SocketService.publish(this.channel(meetingId), whiteboardEnabled);
+    },
+  },
 
-  // whiteboardDrawingSync: {
-  //   channel(connectionId: string) {
-  //     return `/whiteboardDrawingSync/${connectionId}`;
-  //   },
-  //   subscribe(connectionId: string, callback: (whiteboardSync: WhiteboardSync) => void) {
-  //     SocketService.subscribe(this.channel(connectionId), (whiteboardSync: WhiteboardSync) => callback(whiteboardSync));
-  //   },
-  //   unsubscribe(connectionId: string) {
-  //     SocketService.unsubscribe(this.channel(connectionId));
-  //   },
-  //   publish(connectionId: string, whiteboardSync: WhiteboardSync) {
-  //     SocketService.publish(this.channel(connectionId), whiteboardSync);
-  //   },
-  // },
+  whiteboardDrawingSync: {
+    channel(connectionId: string) {
+      return `/whiteboardDrawingSync/${connectionId}`;
+    },
+    subscribe(connectionId: string, callback: (whiteboardSync: WhiteboardSync) => void) {
+      SocketService.subscribe(this.channel(connectionId), (whiteboardSync: WhiteboardSync) => callback(whiteboardSync));
+    },
+    unsubscribe(connectionId: string) {
+      SocketService.unsubscribe(this.channel(connectionId));
+    },
+    publish(connectionId: string, whiteboardSync: WhiteboardSync) {
+      SocketService.publish(this.channel(connectionId), whiteboardSync);
+    },
+  },
 
-  // whiteboardDrawingAdd: {
-  //   channel(meetingId: string) {
-  //     return `/whiteboardDrawingAdd/${meetingId}`;
-  //   },
-  //   subscribe(meetingId: string, callback: (drawing: MeetingWhiteboardDrawingState) => void) {
-  //     SocketService.subscribe(this.channel(meetingId), (drawing: MeetingWhiteboardDrawingState) => callback(drawing));
-  //   },
-  //   unsubscribe(meetingId: string) {
-  //     SocketService.unsubscribe(this.channel(meetingId));
-  //   },
-  //   publish(meetingId: string, drawing: MeetingWhiteboardDrawingState) {
-  //     SocketService.publish(this.channel(meetingId), drawing);
-  //   },
-  // },
+  whiteboardDrawingAdd: {
+    channel(meetingId: string) {
+      return `/whiteboardDrawingAdd/${meetingId}`;
+    },
+    subscribe(meetingId: string, callback: (drawing: MeetingWhiteboardDrawingState) => void) {
+      SocketService.subscribe(this.channel(meetingId), (drawing: MeetingWhiteboardDrawingState) => callback(drawing));
+    },
+    unsubscribe(meetingId: string) {
+      SocketService.unsubscribe(this.channel(meetingId));
+    },
+    publish(meetingId: string, drawing: MeetingWhiteboardDrawingState) {
+      SocketService.publish(this.channel(meetingId), drawing);
+    },
+  },
 
-  // whiteboardCanvasClear: {
-  //   channel(meetingId: string) {
-  //     return `/whiteboardCanvasClear/${meetingId}`;
-  //   },
-  //   subscribe(meetingId: string, callback: () => void) {
-  //     SocketService.subscribe(this.channel(meetingId), callback);
-  //   },
-  //   unsubscribe(meetingId: string) {
-  //     SocketService.unsubscribe(this.channel(meetingId));
-  //   },
-  //   publish(meetingId: string) {
-  //     SocketService.publish(this.channel(meetingId), null);
-  //   },
-  // },
+  whiteboardCanvasClear: {
+    channel(meetingId: string) {
+      return `/whiteboardCanvasClear/${meetingId}`;
+    },
+    subscribe(meetingId: string, callback: () => void) {
+      SocketService.subscribe(this.channel(meetingId), callback);
+    },
+    unsubscribe(meetingId: string) {
+      SocketService.unsubscribe(this.channel(meetingId));
+    },
+    publish(meetingId: string) {
+      SocketService.publish(this.channel(meetingId), null);
+    },
+  },
 };

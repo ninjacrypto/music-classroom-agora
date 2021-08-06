@@ -1,0 +1,32 @@
+.tabPanel_upload_file {
+  /* margin-top: 20px; */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border: 1px dashed #535763;
+  box-sizing: border-box;
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: Risque;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 140%;
+  /* or 20px */
+
+  text-align: center;
+
+  color: #535763;
+}
+.tabPanel_upload_file > input {
+  background: none;
+  border: none;
+}
+
+.overlay {
+  background-color: rgb(97, 88, 88);
+}

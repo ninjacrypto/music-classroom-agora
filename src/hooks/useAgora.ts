@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import AgoraRTC, {
   IAgoraRTCClient,
   IAgoraRTCRemoteUser,
@@ -21,6 +21,7 @@ import {
   VideoState,
   replaceActiveVideo,
   replaceBorderColor,
+  replaceMeetingMode,
   reset,
 } from '../slices/userVideoSlice';
 import { nanoid } from 'nanoid';
@@ -106,8 +107,8 @@ export default function useAgora(
     setLocalVideoId(connectionId);
     dispatch(pushVideo(initialVideo));
 
-    await client.join(appid, channel, token || null, connectionId);
-    await client.publish([microphoneTrack, cameraTrack]);
+    // await client.join(appid, channel, token || null, connectionId);
+    // await client.publish([microphoneTrack, cameraTrack]);
 
     (window as any).client = client;
     (window as any).videoTrack = cameraTrack;
@@ -117,22 +118,28 @@ export default function useAgora(
 
   async function screenJoin(appid: string, channel: string, token?: string, uid?: string | number | null) {
     if (!screenClient) return;
+    disableWhiteBoard();
     const screenVideo = await AgoraRTC.createScreenVideoTrack({ optimizationMode: 'motion' }, 'disable');
     screenVideo.getMediaStreamTrack().onended = (tracks) => {
       stopScreenShare();
     };
-    // console.log('from screen join >>>>>>>>>>>', screenVideo);
+    dispatch(replaceMeetingMode('screenshare'));
     const [initialVideo, connectionId] = createVideo(SHARE_ID, undefined, screenVideo);
     dispatch(pushScreenStream(initialVideo));
     setlocalScreenStreamTrack(screenVideo);
 
-    await screenClient.join(appid, channel, token || null, connectionId);
-    await screenClient.publish(screenVideo);
+    // await screenClient.join(appid, channel, token || null, connectionId);
+    // await screenClient.publish(screenVideo);
 
     (window as any).screenClient = screenClient;
     (window as any).videoTrack = screenVideo;
     setScreenShareMode(true);
   }
+  const disableWhiteBoard = () => {
+    socket.whiteboardEnabled.publish(ChannelName, false);
+    socket.meetingMode.publish(ChannelName, 'screenshare');
+  };
+
   const MuteCamera = async () => {
     await localVideoTrack?.setMuted(true);
   };
@@ -211,6 +218,7 @@ export default function useAgora(
     dispatch(pullScreenShare());
     setScreenShareMode(false);
     await screenClient?.leave();
+    socket.whiteboardEnabled.publish(ChannelName, true);
   }
 
   useEffect(() => {

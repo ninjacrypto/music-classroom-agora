@@ -9,6 +9,7 @@ export default class WhiteboardCanvasService {
   private static canvas: fabric.Canvas;
 
   constructor() {
+   
     if (!WhiteboardCanvasService.instance) {
       WhiteboardCanvasService.instance = this;
     }

@@ -210,7 +210,7 @@ header {
 /* Position and style the close button (top right corner) */
 .sidepanel .closebtn {
   position: absolute;
-  top:  10px;
+  top: 10px;
   left: 10%;
   font-size: 36px;
   margin-left: 50px;
@@ -1269,7 +1269,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 90%;
+  height: 100%;
   background-color: #0a2977;
 }
 
@@ -4986,8 +4986,9 @@ main {
 
 .newMainContentRight {
   width: 73%;
-  padding: 10px;
   height: 100%;
+  max-height: 510px;
+  padding: 10px;
   background-color: #fbfcd1;
   /*  transform: skewX(-2deg); */
   display: flex;
@@ -5088,6 +5089,7 @@ main {
 .newMainContentMiddleX2 {
   width: 56%;
   height: 100%;
+  max-height: 520px;
   background-color: #fbfcd1;
   /*  transform: skewX(-2deg); */
   display: flex;
@@ -5098,6 +5100,8 @@ main {
 .newMainContentMiddleX3 {
   width: 58%;
   height: 100%;
+  max-height: 520px;
+
   background-color: #fbfcd1;
   /*  transform: skewX(-2deg); */
   display: flex;
@@ -5108,6 +5112,8 @@ main {
 .newMainContentMiddleX4 {
   width: 56%;
   height: 100%;
+  max-height: 520px;
+
   background-color: #fbfcd1;
   /*  transform: skewX(-2deg); */
   display: flex;
@@ -5119,6 +5125,8 @@ main {
   width: 38%;
   margin: 0 1%;
   height: 100%;
+  max-height: 520px;
+
   background-color: #fbfcd1;
   /*  transform: skewX(-2deg); */
   display: flex;
@@ -5130,6 +5138,8 @@ main {
   width: 38%;
   margin: 0 1%;
   height: 100%;
+  max-height: 520px;
+
   background-color: #fbfcd1;
   /*  transform: skewX(-2deg); */
   display: flex;
@@ -5141,6 +5151,8 @@ main {
   width: 52%;
   margin: 0 1%;
   height: 100%;
+  max-height: 520px;
+
   background-color: #fbfcd1;
   /*  transform: skewX(-2deg); */
   display: flex;
@@ -5152,6 +5164,8 @@ main {
   width: 52%;
   margin: 0 1%;
   height: 100%;
+  max-height: 520px;
+
   background-color: #fbfcd1;
   /*  transform: skewX(-2deg); */
   display: flex;
@@ -5163,6 +5177,8 @@ main {
   width: 57%;
   margin: 0 1%;
   height: 100%;
+  max-height: 520px;
+
   background-color: #fbfcd1;
   /*  transform: skewX(-2deg); */
   display: flex;
@@ -5174,6 +5190,8 @@ main {
   width: 57%;
   margin: 0 1%;
   height: 100%;
+  max-height: 520px;
+
   background-color: #fbfcd1;
   /*  transform: skewX(-2deg); */
   display: flex;

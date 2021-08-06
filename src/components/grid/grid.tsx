@@ -20,6 +20,7 @@ function Grid(props) {
     // canVideoMute,
     // canAudioMute,
     canScreenShare,
+    canEnableWhiteboard,
     // canMuteUsers,
     // canWhiteboardEnable,
     // canMemberRemove,
@@ -36,6 +37,8 @@ function Grid(props) {
     handleMutevideoClick,
     handleUnMutevideoClick,
     handleRemoteRaiseHandClick,
+    handleWhiteboardClick,
+    handleRemoteImageModeClick,
     // handleWhiteboardClick,
     // handleMemberRemoveClick,
     // handleRemoveRaiseHand,
@@ -215,6 +218,14 @@ function Grid(props) {
                   <hr className='horizontal' />
                   <div className={`menuItemSidebar active`} onClick={handleRemoteRaiseHandClick}>
                     {'Raise Hand'}
+                  </div>
+                  <hr className='horizontal' />
+                  <div className={`menuItemSidebar ${canEnableWhiteboard ? 'active' : ''}`} onClick={handleWhiteboardClick}>
+                    {'Enable Whiteboard'}
+                  </div>
+                  <hr className='horizontal' />
+                  <div className={`menuItemSidebar active`} onClick={handleRemoteImageModeClick}>
+                    {'Image upload'}
                   </div>
                   <hr className='horizontal' />
                   <div className={`menuItemSidebar active`} onClick={handleOnTodaysColor}>

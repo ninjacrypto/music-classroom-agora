@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component, useEffect } from 'react';
+import React, { ChangeEvent, Component, useEffect, memo } from 'react';
 import { forEach } from 'lodash';
 import { IEvent } from 'fabric/fabric-impl';
 import WhiteboardDrawingService from '../../hooks/Whiteboard/WhiteboardDrawingService';
@@ -11,6 +11,7 @@ import WhiteboardCanvas from '../WhiteboardCanvas/WhiteboardCanvas';
 import WhiteboardMenu from '../WhiteboardMenu/WhiteboardMenu';
 import styles from './Whiteboard.module.scss';
 import { RootState } from '../../store/store';
+import { useCallback } from 'react';
 
 export type WhiteboardDrawingAddHandle = (event: IEvent) => void;
 
@@ -112,14 +113,14 @@ function Whiteboard(props: WhiteboardProps) {
   const whiteboardDrawingService = new WhiteboardDrawingService();
 
   useEffect(() => {
-    syncDrawing();
     handleAddDrawing();
+    syncDrawing();
     setPresets();
   }, []);
-
-  const handleCanvasClick = () => {
+  
+  const handleCanvasClick = useCallback(() => {
     dispatch(replaceActiveMenu(null));
-  };
+  }, []);
 
   const handleActiveMenuClick = (activeMenu: WhiteboardActiveMenu) => {
     dispatch(replaceActiveMenu(activeMenu));
@@ -178,4 +179,4 @@ function Whiteboard(props: WhiteboardProps) {
   );
 }
 
-export default Whiteboard;
+export default memo(Whiteboard);

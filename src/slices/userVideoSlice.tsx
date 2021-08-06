@@ -1,7 +1,7 @@
-import { createSlice, current, PayloadAction } from '@reduxjs/toolkit';
-import { IAgoraRTCRemoteUser, ILocalAudioTrack, ILocalVideoTrack, IRemoteAudioTrack, IRemoteVideoTrack } from 'agora-rtc-sdk-ng';
-import { cloneDeep, find, findIndex, map, pull, reject, some } from 'lodash';
-import { VideoKind } from '../hooks/useAgora';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ILocalAudioTrack, ILocalVideoTrack, IRemoteAudioTrack, IRemoteVideoTrack } from 'agora-rtc-sdk-ng';
+import { find, findIndex, map, reject, some } from 'lodash';
+// import { VideoKind } from '../hooks/useAgora';
 import { fabric } from 'fabric';
 
 export interface streamInterface {
@@ -25,6 +25,7 @@ export interface VideoState {
 
 export type MeetingWhiteboardDrawingState = fabric.Object;
 export type MeetingWhiteboardDrawingsState = MeetingWhiteboardDrawingState[];
+export type MeetingMode = 'whiteboard' | 'screenshare' | 'image' | 'video' | 'pdf';
 
 export interface MeetingStateInterface {
   app_Id: string;
@@ -35,6 +36,8 @@ export interface MeetingStateInterface {
   calls: [];
   whiteboardEnabled: Boolean;
   whiteboardDrawings: MeetingWhiteboardDrawingsState;
+  mode: MeetingMode;
+  image: any;
 }
 export const meetingInitailState: MeetingStateInterface = {
   app_Id: '',
@@ -45,6 +48,8 @@ export const meetingInitailState: MeetingStateInterface = {
   calls: [],
   whiteboardDrawings: [],
   whiteboardEnabled: true,
+  mode: 'whiteboard',
+  image: null,
 };
 
 export const meetingSlice = createSlice({
@@ -59,38 +64,73 @@ export const meetingSlice = createSlice({
         const indexOfVideo = findIndex(state.videos, (video) => video.v_id === action.payload.v_id);
         state.videos[indexOfVideo] = action.payload;
       }
-      // state.videos = action.payload;
     },
+
     pullVideo: (state, action: PayloadAction<any>) => {
       state.videos = reject(state.videos, { v_id: action.payload });
     },
+
     pushScreenStream: (state, action: PayloadAction<VideoState>) => {
       state.screenStream = action.payload;
     },
+
     replaceAllVideos: (state, action: PayloadAction<VideoState[]>) => {
       state.videos = action.payload;
     },
+
     replaceChannelName: (state, action: PayloadAction<string>) => {
       state.channel = action.payload;
     },
+
     replaceActiveVideo: (state, action: PayloadAction<string>) => {
       const video = find(state.videos, { v_id: action.payload });
       if (video) {
         video.active = !video.active;
       }
     },
+
     replaceRaiseHand: (state, action: PayloadAction<any>) => {
       const video = find(state.videos, { v_id: action.payload.id });
       if (video) {
         video.raisehand = action.payload.raisehand;
       }
     },
+
     replaceBorderColor: (state, action: PayloadAction<any>) => {
       const video = find(state.videos, { v_id: action.payload.connectionId });
       if (video) {
         video.borderColor = action.payload.borderColor;
       }
     },
+
+    replaceWhiteboardDrawings: (state, action) => {
+      state.whiteboardDrawings = action.payload;
+    },
+
+    replaceWhiteboardEnabled: (state, action: PayloadAction<boolean>) => {
+      state.whiteboardEnabled = action.payload;
+    },
+
+    replaceMeetingMode: (state, action: PayloadAction<MeetingMode>) => {
+      if (state.mode !== action.payload) state.mode = action.payload;
+    },
+
+    replaceMeetingImage: (state, action: PayloadAction<any>) => {
+      state.image = action.payload;
+    },
+    pushWhiteboardDrawing: (state, action: PayloadAction<MeetingWhiteboardDrawingState>) => {
+      const stringifyDrawing = (drawing: MeetingWhiteboardDrawingState) => JSON.stringify(drawing);
+      const { payload } = action;
+      const drawings = map(state.whiteboardDrawings, stringifyDrawing);
+      const existingIndex = findIndex(drawings, (drawing) => {
+        //@ts-ignore
+        return drawing === JSON.stringify(payload);
+      });
+      const isExists = existingIndex >= 0;
+      //@ts-ignore
+      if (!isExists) state.whiteboardDrawings.push(payload);
+    },
+
     pullScreenShare: (state) => {
       state.screenStream = null;
     },
@@ -98,6 +138,11 @@ export const meetingSlice = createSlice({
     reset: (state) => {
       state.videos = [];
       state.channel = '';
+      state.calls = [];
+      state.screenStream = null;
+      state.token = '';
+      state.whiteboardDrawings = [];
+      state.whiteboardEnabled = true;
     },
   },
 });
@@ -108,9 +153,14 @@ export const {
   replaceAllVideos,
   pushScreenStream,
   pullScreenShare,
+  pushWhiteboardDrawing,
+  replaceWhiteboardDrawings,
   replaceChannelName,
   replaceActiveVideo,
+  replaceMeetingImage,
   replaceRaiseHand,
+  replaceWhiteboardEnabled,
+  replaceMeetingMode,
   replaceBorderColor,
   reset,
 } = meetingSlice.actions;
