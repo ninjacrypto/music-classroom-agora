@@ -107,8 +107,8 @@ export default function useAgora(
     setLocalVideoId(connectionId);
     dispatch(pushVideo(initialVideo));
 
-    // await client.join(appid, channel, token || null, connectionId);
-    // await client.publish([microphoneTrack, cameraTrack]);
+    await client.join(appid, channel, token || null, connectionId);
+    await client.publish([microphoneTrack, cameraTrack]);
 
     (window as any).client = client;
     (window as any).videoTrack = cameraTrack;
