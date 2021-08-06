@@ -143,6 +143,8 @@ export const meetingSlice = createSlice({
       state.token = '';
       state.whiteboardDrawings = [];
       state.whiteboardEnabled = true;
+      state.image = null;
+      state.mode = 'whiteboard';
     },
   },
 });

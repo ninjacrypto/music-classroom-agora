@@ -1,12 +1,6 @@
 import { call } from 'ionicons/icons';
 import SocketService from './SocketService';
 import { MeetingMode, MeetingWhiteboardDrawingsState, MeetingWhiteboardDrawingState } from '../slices/userVideoSlice';
-// import { MeetingWhiteboardDrawingsState, MeetingWhiteboardDrawingState, VideoStateKind, VideoState } from './Meeting.state';
-
-// interface RTPTrackReplacedPayload {
-//   connectionId: string;
-//   kind: VideoStateKind;
-// }
 
 interface BorderColorReplacedPayload {
   connectionId: string;

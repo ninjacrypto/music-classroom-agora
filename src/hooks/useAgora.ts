@@ -128,8 +128,8 @@ export default function useAgora(
     dispatch(pushScreenStream(initialVideo));
     setlocalScreenStreamTrack(screenVideo);
 
-    // await screenClient.join(appid, channel, token || null, connectionId);
-    // await screenClient.publish(screenVideo);
+    await screenClient.join(appid, channel, token || null, connectionId);
+    await screenClient.publish(screenVideo);
 
     (window as any).screenClient = screenClient;
     (window as any).videoTrack = screenVideo;

@@ -7,6 +7,7 @@ import Loader from 'react-loader-spinner';
 import { fileValidator, preventBrowserDefaults } from '../../utils/drap-drop';
 import { RootState } from '../../store/store';
 import socket from '../../hooks/Meeting.socket';
+import { useAlert } from 'react-alert';
 
 const config = {
   allowedFileFormats: ['image/jpeg', 'image/jpg', 'image/png'],
@@ -18,10 +19,10 @@ export default function App(props: any) {
   const dispatch = useDispatch();
   let [dragOverlay, setDragOverlay] = useState(false);
   const { image, channel } = useSelector((state: RootState) => state.meeting);
-  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  let dragCounter = useRef(0);
-
+  const dragCounter = useRef(0);
+  const ref = useRef<any>();
+  const alert = useAlert();
   const handleDrag = (e: any) => {
     preventBrowserDefaults(e);
   };
@@ -42,6 +43,7 @@ export default function App(props: any) {
     }
   };
   const handleOnRemoveImage = () => {
+    resetInput();
     dispatch(replaceMeetingImage(null));
     socket.shareImageToPeer.publish(channel, null);
   };
@@ -49,17 +51,23 @@ export default function App(props: any) {
     const files = get(e, 'dataTransfer.files');
     preventBrowserDefaults(e);
     setDragOverlay(false);
-    setError(false);
     dragCounter.current = 0;
     const { isValidFile, errVal } = fileValidator(files, config);
     if (!isValidFile) {
       if (errVal) {
-        setError(errVal);
+        alert.show(errVal, { type: 'error' });
       }
       return false;
     }
-    if (files) fileReader(files);
-    // processDrop(files);
+    if (files) {
+      fileReader(files);
+    }
+  };
+
+  const resetInput = () => {
+    if (ref.current) {
+      ref.current.value = '';
+    }
   };
 
   const fileReader = (files: any) => {
@@ -69,6 +77,8 @@ export default function App(props: any) {
       dispatch(replaceMeetingImage(loadEvt.target.result));
       socket.shareImageToPeer.publish(channel, loadEvt.target.result);
     };
+    // reader.abort();
+    return false;
   };
 
   const handleChange = (e: any) => {
@@ -106,12 +116,6 @@ export default function App(props: any) {
         ) : image ? (
           <>
             <img src={image} alt='dummy' style={{ height: '100%', width: '100%', overflow: 'auto', objectFit: 'contain' }} />
-            <img
-              src={'/assets/removeImg.png'}
-              alt=''
-              style={{ position: 'absolute', right: '10px', top: '10px', height: '30px' }}
-              onClick={handleOnRemoveImage}
-            />
           </>
         ) : (
           <>
@@ -127,13 +131,16 @@ export default function App(props: any) {
           </>
         )}
       </label>
-      <input
-        type='file'
-        id='upload-button'
-        accept='image/png, image/gif, image/jpeg, image/jpg'
-        style={{ display: 'none' }}
-        onChange={handleChange}
-      />
+      {image && (
+        <img
+          src={'/assets/removeImg.png'}
+          alt=''
+          style={{ position: 'absolute', right: '10px', top: '10px', height: '30px' }}
+          onClick={handleOnRemoveImage}
+        />
+      )}
+
+      <input type='file' id='upload-button' style={{ display: 'none' }} ref={ref} onChange={handleChange} />
       <br />
     </div>
   );
