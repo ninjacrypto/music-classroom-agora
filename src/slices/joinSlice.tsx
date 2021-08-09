@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Action } from 'rxjs/internal/scheduler/Action';
+import { UserType } from './userVideoSlice';
 
 export interface joinStateInterface {
   displayUsername?: string;
@@ -42,8 +44,11 @@ const joinSlice = createSlice({
       state.parentname = '';
       state.childname = '';
     },
+    replaceUserType: (state, action: PayloadAction<UserType>) => {
+      state.type = action.payload;
+    },
   },
 });
 
-export const { replacedisplayUsername, replaceParentName, replaceChildName, replaceGuestName } = joinSlice.actions;
+export const { replacedisplayUsername, replaceParentName, replaceChildName, replaceGuestName, replaceUserType } = joinSlice.actions;
 export default joinSlice.reducer;

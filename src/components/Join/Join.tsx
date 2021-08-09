@@ -31,13 +31,13 @@ function Join(props: RouteComponentProps) {
         dispatch(replaceChannelName(value));
         break;
       case 'guest':
-        dispatch(replaceGuestName({ guestname: value, type: name }));
+        dispatch(replaceGuestName({ guestname: value, type: 'user' }));
         break;
       case 'parent':
-        dispatch(replaceParentName({ parentname: value, type: name }));
+        dispatch(replaceParentName({ parentname: value, type: 'user' }));
         break;
       case 'child':
-        dispatch(replaceChildName({ childname: value, type: name }));
+        dispatch(replaceChildName({ childname: value, type: 'user' }));
         break;
     }
   };

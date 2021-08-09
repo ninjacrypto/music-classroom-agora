@@ -7,6 +7,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import useAlertService from '../../hooks/AlertService';
 import Accordion from '../../components/Accordion/Accordion';
 import { useAlert } from 'react-alert';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 function Grid(props) {
   var {
@@ -14,22 +16,16 @@ function Grid(props) {
     videos,
     meetingVideos,
     activeVideo,
-    // canInviteMember,
-    // canRaiseHand,
-    // canEndMeeting,
-    // canVideoMute,
-    // canAudioMute,
+    canMuteVideo,
+    canMuteAudio,
+    canRemoveRaiseHand,
     canScreenShare,
     canEnableWhiteboard,
-    // canMuteUsers,
-    // canWhiteboardEnable,
-    // canMemberRemove,
+    handleRemotePeerMute,
+    handleRemotePeerunMute,
     inviteText,
-    // handleRaiseHandClick,
     handleEndMeetingClick,
     changeBorder,
-    // handleMenuVideoClick,
-    // handleAudioClick,
     handleScreenShareClick,
     handleStopScreenShareClick,
     handleMuteClick,
@@ -39,22 +35,24 @@ function Grid(props) {
     handleRemoteRaiseHandClick,
     handleWhiteboardClick,
     handleRemoteImageModeClick,
-    // handleWhiteboardClick,
-    // handleMemberRemoveClick,
-    // handleRemoveRaiseHand,
-    // handleMenuRemoveRaiseHandForAdmin,
-    // handleMenuMuteforAdmin,
-    // handleAdminCheck,
+    handleRemoteMuteforAllClick,
+    handleRemoteVideoMuteforAllClick,
+    handleRemoteVideoUnMuteforAllClick,
+    handleRemoteUnMuteforAllClick,
+    handleRemoteMemberRemoveClick,
   } = props;
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>active video >>>', activeVideo);
 
   var values = values || 1;
   const [openNav, setOpenNav] = useState(false);
   const [open2nav, set2Nav] = useState(false);
+  const [muteNavBar, setMuteNavbar] = useState(false);
+  const [toolsNavBar, setToolsNavbar] = useState(false);
+
   // flag for the title change in banner
   const [title, setTitle] = useState(true);
   const alert = useAlert();
-
+  const { type } = useSelector((state: RootState) => state.join);
   const handleOnOpenNav = () => {
     setOpenNav(!openNav);
   };
@@ -64,11 +62,94 @@ function Grid(props) {
   const handleOn2NavBackbtn = () => {
     set2Nav(false);
   };
+  const handleOnmuteNavBarClick = () => {
+    setToolsNavbar(false);
+    setMuteNavbar(true);
+  };
+  const handleOnToolsNavbarClick = () => {
+    setMuteNavbar(false);
+    setToolsNavbar(true);
+  };
+  const handleOnClickMuteNavbarAgain = () => {
+    setMuteNavbar(!muteNavBar);
+  };
+  const handleOnClickToolNavbarAgain = () => {
+    setMuteNavbar(!toolsNavBar);
+  };
   const handleLeftImages = () => {
-    let elements = [<div className={`changeNewBorderColor ${meetingVideos[0]?.borderColor} vidCapture${values}_${1}`}>{videos[0]}</div>];
+    let elements = [
+      <div className={`changeNewBorderColor ${meetingVideos[0]?.borderColor} vidCapture${values}_${1}`}>
+        {videos[0]}
+        <div className='overlayVideoCapture'>
+          {canMuteAudio(0) ? (
+            <img
+              src='/assets/micon.png'
+              style={{ height: '35px', width: '35px' }}
+              alt=''
+              onClick={() => handleRemotePeerMute(meetingVideos[0]?.v_id, 'audio')}
+            />
+          ) : (
+            <img
+              src='/assets/mute.png'
+              style={{ height: '35px', width: '35px' }}
+              alt=''
+              onClick={() => handleRemotePeerunMute(meetingVideos[0]?.v_id, 'audio')}
+            />
+          )}
+          {canMuteVideo(0) ? (
+            <img
+              src='/assets/videoON.png'
+              style={{ height: '35px', width: '35px' }}
+              alt=''
+              onClick={() => handleRemotePeerMute(meetingVideos[0]?.v_id, 'video')}
+            />
+          ) : (
+            <img
+              src='/assets/videoOFF.png'
+              style={{ height: '35px', width: '35px' }}
+              alt=''
+              onClick={() => handleRemotePeerunMute(meetingVideos[0]?.v_id, 'video')}
+            />
+          )}
+
+          <img
+            src='/assets/exit.png'
+            style={{ height: '35px', width: '35px' }}
+            alt=''
+            onClick={() => handleRemoteMemberRemoveClick(meetingVideos[0]?.v_id)}
+          />
+          {canRemoveRaiseHand(0) && <img src='/assets/removeraisehand.png' style={{ height: '35px', width: '35px' }} alt='' />}
+        </div>
+      </div>,
+    ];
     for (let i = 1; i < values; i++) {
       if (i === 3) {
-        elements.push(<div className={`changeNewBorderColor ${meetingVideos[i]?.borderColor} vidCapture${values}_${2}`}>{videos[i]}</div>);
+        elements.push(
+          <div className={`changeNewBorderColor ${meetingVideos[i]?.borderColor} vidCapture${values}_${2}`}>
+            {videos[i]}
+
+            <div className='overlayVideoCapture'>
+              {canMuteAudio(i) ? (
+                <img src='/assets/micon.png' style={{ height: '35px', width: '35px' }} alt='' />
+              ) : (
+                <img src='/assets/mute.png' style={{ height: '35px', width: '35px' }} alt='' />
+              )}
+              {canMuteVideo(i) ? (
+                <img src='/assets/videoON.png' style={{ height: '35px', width: '35px' }} alt='' />
+              ) : (
+                <img src='/assets/videoOFF.png' style={{ height: '35px', width: '35px' }} alt='' />
+              )}
+
+              <img
+                src='/assets/exit.png'
+                style={{ height: '35px', width: '35px' }}
+                alt=''
+                onClick={() => handleRemoteMemberRemoveClick(meetingVideos[i]?.v_id)}
+              />
+              {canRemoveRaiseHand(i) && <img src='/assets/removeraisehand.png' style={{ height: '35px', width: '35px' }} alt='' />}
+            </div>
+          </div>
+        );
       }
     }
     return elements;
@@ -90,7 +171,51 @@ function Grid(props) {
 
       if (condition1 || condition2) {
       } else {
-        elements.push(<div className={`changeNewBorderColor ${meetingVideos[i]?.borderColor} vidCapture${values}_${i + 1}`}>{videos[i]}</div>);
+        elements.push(
+          <div className={`changeNewBorderColor ${meetingVideos[i]?.borderColor} vidCapture${values}_${i + 1}`}>
+            {videos[i]}
+            <div className='overlayVideoCapture'>
+              {canMuteAudio(i) ? (
+                <img
+                  src='/assets/micon.png'
+                  style={{ height: '35px', width: '35px' }}
+                  alt=''
+                  onClick={() => handleRemotePeerMute(meetingVideos[i]?.v_id, 'audio')}
+                />
+              ) : (
+                <img
+                  src='/assets/mute.png'
+                  style={{ height: '35px', width: '35px' }}
+                  alt=''
+                  onClick={() => handleRemotePeerunMute(meetingVideos[i]?.v_id, 'audio')}
+                />
+              )}
+              {canMuteVideo(i) ? (
+                <img
+                  src='/assets/videoON.png'
+                  style={{ height: '35px', width: '35px' }}
+                  alt=''
+                  onClick={() => handleRemotePeerMute(meetingVideos[i]?.v_id, 'video')}
+                />
+              ) : (
+                <img
+                  src='/assets/videoOFF.png'
+                  style={{ height: '35px', width: '35px' }}
+                  alt=''
+                  onClick={() => handleRemotePeerunMute(meetingVideos[i]?.v_id, 'video')}
+                />
+              )}
+
+              <img
+                src='/assets/exit.png'
+                style={{ height: '35px', width: '35px' }}
+                alt=''
+                onClick={() => handleRemoteMemberRemoveClick(meetingVideos[i]?.v_id)}
+              />
+              {canRemoveRaiseHand(i) && <img src='/assets/removeraisehand.png' style={{ height: '35px', width: '35px' }} alt='' />}
+            </div>
+          </div>
+        );
       }
     }
     return elements;
@@ -107,148 +232,180 @@ function Grid(props) {
   };
 
   const handleInviteMemberClick = () => {
-    // if (!canInviteMember) return;
-    // if (isPlatform('hybrid')) SocialSharing.share(inviteText);
-    // else {
-
     copyToClipboard(inviteText);
     alert.show('Invitation Copied!', { type: 'success' });
-
-    // AlertService.push('Invitation copied.');
-    // }
   };
 
   return (
     <div id='container'>
       <div id='contentContainer'>
         <aside id='nav_side'>
-          {openNav && !open2nav ? (
-            <div id='mySidepanel' style={{ color: 'white', padding: 20 }} className='sidepanel'>
-              <div
-                style={{
-                  height: '100%',
-                  border: '1px solid #FFFFFF',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
+          {type === 'admin' ? (
+            openNav && !open2nav ? (
+              <div id='mySidepanel' style={{ color: 'white', padding: 20 }} className='sidepanel'>
                 <a className='closebtn' onClick={handleOnOpenNav}>
                   &times;
                 </a>
-                <div className='upperContainer'>
-                  {/* <div className={`menuItemSidebar active  : ''}`} onClick={canRaiseHand ? handleRaiseHandClick : handleRemoveRaiseHand}>
-                    {canRaiseHand ? 'Raise hand' : 'Unraise Hand'}
-                  </div>
-                  <hr className='horizontal' /> */}
-                  {/* {handleAdminCheck() && (
-                    <>
-                      <div className={`menuItemSidebar active  : ''}`} onClick={handleMenuRemoveRaiseHandForAdmin}>
-                        {'Remove Raised Hand'}
+                <div className='headerTitle'>Admin Back Stage</div>
+                <div className='SideBarItemContainer'>
+                  {muteNavBar ? (
+                    <div className='gradient-outline'>
+                      <div className='gradient-box'>
+                        <text className={`MenuItemforSubMenu active `} onClick={canMuteAudio(0) ? handleMuteClick : handleUnMuteClick}>
+                          {canMuteAudio(0) ? ' Mute my Audio' : 'Unmute my Audio'}
+                        </text>
+                        <text className={`MenuItemforSubMenu active`} onClick={canMuteVideo(0) ? handleMutevideoClick : handleUnMutevideoClick}>
+                          {canMuteVideo(0) ? 'Pause Session for Myself' : 'Unpause Session for Myself'}
+                        </text>
+                        <text className={`MenuItemforSubMenu active`} onClick={handleRemoteVideoMuteforAllClick}>
+                          Pause Session for All
+                        </text>
+                        <text className={`MenuItemforSubMenu active`} onClick={handleRemoteVideoUnMuteforAllClick}>
+                          Unpause Session for All
+                        </text>
+                        <text className={`MenuItemforSubMenu active`} onClick={handleRemoteMuteforAllClick}>
+                          Mute Audio for All
+                        </text>
+                        <text className={`MenuItemforSubMenu active`} onClick={handleRemoteVideoUnMuteforAllClick}>
+                          Unmute Audio for All
+                        </text>
                       </div>
-                      <hr className='horizontal' />
-                      <div className={`menuItemSidebar ${canMuteUsers === 'Not Available' ? '' : 'active'}`} onClick={handleMenuMuteforAdmin}>
-                        {` ${canMuteUsers ? 'Mute User' : 'Unmute User'}`}
+                    </div>
+                  ) : (
+                    <div className='gradient-outline'>
+                      <div className='gradient-box' onClick={handleOnmuteNavBarClick}>
+                        <text className='sideBarMainText'>Mute / Pause</text>
                       </div>
-                      <hr className='horizontal' />
-                      <div className={`menuItemSidebar active`} onClick={handleInviteMemberClick}>
-                        Invite Guests
-                      </div>
-                      <hr className='horizontal' />
-                      <div className={`menuItemSidebar ${canMemberRemove ? 'active' : ''}`} onClick={handleMemberRemoveClick}>
-                        Remove Member
-                      </div>
-                      <hr className='horizontal' />
-                      <Accordion>
-                        <div className={`menuItemSidebar `} onClick={''}>
-                          Chat
-                        </div>
-                        <hr className='horizontal' />
-
-                        <div className={`menuItemSidebar `} onClick={''}>
+                    </div>
+                  )}
+                  {toolsNavBar ? (
+                    <div className='gradient-outline'>
+                      <div className='gradient-box'>
+                        <text className={`MenuItemforSubMenu `}>Chat</text>
+                        <text className={`MenuItemforSubMenu active`} onClick={handleRemoteImageModeClick}>
                           Display File
-                        </div>
-                        <hr className='horizontal' />
-
-                        <div className={`menuItemSidebar `} onClick={''}>
-                          Display Video
-                        </div>
-                        <hr className='horizontal' />
-
-                        <div className={`menuItemSidebar ${canScreenShare ? 'active' : ''}`} onClick={handleScreenShareClick}>
+                        </text>
+                        <text className={`MenuItemforSubMenu `}>Display Video</text>
+                        <text className={`MenuItemforSubMenu ${!canScreenShare ? 'active' : ''} `} onClick={handleScreenShareClick}>
                           Share Screen
-                        </div>
-                        <hr className='horizontal' />
-                        <div className={`menuItemSidebar ${canWhiteboardEnable ? 'active' : ''}`} onClick={handleWhiteboardClick}>
-                          White Board
-                        </div>
-                        <hr className='horizontal' />
-                      </Accordion>
-                    </>
-                  )} */}
-
-                  {/* <div className={`menuItemSidebar ${canAudioMute === 'not Available' ? '' : 'active'}`} onClick={handleAudioClick}>
-                    {`${canAudioMute === 'not Available' ? 'Mute Audio' : canAudioMute ? ' Mute Audio' : 'Unmute Audio'}`}
+                        </text>
+                        <text className={`MenuItemforSubMenu ${canEnableWhiteboard ? 'active' : ''}`} onClick={handleWhiteboardClick}>
+                          Whiteboard
+                        </text>
+                        <text className={`MenuItemforSubMenu active`} onClick={handleInviteMemberClick}>
+                          Invite
+                        </text>
+                        <text className={`MenuItemforSubMenu active`} onClick={handleOnTodaysColor}>
+                          {"Today's Colors"}
+                        </text>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className='gradient-outline' onClick={handleOnToolsNavbarClick}>
+                      <div className='gradient-box'>
+                        <text className='sideBarMainText'>Tools</text>
+                      </div>
+                    </div>
+                  )}
+                  <div className='top-babaji-contianer'>
+                    <div className='babaji-container' onClick={handleEndMeetingClick}>
+                      <div className='gradient-small-box'>
+                        <text className='sideBarSubText'>Leave Session</text>
+                      </div>
+                      <div className='gradient-small-box-outline'></div>
+                    </div>
                   </div>
-                  <hr className='horizontal' />
-
-                  <div className={`menuItemSidebar active`} onClick={handleOnTodaysColor}>
-                    Today's Colors
-                  </div>
-                  <hr className='horizontal' /> */}
-                  <div className={`menuItemSidebar active`} onClick={!canScreenShare ? handleScreenShareClick : handleStopScreenShareClick}>
-                    {!canScreenShare ? 'Screenshare' : 'Stop Screenshare'}
-                  </div>
-                  <hr className='horizontal' />
-                  {/* <div className={`menuItemSidebar active`} onClick={handleStopScreenShareClick}>
-                    {'Stop Screenshare'}
-                  </div>
-                  <hr className='horizontal' /> */}
-                  <div className={`menuItemSidebar active`} onClick={handleMuteClick}>
-                    {'Mute Audio'}
-                  </div>
-                  <hr className='horizontal' />
-                  <div className={`menuItemSidebar active`} onClick={handleUnMuteClick}>
-                    {'Unmute Audio'}
-                  </div>
-                  <hr className='horizontal' />
-                  <div className={`menuItemSidebar active`} onClick={handleInviteMemberClick}>
-                    {'Invite'}
-                  </div>
-                  <hr className='horizontal' />
-                  <div className={`menuItemSidebar active`} onClick={handleRemoteRaiseHandClick}>
-                    {'Raise Hand'}
-                  </div>
-                  <hr className='horizontal' />
-                  <div className={`menuItemSidebar ${canEnableWhiteboard ? 'active' : ''}`} onClick={handleWhiteboardClick}>
-                    {'Enable Whiteboard'}
-                  </div>
-                  <hr className='horizontal' />
-                  <div className={`menuItemSidebar active`} onClick={handleRemoteImageModeClick}>
-                    {'Image upload'}
-                  </div>
-                  <hr className='horizontal' />
-                  <div className={`menuItemSidebar active`} onClick={handleOnTodaysColor}>
-                    {"  Today's Colors"}
-                  </div>
-                  <hr className='horizontal' />
                 </div>
+              </div>
+            ) : open2nav && openNav ? (
+              <div id='mySidepanel' style={{ color: 'white', padding: 20 }} className='sidepanel'>
+                <div
+                  style={{
+                    height: '100%',
+                    border: '1px solid #FFFFFF',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}>
+                  <a className='backbtn' onClick={handleOn2NavBackbtn}>
+                    <img
+                      src='./assets/backArrow.png'
+                      style={{
+                        transform: 'scaleX(-1)',
+                        margin: '20px 0px',
+                      }}
+                      height={40}
+                      width={40}
+                      alt=''
+                    />
+                  </a>
+                  <img width={150} src='/assets/today_color_text.png' style={{ marginRight: 10 }} alt='' />
 
-                <div className='lowerContainer'>
-                  <hr className='HRdivider' />
-                  <div className={`menuItemSidebarlower active`} onClick={handleMutevideoClick}>
-                    {' Pause Session'}
+                  <div id='newCaptureBorderColorsContainer'>
+                    <hr id='green' style={{ border: '5px solid #82ED93', width: '80%' }} onClick={changeBorder}></hr>
+                    <hr id='aqua' style={{ border: '5px solid #4EF2DE', width: '80%' }} onClick={changeBorder}></hr>
+                    <hr id='red' style={{ border: '5px solid #F71C1C', width: '80%' }} onClick={changeBorder}></hr>
+                    <hr id='orange' style={{ border: '5px solid #F29B1A', width: '80%' }} onClick={changeBorder}></hr>
                   </div>
-                  <div className={`menuItemSidebarlower active`} onClick={handleUnMutevideoClick}>
-                    {' Unpause Session'}
+                </div>
+              </div>
+            ) : (
+              <button className='openbtn' id='openbtn' onClick={handleOnOpenNav}>
+                &#9776;
+              </button>
+            )
+          ) : openNav && !open2nav ? (
+            <div id='mySidepanel' style={{ color: 'white', padding: 20 }} className='sidepanel'>
+              <a className='closebtn' onClick={handleOnOpenNav}>
+                &times;
+              </a>
+              <div className='headerTitle'>Back Stage</div>
+              <div className='userMenu'>
+                <div className='userMenuContainer'>
+                  <div className='gradient-small-box-outline-user inactiveOption'></div>
+                  <div className='userMenuSubcontainer inactiveOption'>
+                    <text className={`MenuItemforSubMenu active`} onClick={handleMuteClick}>
+                      {canMuteAudio(0) ? ' Mute my Audio' : 'Unmute my Audio'}
+                    </text>
                   </div>
-                  <div className={`menuItemSidebarlower ${'active'}`} onClick={handleEndMeetingClick}>
-                    End Session
+                </div>
+                <div className='userMenuContainer '>
+                  <div className='gradient-small-box-outline-user inactiveOption'></div>
+                  <div className='userMenuSubcontainer inactiveOption'>
+                    <text className={`MenuItemforSubMenu active`} onClick={canMuteVideo(0) ? handleMutevideoClick : handleUnMutevideoClick}>
+                      {canMuteVideo(0) ? 'Pause my Video' : 'Unpause my Video'}
+                    </text>
+                  </div>
+                </div>
+                <div className='userMenuContainer'>
+                  <div className='gradient-small-box-outline-user inactiveOption'></div>
+                  <div className='userMenuSubcontainer inactiveOption'>
+                    <text className={`MenuItemforSubMenu active`} onClick={handleRemoteRaiseHandClick}>
+                      Raise Hand
+                    </text>
+                  </div>
+                </div>
+                <div className='userMenuContainer'>
+                  <div className='gradient-small-box-outline-user inactiveOption'></div>
+                  <div className='userMenuSubcontainer inactiveOption'>
+                    <text className={`MenuItemforSubMenu active`} onClick={handleOnTodaysColor}>
+                      Today's Color
+                    </text>
+                  </div>
+                </div>
+              </div>
+              <div className='SideBarItemContainer'>
+                <div className='top-babaji-contianer'>
+                  <div className='babaji-container' onClick={handleEndMeetingClick}>
+                    <div className='gradient-small-box'>
+                      <text className='sideBarSubText'>Leave Session</text>
+                    </div>
+                    <div className='gradient-small-box-outline'></div>
                   </div>
                 </div>
               </div>
             </div>
-          ) : openNav ? (
+          ) : openNav && open2nav ? (
             <div id='mySidepanel' style={{ color: 'white', padding: 20 }} className='sidepanel'>
               <div
                 style={{
@@ -285,6 +442,91 @@ function Grid(props) {
               &#9776;
             </button>
           )}
+          {/* {openNav && !open2nav ? (
+            <div id='mySidepanel' style={{ color: 'white', padding: 20 }} className='sidepanel'>
+              <div className='headerTitle'>Back Stage</div>
+              <div className='userMenu'>
+                <div className='userMenuContainer'>
+                  <div className='gradient-small-box-outline-user inactiveOption'></div>
+                  <div className='userMenuSubcontainer inactiveOption'>
+                    <text className={`MenuItemforSubMenu active`} onClick={handleMuteClick}>
+                      {canMuteAudio(0) ? ' Mute my Audio' : 'Unmute my Audio'}
+                    </text>
+                  </div>
+                </div>
+                <div className='userMenuContainer '>
+                  <div className='gradient-small-box-outline-user inactiveOption'></div>
+                  <div className='userMenuSubcontainer inactiveOption'>
+                    <text className={`MenuItemforSubMenu active`} onClick={canMuteVideo(0) ? handleMutevideoClick : handleUnMutevideoClick}>
+                      {canMuteVideo(0) ? 'Pause my Video' : 'Unpause my Video'}
+                    </text>
+                  </div>
+                </div>
+                <div className='userMenuContainer'>
+                  <div className='gradient-small-box-outline-user inactiveOption'></div>
+                  <div className='userMenuSubcontainer inactiveOption'>
+                    <text className={`MenuItemforSubMenu active`} onClick={handleRemoteRaiseHandClick}>
+                      Raise Hand
+                    </text>
+                  </div>
+                </div>
+                <div className='userMenuContainer'>
+                  <div className='gradient-small-box-outline-user inactiveOption'></div>
+                  <div className='userMenuSubcontainer inactiveOption'>
+                    <text className={`MenuItemforSubMenu active`} onClick={handleOnTodaysColor}>
+                      Today's Color
+                    </text>
+                  </div>
+                </div>
+              </div>
+              <div className='SideBarItemContainer'>
+                <div className='top-babaji-contianer'>
+                  <div className='babaji-container' onClick={handleEndMeetingClick}>
+                    <div className='gradient-small-box'>
+                      <text className='sideBarSubText'>Leave Session</text>
+                    </div>
+                    <div className='gradient-small-box-outline'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : openNav && open2nav ? (
+            <div id='mySidepanel' style={{ color: 'white', padding: 20 }} className='sidepanel'>
+              <div
+                style={{
+                  height: '100%',
+                  border: '1px solid #FFFFFF',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}>
+                <a className='backbtn' onClick={handleOn2NavBackbtn}>
+                  <img
+                    src='./assets/backArrow.png'
+                    style={{
+                      transform: 'scaleX(-1)',
+                      margin: '20px 0px',
+                    }}
+                    height={40}
+                    width={40}
+                    alt=''
+                  />
+                </a>
+                <img width={150} src='/assets/today_color_text.png' style={{ marginRight: 10 }} alt='' />
+
+                <div id='newCaptureBorderColorsContainer'>
+                  <hr id='green' style={{ border: '5px solid #82ED93', width: '80%' }} onClick={changeBorder}></hr>
+                  <hr id='aqua' style={{ border: '5px solid #4EF2DE', width: '80%' }} onClick={changeBorder}></hr>
+                  <hr id='red' style={{ border: '5px solid #F71C1C', width: '80%' }} onClick={changeBorder}></hr>
+                  <hr id='orange' style={{ border: '5px solid #F29B1A', width: '80%' }} onClick={changeBorder}></hr>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <button className='openbtn' id='openbtn' onClick={handleOnOpenNav}>
+              &#9776;
+            </button>
+          )} */}
         </aside>
         <main>
           <div className='mainTop'>

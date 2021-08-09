@@ -35,7 +35,7 @@ function Start(props: RouteComponentProps) {
     switch (name) {
       case 'username':
         dispatch(replaceUsername(value));
-        const data = { displayUsername: 'value', type: 'admin' };
+        const data = { displayUsername: 'Admin', type: 'admin' };
         dispatch(replacedisplayUsername(data));
         break;
       case 'password':

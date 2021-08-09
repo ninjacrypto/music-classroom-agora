@@ -80,20 +80,166 @@ header {
 /* The sidepanel menu */
 .sidepanel {
   width: 250px;
-  height: 95%;
+  height: 100%;
+  background-color: black;
+  padding: 20px;
+  position: relative;
+  /* height: 95%; */
   /* position: fixed; */
-  float: left;
+  /* float: left;
   z-index: 999;
   background-color: black;
   overflow-x: hidden;
   transition: 0.5s;
   color: white;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
   /* align-items: center; */
-  row-gap: 20px;
+  /* row-gap: 20px; */
+}
+.headerTitle {
+  font-family: Risque;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  text-align: center;
+  color: #fbfcd1;
+}
+.SideBarItemContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  row-gap: 50px;
+}
+.gradient-box {
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  padding: 10px;
+  border-image-source: linear-gradient(75deg, #2fef2b, #000000);
+  min-height: 150px;
+  max-height: 200px;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.MenuItemforSubMenu {
+  opacity: 0.5;
+  font-family: Risque;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 50px;
+  color: #fbff49;
+  cursor: pointer;
 }
 
+.gradient-outline {
+  border: 1px solid;
+  border-image-slice: 1;
+  border-width: 1px;
+  padding: 10px 0px 10px 20px;
+
+  border-image-source: linear-gradient(90deg, #17b975, #000000);
+}
+.sideBarMainText {
+  font-family: Risque;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  text-align: center;
+  color: #fbff49;
+}
+
+.gradient-small-box {
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 3px;
+  padding: 10px;
+  border-image-source: linear-gradient(75deg, #fbfcd1, #000000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  width: 70%;
+}
+
+.sideBarSubText {
+  font-family: Risque;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  text-align: center;
+  color: #fbfcd1;
+}
+.top-babaji-contianer {
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
+}
+.babaji-container {
+  position: relative;
+}
+
+.gradient-small-box-outline {
+  border: 1px solid;
+  border-image-slice: 1;
+  border-width: 1px;
+  padding: 10px;
+  border-image-source: linear-gradient(75deg, #000000, #fbfcd1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  opacity: 0.6;
+  height: 30px;
+  margin-left: 20px;
+}
+.gradient-small-box-outline-user {
+  border: 1px solid;
+  border-image-slice: 1;
+  border-width: 1px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  opacity: 0.6;
+  height: 30px;
+  margin-left: 20px;
+}
+.userMenuContainer {
+  position: relative;
+}
+.userMenuSubcontainer {
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  width: 70%;
+}
+.activeOption {
+  border-image-source: linear-gradient(75deg, #ef372b, #000000);
+}
+.inactiveOption {
+  border-image-source: linear-gradient(75deg, #2fef2b, #000000);
+}
+.userMenu {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+  height: 100%;
+}
 /* The sidepanel links */
 .sidepanel a {
   padding: 8px 8px 8px 32px;
@@ -104,21 +250,32 @@ header {
   transition: 0.3s;
 }
 
-.sidepanel a:hover {
+/* .sidepanel a:hover {
   color: #f1f1f1;
-}
+} */
+
 .menuItemSidebar {
-  opacity: 0.5;
+  /* opacity: 0.5;
   font-family: Risque;
   font-weight: normal;
   padding: 7px;
   font-size: 18px;
   line-height: 16px;
   font-style: italic;
-  /* display: flex; */
   align-items: center;
   text-align: center;
-  color: #f8fa90;
+  color: #f8fa90; */
+  font-family: Risque;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+
+  color: #fbff49;
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to left, black, #d53a9d);
+  margin-bottom: 10px;
 }
 .Collapsible {
   /* opacity: 0.5; */
@@ -211,25 +368,22 @@ header {
 .sidepanel .closebtn {
   position: absolute;
   top: 10px;
-  left: 10%;
+  right: 0px;
   font-size: 36px;
   margin-left: 50px;
-
   cursor: pointer;
 }
-.sidepanel .backbtn {
-  /* position: absolute; */
-  /* top: 5px; */
-  /* left: 50%; */
-  /* font-size: 36px; */
+/* .sidepanel .backbtn {
+
   width: 100%;
   text-align: center;
   cursor: pointer;
-}
-.sidepanel > div {
+} */
+/* .sidepanel > div {
   display: block;
+
   cursor: pointer;
-}
+} */
 
 /* Style the button that is used to open the sidepanel */
 #contentContainer {
@@ -261,7 +415,6 @@ header {
 }
 
 /* Chat */
-
 .sidepane2 {
   /*height: 100%; */
   width: 0;
@@ -2151,18 +2304,38 @@ main {
 .vidCapture1_1 {
   width: 100%;
   height: 50%;
-
+  position: relative;
   margin-right: -25%;
   z-index: 10;
+  display: block;
 
   object-fit: cover;
   object-position: center center;
+}
+.overlayVideoCapture {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  color: white;
+  font-size: 20px;
+  height: 20%;
+  text-align: center;
+}
+
+.vidCapture1_1:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture2_1 {
   width: 100%;
   height: 50%;
-
+  position: relative;
+  display: block;
   margin-right: -15%;
   z-index: 20;
 
@@ -2170,10 +2343,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture2_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture2_2 {
   width: 100%;
   height: 50%;
-
+  position: relative;
+  display: block;
   margin-left: -15%;
   z-index: 10;
   background-color: #00fcfc;
@@ -2182,11 +2359,16 @@ main {
   object-position: center center;
 }
 
+.vidCapture2_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
 .vidCapture3_1 {
   width: 100%;
   margin-right: -17%;
   height: 50%;
-
+  position: relative;
+  display: block;
   z-index: 10;
 
   background-position: center;
@@ -2197,10 +2379,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture3_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2209,34 +2395,48 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture3_3 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture3_3:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture4_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture4_1:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture4_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2245,16 +2445,25 @@ main {
   object-position: center center;
 }
 
+.vidCapture4_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
 .vidCapture4_3 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture4_3:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture4_4 {
@@ -2264,107 +2473,154 @@ main {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-
+  position: relative;
+  display: block;
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture4_4:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture5_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture5_1:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture5_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture5_2:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture5_3 {
   width: 48%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture5_3:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture5_4 {
   width: 48%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture5_4:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture5_5 {
   width: 48%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture5_5:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture5_6 {
   width: 48%;
   height: 49%;
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+}
+
+.vidCapture5_6:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture6_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture6_1:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture6_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture6_2:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture6_3 {
   width: 48%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2373,10 +2629,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture6_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture6_4 {
   width: 48%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2385,10 +2645,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture6_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture6_5 {
   width: 48%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2397,10 +2661,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture6_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture6_6 {
   width: 48%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2409,10 +2677,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture6_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture7_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2421,22 +2693,31 @@ main {
   object-position: center center;
 }
 
+.vidCapture7_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture7_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture7_2:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture7_3 {
   width: 48%;
   height: 33%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2445,22 +2726,31 @@ main {
   object-position: center center;
 }
 
+.vidCapture7_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture7_4 {
   width: 48%;
   height: 33%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture7_4:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture7_5 {
   width: 48%;
   height: 33%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2469,10 +2759,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture7_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture7_6 {
   width: 48%;
   height: 33%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2481,10 +2775,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture7_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture7_7 {
   width: 48%;
   height: 33%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2493,18 +2791,27 @@ main {
   object-position: center center;
 }
 
+.vidCapture7_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture7_8 {
   width: 48%;
   height: 33%;
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
+.vidCapture7_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture8_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2513,10 +2820,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture8_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture8_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2525,10 +2836,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture8_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture8_3 {
   width: 48%;
   height: 33%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2537,10 +2852,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture8_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture8_4 {
   width: 48%;
   height: 33%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2549,10 +2868,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture8_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture8_5 {
   width: 48%;
   height: 33%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2561,10 +2884,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture8_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture8_6 {
   width: 48%;
   height: 33%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2573,10 +2900,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture8_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture8_7 {
   width: 48%;
   height: 33%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2585,10 +2916,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture8_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture8_8 {
   width: 48%;
   height: 33%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2597,10 +2932,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture8_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture9_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2609,10 +2948,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture9_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture9_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2621,10 +2964,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture9_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture9_3 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2633,10 +2980,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture9_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture9_4 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2645,10 +2996,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture9_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture9_5 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2657,10 +3012,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture9_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture9_6 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2669,10 +3028,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture9_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture9_7 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2681,10 +3044,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture9_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture9_8 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2693,78 +3060,112 @@ main {
   object-position: center center;
 }
 
+.vidCapture9_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture9_9 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture9_9:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture9_10 {
   width: 48%;
   height: 24%;
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
+.vidCapture9_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture10_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture10_1:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture10_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture10_2:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture10_3 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture10_3:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture10_4 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture10_4:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture10_5 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2773,10 +3174,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture10_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture10_6 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2785,10 +3190,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture10_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture10_7 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2797,10 +3206,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture10_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture10_8 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2809,10 +3222,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture10_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture10_9 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2821,10 +3238,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture10_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture10_10 {
   width: 48%;
   height: 24%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2833,22 +3254,31 @@ main {
   object-position: center center;
 }
 
+.vidCapture10_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture11_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture11_1:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture11_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2857,10 +3287,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture11_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture11_3 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2869,10 +3303,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture11_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture11_4 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2881,10 +3319,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture11_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture11_5 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2893,10 +3335,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture11_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture11_6 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2905,10 +3351,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture11_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture11_7 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2917,10 +3367,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture11_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture11_8 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2929,10 +3383,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture11_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture11_9 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2941,10 +3399,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture11_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture11_10 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2953,22 +3415,31 @@ main {
   object-position: center center;
 }
 
+.vidCapture11_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture11_11 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture11_11:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture11_12 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2978,118 +3449,167 @@ main {
   object-position: center center;
 }
 
+.vidCapture11_12:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture12_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture12_1:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture12_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture12_2:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture12_3 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture12_3:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture12_4 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture12_4:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture12_5 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture12_5:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture12_6 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture12_6:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture12_7 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture12_7:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture12_8 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture12_8:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture12_9 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture12_9:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture12_10 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3098,46 +3618,65 @@ main {
   object-position: center center;
 }
 
+.vidCapture12_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture12_11 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture12_11:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture12_12 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture12_12:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture13_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture13_1:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture13_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3146,58 +3685,82 @@ main {
   object-position: center center;
 }
 
+.vidCapture13_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture13_3 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture13_3:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture13_4 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture13_4:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture13_5 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture13_5:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture13_6 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture13_6:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture13_7 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3206,22 +3769,31 @@ main {
   object-position: center center;
 }
 
+.vidCapture13_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture13_8 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture13_8:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture13_9 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3230,10 +3802,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture13_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture13_10 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3242,10 +3818,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture13_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture13_11 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3254,10 +3834,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture13_11:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture13_12 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3266,10 +3850,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture13_12:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture13_13 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3278,10 +3866,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture13_13:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture14_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3290,34 +3882,48 @@ main {
   object-position: center center;
 }
 
+.vidCapture14_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture14_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture14_2:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture14_3 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture14_3:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture14_4 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3326,10 +3932,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture14_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture14_5 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3338,34 +3948,48 @@ main {
   object-position: center center;
 }
 
+.vidCapture14_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture14_6 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture14_6:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture14_7 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture14_7:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture14_8 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3374,22 +3998,31 @@ main {
   object-position: center center;
 }
 
+.vidCapture14_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture14_9 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture14_9:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture14_10 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3398,10 +4031,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture14_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture14_11 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3410,10 +4047,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture14_11:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture14_12 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3422,10 +4063,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture14_12:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture14_13 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3434,10 +4079,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture14_13:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture14_14 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3447,10 +4096,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture14_14:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture15_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3459,10 +4112,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture15_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture15_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3471,22 +4128,31 @@ main {
   object-position: center center;
 }
 
+.vidCapture15_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture15_3 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture15_3:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture15_4 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3495,10 +4161,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture15_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture15_5 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3507,10 +4177,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture15_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture15_6 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3519,10 +4193,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture15_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture15_7 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3531,10 +4209,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture15_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture15_8 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3543,10 +4225,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture15_9 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3555,46 +4241,65 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture15_10 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture15_11 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture15_12 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture15_13 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3603,10 +4308,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture15_14 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3616,10 +4325,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture15_15 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3629,34 +4342,48 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture16_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   object-fit: cover;
   object-position: center center;
+}
+
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
 }
 
 .vidCapture16_3 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3665,10 +4392,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_4 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3677,10 +4408,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_5 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3689,10 +4424,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_6 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3701,6 +4440,9 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_7 {
   width: 48%;
   height: 19%;
@@ -3713,10 +4455,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_8 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3725,10 +4471,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_9 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3737,10 +4487,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_10 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3749,6 +4503,9 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_11 {
   width: 48%;
   height: 19%;
@@ -3761,10 +4518,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_12 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3773,10 +4534,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_13 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3785,10 +4550,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_14 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3798,10 +4567,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_15 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3811,10 +4584,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture16_16 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3824,10 +4601,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_1 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3836,10 +4617,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_2 {
   width: 90%;
   height: 49%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3848,10 +4633,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_3 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3860,10 +4649,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_4 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3872,10 +4665,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_5 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3884,10 +4681,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_6 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3896,10 +4697,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_7 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3908,10 +4713,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_8 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3920,10 +4729,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_9 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3932,10 +4745,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_10 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3944,10 +4761,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_11 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3956,10 +4777,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_12 {
   width: 48%;
   height: 19%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3968,10 +4793,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_13 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3980,10 +4809,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_14 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3993,10 +4826,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_15 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -4006,10 +4843,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_16 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -4019,10 +4860,14 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture17_17 {
   width: 19%;
   height: 94%;
-
+  position: relative;
+  display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -4032,6 +4877,9 @@ main {
   object-position: center center;
 }
 
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
 .vidCapture18_1 {
   width: 98%;
   height: 98%;

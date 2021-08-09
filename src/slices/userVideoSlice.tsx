@@ -4,6 +4,7 @@ import { find, findIndex, map, reject, some } from 'lodash';
 // import { VideoKind } from '../hooks/useAgora';
 import { fabric } from 'fabric';
 
+export type UserType = 'admin' | 'user';
 export interface streamInterface {
   audio: ILocalAudioTrack | IRemoteAudioTrack | undefined;
   video: ILocalVideoTrack | IRemoteVideoTrack | undefined;
@@ -13,6 +14,11 @@ export interface streamStateInteface {
   audio: Boolean;
   video: Boolean;
 }
+
+export interface mediaStatus {
+  videoMuted: boolean;
+  audioMuted: boolean;
+}
 export interface VideoState {
   v_id: string | number;
   stream: streamInterface;
@@ -21,6 +27,7 @@ export interface VideoState {
   active: Boolean;
   borderColor: string;
   renderId: string | number;
+  mediaStatus: mediaStatus;
 }
 
 export type MeetingWhiteboardDrawingState = fabric.Object;
@@ -118,6 +125,19 @@ export const meetingSlice = createSlice({
     replaceMeetingImage: (state, action: PayloadAction<any>) => {
       state.image = action.payload;
     },
+    replaceAudiostatus: (state, action: PayloadAction<any>) => {
+      const video = find(state.videos, { v_id: action.payload.id });
+      if (video) {
+        video.mediaStatus.audioMuted = action.payload.status;
+      }
+    },
+    replaceVideostatus: (state, action: PayloadAction<any>) => {
+      const video = find(state.videos, { v_id: action.payload.id });
+      if (video) {
+        video.mediaStatus.videoMuted = action.payload.status;
+      }
+    },
+
     pushWhiteboardDrawing: (state, action: PayloadAction<MeetingWhiteboardDrawingState>) => {
       const stringifyDrawing = (drawing: MeetingWhiteboardDrawingState) => JSON.stringify(drawing);
       const { payload } = action;
@@ -159,7 +179,9 @@ export const {
   replaceWhiteboardDrawings,
   replaceChannelName,
   replaceActiveVideo,
+  replaceVideostatus,
   replaceMeetingImage,
+  replaceAudiostatus,
   replaceRaiseHand,
   replaceWhiteboardEnabled,
   replaceMeetingMode,

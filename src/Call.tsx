@@ -30,7 +30,7 @@ const screenClient = AgoraRTC.createClient({ codec: 'vp8', mode: 'rtc' });
 
 function Call(props: RouteComponentProps) {
   const appid = '4d5d68e2022f4acbbc091609970b93f9';
-  const token = '0064d5d68e2022f4acbbc091609970b93f9IADxcR4moyUWtkULKOyUFXUWEPJkXT1jeQ0ZjM0ynjQGOr2No/cAAAAAEACZZ/Ce76YOYQEAAQDupg5h';
+  const token = '0064d5d68e2022f4acbbc091609970b93f9IAA9RWpryB4X5XymLWhz70CzUvKz3JuLRjn2ab/cauI/T72No/cAAAAAEACZZ/CeXNERYQEAAQBc0RFh';
 
   const {
     stopScreenShare,
@@ -43,8 +43,15 @@ function Call(props: RouteComponentProps) {
     MuteCamera,
     unMuteAudio,
     unMuteCamera,
+    handleRemotePeerMute,
+    handleRemotePeerunMute,
     localVideoId,
     handleClickOnVideoBorderChange,
+    handleRemoteMuteforAllClick,
+    handleRemoteVideoMuteforAllClick,
+    handleRemoteVideoUnMuteforAllClick,
+    handleRemoteUnMuteforAllClick,
+    handleRemoteMemberRemoveClick,
   } = useAgora(client, screenClient, props);
 
   const dispatch = useDispatch();
@@ -176,7 +183,6 @@ function Call(props: RouteComponentProps) {
 
   const handleOnRemoteImage = (meetingId: string) => {
     socket.shareImageToPeer.subscribe(meetingId, (payload) => {
-      console.log('payload from image >>>>>>>>>>', payload);
       dispatch(replaceMeetingImage(payload));
     });
   };
@@ -192,6 +198,19 @@ function Call(props: RouteComponentProps) {
         // handleRemoteActiveVideoClick={handleRemoteActiveVideoClick}
       ></MediaPlayer>
     );
+  };
+
+  const canMuteVideo = (Id: number) => {
+    return !videos[Id]?.mediaStatus.videoMuted;
+  };
+  const canMuteAudio = (Id: number) => {
+    return !videos[Id]?.mediaStatus.audioMuted;
+  };
+  const canRemoveRaiseHand = (Id: number) => {
+    return videos[Id]?.raisehand;
+  };
+  const canImageUpload = () => {
+    return mode === 'image' ? false : true;
   };
 
   const inviteText = () => {
@@ -214,6 +233,7 @@ function Call(props: RouteComponentProps) {
         leave();
       }
     }
+
     handleOnRemoteImage(channel);
     handleRemoteWhiteboardCanvasClear(channel);
     handleRemoteWhiteboardDrawingAdd(channel);
@@ -231,6 +251,10 @@ function Call(props: RouteComponentProps) {
         values={videos.length}
         videos={getVideos()}
         meetingVideos={videos}
+        canMuteVideo={canMuteVideo}
+        canMuteAudio={canMuteAudio}
+        canImageUpload={canImageUpload}
+        canRemoveRaiseHand={canRemoveRaiseHand}
         activeVideo={ActiveVideoBlock()}
         canScreenShare={canScreenShare()}
         canEnableWhiteboard={canEnableWhiteboard()}
@@ -246,6 +270,13 @@ function Call(props: RouteComponentProps) {
         changeBorder={handleClickOnVideoBorderChange}
         handleWhiteboardClick={handleWhiteboardClick}
         handleRemoteImageModeClick={handleRemoteImageModeClick}
+        handleRemoteMuteforAllClick={handleRemoteMuteforAllClick}
+        handleRemoteVideoMuteforAllClick={handleRemoteVideoMuteforAllClick}
+        handleRemoteVideoUnMuteforAllClick={handleRemoteVideoUnMuteforAllClick}
+        handleRemoteUnMuteforAllClick={handleRemoteUnMuteforAllClick}
+        handleRemoteMemberRemoveClick={handleRemoteMemberRemoveClick}
+        handleRemotePeerMute={handleRemotePeerMute}
+        handleRemotePeerunMute={handleRemotePeerunMute}
       />
     </div>
   );

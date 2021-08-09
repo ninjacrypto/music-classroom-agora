@@ -40,6 +40,37 @@ export default {
       SocketService.publish(this.channel(meetingId), connectionId);
     },
   },
+
+  muteAndUnmuteAudioForAll: {
+    channel(meetingId: string) {
+      return `/muteAudioForAll/${meetingId}`;
+    },
+    subscribe(meetingId: string, callback: (payload: boolean) => void) {
+      SocketService.subscribe(this.channel(meetingId), (payload: boolean) => callback(payload));
+    },
+    unsubscribe(meetingId: string) {
+      SocketService.unsubscribe(this.channel(meetingId));
+    },
+    publish(meetingId: string, payload: boolean) {
+      SocketService.publish(this.channel(meetingId), payload);
+    },
+  },
+
+  muteAndUnmuteVideoForAll: {
+    channel(meetingId: string) {
+      return `/muteVideoForAll/${meetingId}`;
+    },
+    subscribe(meetingId: string, callback: (payload: boolean) => void) {
+      SocketService.subscribe(this.channel(meetingId), (payload: boolean) => callback(payload));
+    },
+    unsubscribe(meetingId: string) {
+      SocketService.unsubscribe(this.channel(meetingId));
+    },
+    publish(meetingId: string, payload: boolean) {
+      SocketService.publish(this.channel(meetingId), payload);
+    },
+  },
+
   conferenceCall: {
     channel(meetingId: string) {
       return `/conferenceCall/${meetingId}`;
@@ -85,18 +116,18 @@ export default {
     },
   },
 
-  PopOutUserOnDisconnect: {
+  muteRemotePeer: {
     channel(meetingId: string) {
-      return `/popOutUserOnDisconnect/${meetingId}`;
+      return `/muteRemotePeer/${meetingId}`;
     },
-    subscribe(meetingId: string, callback: (connectionId: string) => void) {
-      SocketService.subscribe(this.channel(meetingId), (connectionId: string) => callback(connectionId));
+    subscribe(meetingId: string, callback: (payload: any) => void) {
+      SocketService.subscribe(this.channel(meetingId), (payload: any) => callback(payload));
     },
     unsubscribe(meetingId: string) {
       SocketService.unsubscribe(this.channel(meetingId));
     },
-    publish(meetingId: string, connectionId: string) {
-      SocketService.publish(this.channel(meetingId), connectionId);
+    publish(meetingId: string, payload: any) {
+      SocketService.publish(this.channel(meetingId), payload);
     },
   },
 

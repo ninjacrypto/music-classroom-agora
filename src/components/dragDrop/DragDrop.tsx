@@ -62,6 +62,7 @@ export default function App(props: any) {
     if (files) {
       fileReader(files);
     }
+    resetInput();
   };
 
   const resetInput = () => {
@@ -82,10 +83,13 @@ export default function App(props: any) {
   };
 
   const handleChange = (e: any) => {
+    // resetInput();
+
     const files = e.target.files;
     if (e.target.files.length) {
       // handleUpload(e.target.files[0]);
       fileReader(files);
+      resetInput();
     }
   };
 

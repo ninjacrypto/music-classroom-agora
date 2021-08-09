@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import AgoraRTC, {
   IAgoraRTCClient,
   IAgoraRTCRemoteUser,
@@ -23,6 +23,8 @@ import {
   replaceBorderColor,
   replaceMeetingMode,
   reset,
+  replaceAudiostatus,
+  replaceVideostatus,
 } from '../slices/userVideoSlice';
 import { nanoid } from 'nanoid';
 import { RootState, store } from '../store/store';
@@ -49,6 +51,10 @@ const createVideo = (
     borderColor: 'blue',
     active: false,
     renderId: nanoid(4),
+    mediaStatus: {
+      videoMuted: false,
+      audioMuted: false,
+    },
   };
   return [initialVideo, connectionId];
 };
@@ -72,9 +78,16 @@ export default function useAgora(
   unMuteCamera: Function;
   MuteAudio: Function;
   unMuteAudio: Function;
+  handleRemoteMuteforAllClick: Function;
   handleRemoteRaiseHandClick: Function;
   handleRemoteActiveVideoClick: (connectionId: any) => void;
+  handleRemoteVideoMuteforAllClick: Function;
+  handleRemoteVideoUnMuteforAllClick: Function;
   handleClickOnVideoBorderChange: Function;
+  handleRemoteUnMuteforAllClick: Function;
+  handleRemotePeerMute: (connectionId: string, type: string) => void;
+  handleRemotePeerunMute: (connectionId: string, type: string) => void;
+  handleRemoteMemberRemoveClick: (connectionId: any) => void;
 } {
   const [localVideoTrack, setLocalVideoTrack] = useState<ILocalVideoTrack | undefined>(undefined);
   const [localAudioTrack, setLocalAudioTrack] = useState<ILocalAudioTrack | undefined>(undefined);
@@ -87,7 +100,6 @@ export default function useAgora(
   const dispatch = useDispatch();
   const { playNotification } = useNotifacationService();
   const alert = useAlert();
-  // const alert = useAlert();
 
   async function createLocalTracks(
     audioConfig?: MicrophoneAudioTrackInitConfig,
@@ -135,6 +147,7 @@ export default function useAgora(
     (window as any).videoTrack = screenVideo;
     setScreenShareMode(true);
   }
+
   const disableWhiteBoard = () => {
     socket.whiteboardEnabled.publish(ChannelName, false);
     socket.meetingMode.publish(ChannelName, 'screenshare');
@@ -142,16 +155,24 @@ export default function useAgora(
 
   const MuteCamera = async () => {
     await localVideoTrack?.setMuted(true);
+    dispatch(replaceVideostatus({ id: localVideoId, status: true }));
   };
+
   const unMuteCamera = async () => {
     await localVideoTrack?.setMuted(false);
+    dispatch(replaceVideostatus({ id: localVideoId, status: false }));
   };
+
   const MuteAudio = async () => {
     await localAudioTrack?.setMuted(true);
+    dispatch(replaceAudiostatus({ id: localVideoId, status: true }));
   };
+
   const unMuteAudio = async () => {
     await localAudioTrack?.setMuted(false);
+    dispatch(replaceAudiostatus({ id: localVideoId, status: false }));
   };
+
   const handleRemoteRaiseHand = (meetingId: string) => {
     socket.raiseHand.subscribe(meetingId, (connectionId) => {
       dispatch(replaceRaiseHand({ id: connectionId, raisehand: true }));
@@ -161,8 +182,10 @@ export default function useAgora(
     });
   };
 
-  const handleRemoteRaiseHandClick = () => {
-    socket.raiseHand.publish(ChannelName, localVideoId);
+  const handleRemoveMember = (meetingId: string) => {
+    socket.memberRemove.subscribe(meetingId, (connectionId) => {
+      if (connectionId === localVideoId) leave();
+    });
   };
 
   const handleRemoteActiveVideo = (meetingId: string) => {
@@ -171,15 +194,38 @@ export default function useAgora(
     });
   };
 
-  const handleRemoteActiveVideoClick = (connectionId: any) => {
-    console.log(connectionId);
-    socket.replaceActiveVideoBlock.publish(ChannelName, connectionId);
-  };
   const handleMenuVideoBorderChange = (meetingId: string) => {
     socket.videoBorderChange.subscribe(meetingId, (payload) => {
       dispatch(replaceBorderColor(payload));
     });
   };
+  const handleMuteVideoRemotePeer = (meetingId: string) => {
+    socket.muteRemotePeer.subscribe(meetingId, (payload) => {
+      switch (payload.type) {
+        case 'video':
+          if (payload.id === localVideoId) {
+            if (!payload.status) {
+              unMuteCamera();
+              break;
+            }
+            MuteCamera();
+            break;
+          }
+          break;
+        case 'audio':
+          if (payload.id === localVideoId) {
+            if (!payload.status) {
+              unMuteAudio();
+              break;
+            }
+            MuteAudio();
+            break;
+          }
+          break;
+      }
+    });
+  };
+
   const handleClickOnVideoBorderChange = (event: any) => {
     const { id: color } = event.target;
     const payload = {
@@ -187,6 +233,63 @@ export default function useAgora(
       borderColor: color,
     };
     socket.videoBorderChange.publish(ChannelName, payload);
+  };
+
+  const handleMuteAndUnmuteAudio = (meetingId: string) => {
+    socket.muteAndUnmuteAudioForAll.subscribe(meetingId, async (payload) => {
+      if (!payload) {
+        unMuteAudio();
+        return;
+      }
+      await MuteAudio();
+    });
+  };
+
+  const handleMuteAndUnMuteVideo = (meetingId: string) => {
+    socket.muteAndUnmuteVideoForAll.subscribe(meetingId, (payload) => {
+      if (!payload) {
+        unMuteCamera();
+        return;
+      }
+      MuteCamera();
+    });
+  };
+
+  const handleRemoteMuteforAllClick = () => {
+    socket.muteAndUnmuteAudioForAll.publish(ChannelName, true);
+  };
+
+  const handleRemoteVideoMuteforAllClick = () => {
+    socket.muteAndUnmuteVideoForAll.publish(ChannelName, true);
+  };
+
+  const handleRemoteVideoUnMuteforAllClick = () => {
+    socket.muteAndUnmuteVideoForAll.publish(ChannelName, false);
+  };
+
+  const handleRemoteUnMuteforAllClick = () => {
+    socket.muteAndUnmuteAudioForAll.publish(ChannelName, false);
+  };
+
+  const handleRemoteMemberRemoveClick = (VideoId: string) => {
+    socket.memberRemove.publish(ChannelName, VideoId);
+  };
+
+  const handleRemoteActiveVideoClick = (connectionId: any) => {
+    socket.replaceActiveVideoBlock.publish(ChannelName, connectionId);
+  };
+
+  const handleRemoteRaiseHandClick = () => {
+    socket.raiseHand.publish(ChannelName, localVideoId);
+  };
+
+  const handleRemotePeerMute = (VideoId: string, type: string) => {
+    let payload = { id: VideoId, type, status: true };
+    socket.muteRemotePeer.publish(ChannelName, payload);
+  };
+  const handleRemotePeerunMute = (VideoId: string, type: string) => {
+    let payload = { id: VideoId, type, status: false };
+    socket.muteRemotePeer.publish(ChannelName, payload);
   };
 
   async function leave() {
@@ -354,14 +457,12 @@ export default function useAgora(
     handleRemoteRaiseHand(ChannelName);
     handleRemoteActiveVideo(ChannelName);
     handleMenuVideoBorderChange(ChannelName);
+
     client.on('token-privilege-did-expire', handleTokenPrivilegeDidExpire);
     client.on('token-privilege-will-expire', handleTokenPrivilegeWillExpire);
-
     client.on('error', (err: any) => {
       alert.show(err, { type: 'error' });
     });
-    // client.on('token-privilege-did-expire', () => {});
-
     client.on('connection-state-change', handleConnectionStateChange);
     client.on('user-published', handleUserPublished);
     client.on('user-unpublished', handleUserUnpublished);
@@ -377,6 +478,19 @@ export default function useAgora(
     };
   }, [client, screenClient]);
 
+  useEffect(() => {
+    handleMuteAndUnMuteVideo(ChannelName);
+    handleMuteAndUnmuteAudio(ChannelName);
+    handleRemoveMember(ChannelName);
+    handleMuteVideoRemotePeer(ChannelName);
+    return () => {
+      socket.muteAndUnmuteVideoForAll.unsubscribe(ChannelName);
+      socket.muteAndUnmuteAudioForAll.unsubscribe(ChannelName);
+      socket.memberRemove.unsubscribe(ChannelName);
+      socket.muteRemotePeer.unsubscribe(ChannelName);
+    };
+  }, [localVideoTrack, localAudioTrack, localVideoId]);
+
   return {
     localAudioTrack,
     localVideoTrack,
@@ -390,9 +504,16 @@ export default function useAgora(
     leave,
     join,
     remoteUsers,
+    handleRemotePeerMute,
     screenJoin,
     stopScreenShare,
+    handleRemotePeerunMute,
+    handleRemoteMemberRemoveClick,
+    handleRemoteVideoMuteforAllClick,
+    handleRemoteUnMuteforAllClick,
+    handleRemoteVideoUnMuteforAllClick,
     handleRemoteRaiseHandClick,
+    handleRemoteMuteforAllClick,
     handleRemoteActiveVideoClick,
     handleClickOnVideoBorderChange,
   };

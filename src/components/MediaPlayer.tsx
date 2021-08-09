@@ -1,7 +1,6 @@
 import { ILocalVideoTrack, IRemoteVideoTrack, ILocalAudioTrack, IRemoteAudioTrack } from 'agora-rtc-sdk-ng';
 import { useRef, useEffect } from 'react';
 import RaiseHand from './RaiseHand/RaiseHand';
-
 export interface VideoPlayerProps {
   videoTrack: ILocalVideoTrack | IRemoteVideoTrack | undefined;
   audioTrack: ILocalAudioTrack | IRemoteAudioTrack | undefined;
