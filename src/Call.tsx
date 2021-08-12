@@ -30,7 +30,7 @@ const screenClient = AgoraRTC.createClient({ codec: 'vp8', mode: 'rtc' });
 
 function Call(props: RouteComponentProps) {
   const appid = '4d5d68e2022f4acbbc091609970b93f9';
-  const token = '0064d5d68e2022f4acbbc091609970b93f9IAA9RWpryB4X5XymLWhz70CzUvKz3JuLRjn2ab/cauI/T72No/cAAAAAEACZZ/CeXNERYQEAAQBc0RFh';
+  const token = '0064d5d68e2022f4acbbc091609970b93f9IADXoBHGwOwZAGqGnUuFwZqgzoeYn5teOHJnl6MvIO+6fL2No/cAAAAAEABKMlq6qmgWYQEAAQCpaBZh';
 
   const {
     stopScreenShare,

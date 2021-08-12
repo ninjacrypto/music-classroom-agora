@@ -80,46 +80,48 @@ function Grid(props) {
     let elements = [
       <div className={`changeNewBorderColor ${meetingVideos[0]?.borderColor} vidCapture${values}_${1}`}>
         {videos[0]}
-        <div className='overlayVideoCapture'>
-          {canMuteAudio(0) ? (
-            <img
-              src='/assets/micon.png'
-              style={{ height: '35px', width: '35px' }}
-              alt=''
-              onClick={() => handleRemotePeerMute(meetingVideos[0]?.v_id, 'audio')}
-            />
-          ) : (
-            <img
-              src='/assets/mute.png'
-              style={{ height: '35px', width: '35px' }}
-              alt=''
-              onClick={() => handleRemotePeerunMute(meetingVideos[0]?.v_id, 'audio')}
-            />
-          )}
-          {canMuteVideo(0) ? (
-            <img
-              src='/assets/videoON.png'
-              style={{ height: '35px', width: '35px' }}
-              alt=''
-              onClick={() => handleRemotePeerMute(meetingVideos[0]?.v_id, 'video')}
-            />
-          ) : (
-            <img
-              src='/assets/videoOFF.png'
-              style={{ height: '35px', width: '35px' }}
-              alt=''
-              onClick={() => handleRemotePeerunMute(meetingVideos[0]?.v_id, 'video')}
-            />
-          )}
+        {type === 'admin' && (
+          <div className='overlayVideoCapture'>
+            {canMuteAudio(0) ? (
+              <img
+                src='/assets/micon.png'
+                style={{ height: '35px', width: '35px' }}
+                alt=''
+                onClick={() => handleRemotePeerMute(meetingVideos[0]?.v_id, 'audio')}
+              />
+            ) : (
+              <img
+                src='/assets/mute.png'
+                style={{ height: '35px', width: '35px' }}
+                alt=''
+                onClick={() => handleRemotePeerunMute(meetingVideos[0]?.v_id, 'audio')}
+              />
+            )}
+            {canMuteVideo(0) ? (
+              <img
+                src='/assets/videoON.png'
+                style={{ height: '35px', width: '35px' }}
+                alt=''
+                onClick={() => handleRemotePeerMute(meetingVideos[0]?.v_id, 'video')}
+              />
+            ) : (
+              <img
+                src='/assets/videoOFF.png'
+                style={{ height: '35px', width: '35px' }}
+                alt=''
+                onClick={() => handleRemotePeerunMute(meetingVideos[0]?.v_id, 'video')}
+              />
+            )}
 
-          <img
-            src='/assets/exit.png'
-            style={{ height: '35px', width: '35px' }}
-            alt=''
-            onClick={() => handleRemoteMemberRemoveClick(meetingVideos[0]?.v_id)}
-          />
-          {canRemoveRaiseHand(0) && <img src='/assets/removeraisehand.png' style={{ height: '35px', width: '35px' }} alt='' />}
-        </div>
+            <img
+              src='/assets/exit.png'
+              style={{ height: '35px', width: '35px' }}
+              alt=''
+              onClick={() => handleRemoteMemberRemoveClick(meetingVideos[0]?.v_id)}
+            />
+            {canRemoveRaiseHand(0) && <img src='/assets/removeraisehand.png' style={{ height: '35px', width: '35px' }} alt='' />}
+          </div>
+        )}
       </div>,
     ];
     for (let i = 1; i < values; i++) {
@@ -127,27 +129,28 @@ function Grid(props) {
         elements.push(
           <div className={`changeNewBorderColor ${meetingVideos[i]?.borderColor} vidCapture${values}_${2}`}>
             {videos[i]}
+            {type === 'admin' && (
+              <div className='overlayVideoCapture'>
+                {canMuteAudio(i) ? (
+                  <img src='/assets/micon.png' style={{ height: '35px', width: '35px' }} alt='' />
+                ) : (
+                  <img src='/assets/mute.png' style={{ height: '35px', width: '35px' }} alt='' />
+                )}
+                {canMuteVideo(i) ? (
+                  <img src='/assets/videoON.png' style={{ height: '35px', width: '35px' }} alt='' />
+                ) : (
+                  <img src='/assets/videoOFF.png' style={{ height: '35px', width: '35px' }} alt='' />
+                )}
 
-            <div className='overlayVideoCapture'>
-              {canMuteAudio(i) ? (
-                <img src='/assets/micon.png' style={{ height: '35px', width: '35px' }} alt='' />
-              ) : (
-                <img src='/assets/mute.png' style={{ height: '35px', width: '35px' }} alt='' />
-              )}
-              {canMuteVideo(i) ? (
-                <img src='/assets/videoON.png' style={{ height: '35px', width: '35px' }} alt='' />
-              ) : (
-                <img src='/assets/videoOFF.png' style={{ height: '35px', width: '35px' }} alt='' />
-              )}
-
-              <img
-                src='/assets/exit.png'
-                style={{ height: '35px', width: '35px' }}
-                alt=''
-                onClick={() => handleRemoteMemberRemoveClick(meetingVideos[i]?.v_id)}
-              />
-              {canRemoveRaiseHand(i) && <img src='/assets/removeraisehand.png' style={{ height: '35px', width: '35px' }} alt='' />}
-            </div>
+                <img
+                  src='/assets/exit.png'
+                  style={{ height: '35px', width: '35px' }}
+                  alt=''
+                  onClick={() => handleRemoteMemberRemoveClick(meetingVideos[i]?.v_id)}
+                />
+                {canRemoveRaiseHand(i) && <img src='/assets/removeraisehand.png' style={{ height: '35px', width: '35px' }} alt='' />}
+              </div>
+            )}
           </div>
         );
       }
@@ -174,46 +177,48 @@ function Grid(props) {
         elements.push(
           <div className={`changeNewBorderColor ${meetingVideos[i]?.borderColor} vidCapture${values}_${i + 1}`}>
             {videos[i]}
-            <div className='overlayVideoCapture'>
-              {canMuteAudio(i) ? (
-                <img
-                  src='/assets/micon.png'
-                  style={{ height: '35px', width: '35px' }}
-                  alt=''
-                  onClick={() => handleRemotePeerMute(meetingVideos[i]?.v_id, 'audio')}
-                />
-              ) : (
-                <img
-                  src='/assets/mute.png'
-                  style={{ height: '35px', width: '35px' }}
-                  alt=''
-                  onClick={() => handleRemotePeerunMute(meetingVideos[i]?.v_id, 'audio')}
-                />
-              )}
-              {canMuteVideo(i) ? (
-                <img
-                  src='/assets/videoON.png'
-                  style={{ height: '35px', width: '35px' }}
-                  alt=''
-                  onClick={() => handleRemotePeerMute(meetingVideos[i]?.v_id, 'video')}
-                />
-              ) : (
-                <img
-                  src='/assets/videoOFF.png'
-                  style={{ height: '35px', width: '35px' }}
-                  alt=''
-                  onClick={() => handleRemotePeerunMute(meetingVideos[i]?.v_id, 'video')}
-                />
-              )}
+            {type === 'admin' && (
+              <div className='overlayVideoCapture'>
+                {canMuteAudio(i) ? (
+                  <img
+                    src='/assets/micon.png'
+                    style={{ height: '35px', width: '35px' }}
+                    alt=''
+                    onClick={() => handleRemotePeerMute(meetingVideos[i]?.v_id, 'audio')}
+                  />
+                ) : (
+                  <img
+                    src='/assets/mute.png'
+                    style={{ height: '35px', width: '35px' }}
+                    alt=''
+                    onClick={() => handleRemotePeerunMute(meetingVideos[i]?.v_id, 'audio')}
+                  />
+                )}
+                {canMuteVideo(i) ? (
+                  <img
+                    src='/assets/videoON.png'
+                    style={{ height: '35px', width: '35px' }}
+                    alt=''
+                    onClick={() => handleRemotePeerMute(meetingVideos[i]?.v_id, 'video')}
+                  />
+                ) : (
+                  <img
+                    src='/assets/videoOFF.png'
+                    style={{ height: '35px', width: '35px' }}
+                    alt=''
+                    onClick={() => handleRemotePeerunMute(meetingVideos[i]?.v_id, 'video')}
+                  />
+                )}
 
-              <img
-                src='/assets/exit.png'
-                style={{ height: '35px', width: '35px' }}
-                alt=''
-                onClick={() => handleRemoteMemberRemoveClick(meetingVideos[i]?.v_id)}
-              />
-              {canRemoveRaiseHand(i) && <img src='/assets/removeraisehand.png' style={{ height: '35px', width: '35px' }} alt='' />}
-            </div>
+                <img
+                  src='/assets/exit.png'
+                  style={{ height: '35px', width: '35px' }}
+                  alt=''
+                  onClick={() => handleRemoteMemberRemoveClick(meetingVideos[i]?.v_id)}
+                />
+                {canRemoveRaiseHand(i) && <img src='/assets/removeraisehand.png' style={{ height: '35px', width: '35px' }} alt='' />}
+              </div>
+            )}
           </div>
         );
       }
@@ -362,16 +367,16 @@ function Grid(props) {
               <div className='headerTitle'>Back Stage</div>
               <div className='userMenu'>
                 <div className='userMenuContainer'>
-                  <div className='gradient-small-box-outline-user inactiveOption'></div>
-                  <div className='userMenuSubcontainer inactiveOption'>
-                    <text className={`MenuItemforSubMenu active`} onClick={handleMuteClick}>
+                  <div className={`gradient-small-box-outline-user ${canMuteAudio(0) ? 'inactiveOption' : 'activeOption'}`}></div>
+                  <div className={`userMenuSubcontainer  ${canMuteAudio(0) ? 'inactiveOption' : 'activeOption'}`}>
+                    <text className={`MenuItemforSubMenu active`} onClick={canMuteAudio(0) ? handleMuteClick : handleUnMuteClick}>
                       {canMuteAudio(0) ? ' Mute my Audio' : 'Unmute my Audio'}
                     </text>
                   </div>
                 </div>
                 <div className='userMenuContainer '>
-                  <div className='gradient-small-box-outline-user inactiveOption'></div>
-                  <div className='userMenuSubcontainer inactiveOption'>
+                  <div className={`gradient-small-box-outline-user ${canMuteVideo(0) ? 'inactiveOption' : 'activeOption'}`}></div>
+                  <div className={`userMenuSubcontainer  ${canMuteVideo(0) ? 'inactiveOption' : 'activeOption'}`}>
                     <text className={`MenuItemforSubMenu active`} onClick={canMuteVideo(0) ? handleMutevideoClick : handleUnMutevideoClick}>
                       {canMuteVideo(0) ? 'Pause my Video' : 'Unpause my Video'}
                     </text>
@@ -379,7 +384,7 @@ function Grid(props) {
                 </div>
                 <div className='userMenuContainer'>
                   <div className='gradient-small-box-outline-user inactiveOption'></div>
-                  <div className='userMenuSubcontainer inactiveOption'>
+                  <div className={`userMenuSubcontainer inactiveOption`}>
                     <text className={`MenuItemforSubMenu active`} onClick={handleRemoteRaiseHandClick}>
                       Raise Hand
                     </text>
