@@ -4,11 +4,11 @@ import { createBrowserHistory } from 'history';
 import routes, { renderRoutes } from './Routes';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { store, persistor } from './store/store';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import SocketService from './hooks/SocketService';
 import AlertTemplate from './components/AlertTemplate/AlertTemplate';
-
+import { PersistGate } from 'redux-persist/integration/react';
 
 const options = {
   position: positions.TOP_RIGHT,
@@ -22,11 +22,13 @@ function App() {
 
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <AlertProvider template={AlertTemplate} {...options}>
-          <Router history={history}> {renderRoutes(routes)}</Router>
-        </AlertProvider>
-      </BrowserRouter>
+      <PersistGate persistor={persistor}>
+        <BrowserRouter>
+          <AlertProvider template={AlertTemplate} {...options}>
+            <Router history={history}> {renderRoutes(routes)}</Router>
+          </AlertProvider>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   );
 }

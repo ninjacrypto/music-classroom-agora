@@ -70,7 +70,7 @@ function Call(props: RouteComponentProps) {
     if (video) return true;
     return false;
   };
-  
+
   const canEnableWhiteboard = () => {
     return !whiteboardEnabled;
   };

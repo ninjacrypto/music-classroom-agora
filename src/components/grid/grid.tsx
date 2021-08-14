@@ -9,6 +9,7 @@ import Accordion from '../../components/Accordion/Accordion';
 import { useAlert } from 'react-alert';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import useBannerService from '../../hooks/useBannerService';
 
 function Grid(props) {
   var {
@@ -48,6 +49,7 @@ function Grid(props) {
   const [open2nav, set2Nav] = useState(false);
   const [muteNavBar, setMuteNavbar] = useState(false);
   const [toolsNavBar, setToolsNavbar] = useState(false);
+  const { banner, replaceBannerType } = useBannerService();
 
   // flag for the title change in banner
   const [title, setTitle] = useState(true);
@@ -75,6 +77,16 @@ function Grid(props) {
   };
   const handleOnClickToolNavbarAgain = () => {
     setMuteNavbar(!toolsNavBar);
+  };
+  const handleOnLogoChange = () => {
+    switch (banner) {
+      case 'normal':
+        replaceBannerType('SOR');
+        break;
+      case 'SOR':
+        replaceBannerType('normal');
+        break;
+    }
   };
   const handleLeftImages = () => {
     let elements = [
@@ -303,6 +315,9 @@ function Grid(props) {
                           </text>
                           <text className={`MenuItemforSubMenu active`} onClick={handleOnTodaysColor}>
                             {"Today's Colors"}
+                          </text>
+                          <text className={`MenuItemforSubMenu active`} onClick={handleOnLogoChange}>
+                            {'Change Banner'}
                           </text>
                         </div>
                       </div>
@@ -947,9 +962,7 @@ function Grid(props) {
                 </div>
                 <div className='x11Right18'>
                   <div className='x18Upper'>
-                    <div className={title ? 'newMainContentHeaderBgX18' : 'newMainContentHeaderBgZX18'}>
-                      {/* <h3 className='banner_title'>{title} </h3> */}
-                    </div>
+                    <div className={title ? 'newMainContentHeaderBgX18' : 'newMainContentHeaderBgZX18'}></div>
                   </div>
                   <div className='x18Lower'>
                     <div className='x18Middle'>
@@ -986,7 +999,7 @@ function Grid(props) {
                 {values >= 11 ? (
                   <React.Fragment>
                     <div className={'x11Left'}>
-                      <div className={title ? 'newMainContentHeaderBgX12' : 'newMainContentHeaderBgZX12'}>
+                      <div className={banner === 'normal' ? 'newMainContentHeaderBgX12' : 'newMainContentHeaderBgZX12'}>
                         {/* <h3 className='banner_title'>{title} </h3> */}
                       </div>
                       <div className={'newMainContentMain'}>
@@ -1022,7 +1035,7 @@ function Grid(props) {
                   </React.Fragment>
                 ) : (
                   <React.Fragment>
-                    <div className={title ? 'newMainContentHeaderBg' : 'newMainContentHeaderBgZ'}></div>
+                    <div className={banner === 'normal' ? 'newMainContentHeaderBg' : 'newMainContentHeaderBgZ'}></div>
                     <div className='newMainContentMain'>
                       <div className={`newMainContentLeft${values > 1 ? `X${values}` : ''}`}>{handleLeftImages()?.map((item) => item)}</div>
                       <div className={`${values > 1 ? `newMainContentMiddleX${values}` : 'newMainContentRight'}`}>

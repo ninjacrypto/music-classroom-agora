@@ -1,6 +1,7 @@
 import { call } from 'ionicons/icons';
 import SocketService from './SocketService';
 import { MeetingMode, MeetingWhiteboardDrawingsState, MeetingWhiteboardDrawingState } from '../slices/userVideoSlice';
+import { BannerState } from '../slices/bannerSlice';
 
 interface BorderColorReplacedPayload {
   connectionId: string;
@@ -160,20 +161,20 @@ export default {
       SocketService.publish(this.channel(meetingId), connectionId);
     },
   },
-  // shareScreenRemove: {
-  //   channel(meetingId: string) {
-  //     return `/shareScreenRemove/${meetingId}`;
-  //   },
-  //   subscribe(meetingId: string, callback: (videoKind: VideoStateKind) => void) {
-  //     SocketService.subscribe(this.channel(meetingId), (videoKind: VideoStateKind) => callback(videoKind));
-  //   },
-  //   unsubscribe(meetingId: string) {
-  //     SocketService.unsubscribe(this.channel(meetingId));
-  //   },
-  //   publish(meetingId: string, videoKind: VideoStateKind) {
-  //     SocketService.publish(this.channel(meetingId), videoKind);
-  //   },
-  // },
+  changeBannerType: {
+    channel(meetingId: string) {
+      return `/changeBannerType/${meetingId}`;
+    },
+    subscribe(meetingId: string, callback: (bannerType: BannerState) => void) {
+      SocketService.subscribe(this.channel(meetingId), (bannerType: BannerState) => callback(bannerType));
+    },
+    unsubscribe(meetingId: string) {
+      SocketService.unsubscribe(this.channel(meetingId));
+    },
+    publish(meetingId: string, bannerType: BannerState) {
+      SocketService.publish(this.channel(meetingId), bannerType);
+    },
+  },
   videoBorderChange: {
     channel(meetingId: string) {
       return `/videoBorderChange/${meetingId}`;
