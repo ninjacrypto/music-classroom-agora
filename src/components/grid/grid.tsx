@@ -247,77 +247,79 @@ function Grid(props) {
         <aside id='nav_side'>
           {type === 'admin' ? (
             openNav && !open2nav ? (
-              <div id='mySidepanel' style={{ color: 'white', padding: 20 }} className='sidepanel'>
-                <a className='closebtn' onClick={handleOnOpenNav}>
-                  &times;
-                </a>
-                <div className='headerTitle'>Admin Back Stage</div>
-                <div className='SideBarItemContainer'>
-                  {muteNavBar ? (
-                    <div className='gradient-outline'>
-                      <div className='gradient-box'>
-                        <text className={`MenuItemforSubMenu active `} onClick={canMuteAudio(0) ? handleMuteClick : handleUnMuteClick}>
-                          {canMuteAudio(0) ? ' Mute my Audio' : 'Unmute my Audio'}
-                        </text>
-                        <text className={`MenuItemforSubMenu active`} onClick={canMuteVideo(0) ? handleMutevideoClick : handleUnMutevideoClick}>
-                          {canMuteVideo(0) ? 'Pause Session for Myself' : 'Unpause Session for Myself'}
-                        </text>
-                        <text className={`MenuItemforSubMenu active`} onClick={handleRemoteVideoMuteforAllClick}>
-                          Pause Session for All
-                        </text>
-                        <text className={`MenuItemforSubMenu active`} onClick={handleRemoteVideoUnMuteforAllClick}>
-                          Unpause Session for All
-                        </text>
-                        <text className={`MenuItemforSubMenu active`} onClick={handleRemoteMuteforAllClick}>
-                          Mute Audio for All
-                        </text>
-                        <text className={`MenuItemforSubMenu active`} onClick={handleRemoteVideoUnMuteforAllClick}>
-                          Unmute Audio for All
-                        </text>
+              <div style={{ paddingRight: '2px', background: 'linear-gradient(225deg, #fbfcd1, #000000)', height: '100%' }}>
+                <div id='mySidepanel' style={{ color: 'white', padding: 20 }} className='sidepanel'>
+                  <a className='closebtn' onClick={handleOnOpenNav}>
+                    &times;
+                  </a>
+                  <div className='headerTitle'>Admin Back Stage</div>
+                  <div className='SideBarItemContainer'>
+                    {muteNavBar ? (
+                      <div className='gradient-outline'>
+                        <div className='gradient-box'>
+                          <text className={`MenuItemforSubMenu active `} onClick={canMuteAudio(0) ? handleMuteClick : handleUnMuteClick}>
+                            {canMuteAudio(0) ? ' Mute my Audio' : 'Unmute my Audio'}
+                          </text>
+                          <text className={`MenuItemforSubMenu active`} onClick={canMuteVideo(0) ? handleMutevideoClick : handleUnMutevideoClick}>
+                            {canMuteVideo(0) ? 'Pause Session for Myself' : 'Unpause Session for Myself'}
+                          </text>
+                          <text className={`MenuItemforSubMenu active`} onClick={handleRemoteVideoMuteforAllClick}>
+                            Pause Session for All
+                          </text>
+                          <text className={`MenuItemforSubMenu active`} onClick={handleRemoteVideoUnMuteforAllClick}>
+                            Unpause Session for All
+                          </text>
+                          <text className={`MenuItemforSubMenu active`} onClick={handleRemoteMuteforAllClick}>
+                            Mute Audio for All
+                          </text>
+                          <text className={`MenuItemforSubMenu active`} onClick={handleRemoteVideoUnMuteforAllClick}>
+                            Unmute Audio for All
+                          </text>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className='gradient-outline'>
-                      <div className='gradient-box' onClick={handleOnmuteNavBarClick}>
-                        <text className='sideBarMainText'>Mute / Pause</text>
+                    ) : (
+                      <div className='gradient-outline'>
+                        <div className={`gradient-box ${!toolsNavBar && !muteNavBar && 'opened'}`} opened onClick={handleOnmuteNavBarClick}>
+                          <text className='sideBarMainText'>Mute / Pause</text>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                  {toolsNavBar ? (
-                    <div className='gradient-outline'>
-                      <div className='gradient-box'>
-                        <text className={`MenuItemforSubMenu `}>Chat</text>
-                        <text className={`MenuItemforSubMenu active`} onClick={handleRemoteImageModeClick}>
-                          Display File
-                        </text>
-                        <text className={`MenuItemforSubMenu `}>Display Video</text>
-                        <text className={`MenuItemforSubMenu ${!canScreenShare ? 'active' : ''} `} onClick={handleScreenShareClick}>
-                          Share Screen
-                        </text>
-                        <text className={`MenuItemforSubMenu ${canEnableWhiteboard ? 'active' : ''}`} onClick={handleWhiteboardClick}>
-                          Whiteboard
-                        </text>
-                        <text className={`MenuItemforSubMenu active`} onClick={handleInviteMemberClick}>
-                          Invite
-                        </text>
-                        <text className={`MenuItemforSubMenu active`} onClick={handleOnTodaysColor}>
-                          {"Today's Colors"}
-                        </text>
+                    )}
+                    {toolsNavBar ? (
+                      <div className='gradient-outline'>
+                        <div className='gradient-box'>
+                          <text className={`MenuItemforSubMenu `}>Chat</text>
+                          <text className={`MenuItemforSubMenu active`} onClick={handleRemoteImageModeClick}>
+                            Display File
+                          </text>
+                          <text className={`MenuItemforSubMenu `}>Display Video</text>
+                          <text className={`MenuItemforSubMenu ${!canScreenShare ? 'active' : ''} `} onClick={handleScreenShareClick}>
+                            Share Screen
+                          </text>
+                          <text className={`MenuItemforSubMenu ${canEnableWhiteboard ? 'active' : ''}`} onClick={handleWhiteboardClick}>
+                            Whiteboard
+                          </text>
+                          <text className={`MenuItemforSubMenu active`} onClick={handleInviteMemberClick}>
+                            Invite
+                          </text>
+                          <text className={`MenuItemforSubMenu active`} onClick={handleOnTodaysColor}>
+                            {"Today's Colors"}
+                          </text>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className='gradient-outline' onClick={handleOnToolsNavbarClick}>
-                      <div className='gradient-box'>
-                        <text className='sideBarMainText'>Tools</text>
+                    ) : (
+                      <div className='gradient-outline' onClick={handleOnToolsNavbarClick}>
+                        <div className={`gradient-box ${!toolsNavBar && !muteNavBar && 'opened'}`}>
+                          <text className='sideBarMainText'>Tools</text>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                  <div className='top-babaji-contianer'>
-                    <div className='babaji-container' onClick={handleEndMeetingClick}>
-                      <div className='gradient-small-box'>
-                        <text className='sideBarSubText'>Leave Session</text>
+                    )}
+                    <div className='top-babaji-contianer'>
+                      <div className='babaji-container' onClick={handleEndMeetingClick}>
+                        <div className='gradient-small-box'>
+                          <text className='sideBarSubText'>Leave Session</text>
+                        </div>
+                        <div className='gradient-small-box-outline'></div>
                       </div>
-                      <div className='gradient-small-box-outline'></div>
                     </div>
                   </div>
                 </div>
@@ -355,9 +357,11 @@ function Grid(props) {
                 </div>
               </div>
             ) : (
-              <button className='openbtn' id='openbtn' onClick={handleOnOpenNav}>
-                &#9776;
-              </button>
+              <div style={{ paddingRight: '1px', background: 'linear-gradient(255deg, #fbfcd1, #000000)', height: '100%' }}>
+                <button className='openbtn' id='openbtn' onClick={handleOnOpenNav}>
+                  &#9776;
+                </button>
+              </div>
             )
           ) : openNav && !open2nav ? (
             <div id='mySidepanel' style={{ color: 'white', padding: 20 }} className='sidepanel'>

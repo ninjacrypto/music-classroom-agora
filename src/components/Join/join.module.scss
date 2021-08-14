@@ -4,16 +4,18 @@
   flex-direction: column;
   // justify-content: space-between;
   row-gap: 20px;
-  flex-grow: 100;
+  // flex-grow: 100;
   align-items: center;
   // height: 70%;
-  padding: 20px;
+  // padding: 20px;
+  height: 100%;
 
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: 1px solid #feeb3f;
 
   .STaccess1 {
+    margin-top: 20px;
     color: #feeb3f;
     font-family: Roboto;
     font-style: italic;
@@ -30,6 +32,7 @@
     font-weight: bold;
     font-size: 1.5vw;
     line-height: 32px;
+    margin-top: 20px;
 
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }

@@ -59,7 +59,7 @@ function Join(props: RouteComponentProps) {
             <input
               name='join'
               type='text'
-              style={{ height: '30px', textAlign: 'center' }}
+              style={{ textAlign: 'center', fontSize: 'large', marginTop: '20px' }}
               value={state.meeting.channel}
               placeholder='Meeting ID'
               onChange={handleInputChange}
@@ -72,7 +72,7 @@ function Join(props: RouteComponentProps) {
             <input
               name='parent'
               type='text'
-              style={{ height: '30px', textAlign: 'center' }}
+              style={{ textAlign: 'center', fontSize: 'large', marginTop: '20px' }}
               value={state.join.parentname}
               placeholder='Parent/guardian First Name'
               onChange={handleInputChange}
@@ -80,7 +80,7 @@ function Join(props: RouteComponentProps) {
             <input
               name='child'
               type='text'
-              style={{ height: '30px', textAlign: 'center' }}
+              style={{ textAlign: 'center', fontSize: 'large', marginTop: '20px' }}
               value={state.join.childname}
               placeholder='Child First Name'
               onChange={handleInputChange}
@@ -88,12 +88,12 @@ function Join(props: RouteComponentProps) {
             <input
               name='guest'
               type='text'
-              style={{ height: '30px', textAlign: 'center' }}
+              style={{ textAlign: 'center', fontSize: 'large', marginTop: '20px' }}
               value={state.join.guestname}
               placeholder='Guest First Name'
               onChange={handleInputChange}
             />
-            <img style={{ cursor: 'pointer', marginTop: '20px' }} src='./assets/loginbtn.png' alt='' onClick={handleOnJoinClick} />
+            <img style={{ cursor: 'pointer', marginTop: '30px' }} src='./assets/loginbtn.png' alt='' onClick={handleOnJoinClick} />
           </div>
         </div>
       </Home>

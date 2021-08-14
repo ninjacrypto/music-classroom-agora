@@ -30,7 +30,7 @@ const screenClient = AgoraRTC.createClient({ codec: 'vp8', mode: 'rtc' });
 
 function Call(props: RouteComponentProps) {
   const appid = '4d5d68e2022f4acbbc091609970b93f9';
-  const token = '0064d5d68e2022f4acbbc091609970b93f9IADXoBHGwOwZAGqGnUuFwZqgzoeYn5teOHJnl6MvIO+6fL2No/cAAAAAEABKMlq6qmgWYQEAAQCpaBZh';
+  const token = '0064d5d68e2022f4acbbc091609970b93f9IAAjzzI8HBqIBXtFVAM4A2sgJhIZz9D7MnoLJprsAIRg9b2No/cAAAAAEABKMlq69DsYYQEAAQD0Oxhh';
 
   const {
     stopScreenShare,
@@ -59,6 +59,7 @@ function Call(props: RouteComponentProps) {
   const whiteboardCanvasService = new WhiteboardCanvasService();
   const whiteboardDrawingService = new WhiteboardDrawingService();
   const alert = useAlert();
+
   const getVideos = () => {
     if (videos.length !== 0) return videos.map((vi) => video(vi.stream, vi.v_id, isHost(vi.v_id), vi.raisehand));
     return [];
@@ -69,6 +70,7 @@ function Call(props: RouteComponentProps) {
     if (video) return true;
     return false;
   };
+  
   const canEnableWhiteboard = () => {
     return !whiteboardEnabled;
   };

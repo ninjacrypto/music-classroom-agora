@@ -108,8 +108,10 @@ header {
 .SideBarItemContainer {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
-  row-gap: 50px;
+  /* margin-top: 20px;
+  row-gap: 50px; */
+  height: 77%;
+  justify-content: space-around;
 }
 .gradient-box {
   /* border: 10px solid; */
@@ -117,8 +119,7 @@ header {
   /* border-width: 5px; */
   padding: 10px;
   /* border-image-source: linear-gradient(75deg, #2fef2b, #000000); */
-  min-height: 150px;
-  max-height: 200px;
+  max-height: 300px;
   overflow-x: auto;
   display: flex;
   flex-direction: column;
@@ -132,6 +133,9 @@ header {
   border-image: linear-gradient(75deg, #2fef2b, #000000);
   -webkit-border-image-slice: 2;
   border-image-slice: 2;
+}
+.opened {
+  min-height: 150px;
 }
 .MenuItemforSubMenu {
   opacity: 0.5;
@@ -263,8 +267,6 @@ header {
   top: 10px;
   left: 30px;
   width: 70%;
-
-
 
   border-width: 3px;
   border-style: solid;

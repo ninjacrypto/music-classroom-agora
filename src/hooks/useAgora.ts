@@ -101,16 +101,19 @@ export default function useAgora(
   const { playNotification } = useNotifacationService();
   const alert = useAlert();
 
-  async function createLocalTracks(
-    audioConfig?: MicrophoneAudioTrackInitConfig,
-    videoConfig?: CameraVideoTrackInitConfig
-  ): Promise<[IMicrophoneAudioTrack, ICameraVideoTrack]> {
-    const [microphoneTrack, cameraTrack] = await AgoraRTC.createMicrophoneAndCameraTracks(audioConfig, { optimizationMode: 'motion' });
-    cameraTrack.setEncoderConfiguration('360p_1');
-    setLocalAudioTrack(microphoneTrack);
-    setLocalVideoTrack(cameraTrack);
-    return [microphoneTrack, cameraTrack];
-  }
+  const createLocalTracks = useCallback(
+    async (
+      audioConfig?: MicrophoneAudioTrackInitConfig,
+      videoConfig?: CameraVideoTrackInitConfig
+    ): Promise<[IMicrophoneAudioTrack, ICameraVideoTrack]> => {
+      const [microphoneTrack, cameraTrack] = await AgoraRTC.createMicrophoneAndCameraTracks(audioConfig, { optimizationMode: 'motion' });
+      cameraTrack.setEncoderConfiguration('360p_1');
+      setLocalAudioTrack(microphoneTrack);
+      setLocalVideoTrack(cameraTrack);
+      return [microphoneTrack, cameraTrack];
+    },
+    []
+  );
 
   async function join(appid: string, channel: string, token?: string, uid?: string | number | null) {
     if (!client) return;
@@ -119,8 +122,8 @@ export default function useAgora(
     setLocalVideoId(connectionId);
     dispatch(pushVideo(initialVideo));
 
-    await client.join(appid, channel, token || null, connectionId);
-    await client.publish([microphoneTrack, cameraTrack]);
+    // await client.join(appid, channel, token || null, connectionId);
+    // await client.publish([microphoneTrack, cameraTrack]);
 
     (window as any).client = client;
     (window as any).videoTrack = cameraTrack;

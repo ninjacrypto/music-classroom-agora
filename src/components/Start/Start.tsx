@@ -66,10 +66,10 @@ function Start(props: RouteComponentProps) {
             <input name='channelname' type='text' value={channel} placeholder='Room ID' onChange={handleInputChange} />
           </div>
           <div onClick={handleStartClick}>
-            <img style={{ cursor: 'pointer' }} src='./assets/loginbtn.png' alt='' />
+            <img style={{ cursor: 'pointer', marginTop: '20px' }} src='./assets/loginbtn.png' alt='' />
           </div>
           <div className={styles.forgotPassword}>Forgot Password</div>
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'center', marginTop: '20px' }}>
             <div className={styles.Register}>Register </div>
             <div className={styles.Register_sub_text}>as New User</div>
           </div>
