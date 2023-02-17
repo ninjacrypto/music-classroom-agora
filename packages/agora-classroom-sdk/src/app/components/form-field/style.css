@@ -1,0 +1,93 @@
+.form-field-label {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 21px;
+  color: #feeb3f;
+}
+
+.form-field {
+  box-sizing: border-box;
+  height: 48px;
+}
+
+.form-field input,
+.form-field .select {
+  font-size: 12px;
+  line-height: 18px;
+  outline: none;
+  border-bottom: 1px solid #e3e7ef;
+  border-radius: 12px;
+  background: transparent;
+  color: #feeb3f;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-field .select a:visited,
+.form-field .select a:hover {
+  color: #feeb3f;
+}
+
+.form-field .select a:link,
+.form-field .select a:active {
+  color: #feeb3f !important;
+}
+
+.form-field input::placeholder,
+.form-field .placeholder-text {
+  color: #bbbbbb;
+}
+
+.form-field .select.expand {
+  border-color: #feeb3f;
+  background: rgb(143, 141, 141);
+  color: #feeb3f;
+  box-shadow: 0 0 0px 3px rgb(143, 144, 152, 0.2);
+  z-index: 100000;
+}
+
+.form-field input:focus:not(:read-only){
+  border-color: #feeb3f;
+  background: rgba(255, 255, 255, 0);
+  color: #feeb3f;
+  box-shadow: 0 0 0px 3px rgb(143, 144, 152, 0.2);
+  z-index: 100000;
+}
+
+.form-field .options {
+  padding: 2px;
+  z-index: 100;
+}
+
+.form-field .option {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: #feeb3f;
+  padding: 9px 12px;
+}
+
+.form-field .option:hover {
+  font-weight: 800;
+  color: #feeb3f;
+  border-radius: 8px;
+  background: #424141;
+}
+
+.form-field .option.selected {
+  font-weight: 800;
+}
+
+.form-field .error input,
+.form-field .select.error {
+  border-color: #f5655c !important;
+  box-shadow: 0 0 0px 3px rgba(245, 101, 92, 0.2) !important;
+}
+
+.form-field .error-text {
+  color: #f5655c;
+  font-size: 12px;
+  bottom: -24px;
+}

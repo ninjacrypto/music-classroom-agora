@@ -1,0 +1,4191 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-between;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #0a2977;
+}
+#contentContainer {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+/* where content goes*/
+.mainTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  /* background-color: #0a2977; */
+}
+
+#newCaptureBorderColorsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  width: 100%;
+}
+
+#newCaptureBorderColorsContainer button {
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  border: none;
+}
+
+#newMainContentAreaX1 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newMainContentAreaX2 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newMainContentAreaX3 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newMainContentAreaX4 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newMainContentAreaX5 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newMainContentAreaX6 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newMainContentAreaX7 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newMainContentAreaX8 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newMainContentAreaX9 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newMainContentAreaX10 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newMainContentAreaX11 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newMainContentAreaX12 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+#newMainContentAreaX13 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+  flex-direction: column;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+
+#newMainContentAreaX14 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+#newMainContentAreaX15 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+#newMainContentAreaX16 {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+#newMainContentAreaX17 {
+  width: 100%;
+  height: inherit;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.newMainContentHeaderBg {
+  width: 95%;
+  height: 20%;
+  /* background-image: url('../../assets/bannerText.png'); */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin: 2px 0 10px 0;
+  display: flex;
+  justify-content: center;
+}
+.newMainContentHeaderBgZ {
+  width: 95%;
+  height: 20%;
+  /* background-image: url('../../assets/bannerlogo.png'); */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin: 2px 0 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.newMainContentHeaderBgX11 {
+  width: 112%;
+  height: 20%;
+  /* background-image: url('../../assets/bannerText.png'); */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin: 2px 0 10px 10px;
+  display: flex;
+}
+.newMainContentHeaderBgZX11 {
+  width: 112%;
+  height: 20%;
+  /* background-image: url('../../assets/bannerlogo.png'); */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin: 2px 0 10px 10px;
+  display: flex;
+}
+
+.newMainContentHeaderBgX12 {
+  width: 99%;
+  height: 20%;
+  /* background-image: url('../../assets/bannerText.png'); */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin: 2px 0 10px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.newMainContentHeaderBgZX12 {
+  width: 99%;
+  height: 20%;
+  /* background-image: url('../../assets/bannerlogo.png'); */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin: 2px 0 10px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.newMainContentHeaderBgX18 {
+  width: 99%;
+  height: 100%;
+  /* background-image: url('../../assets/bannerText.png'); */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin: 2px 0 10px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.vidCapture22_22 {
+  width: 10.1%;
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  margin: 2px 0 0 2px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.chatContainer {
+  z-index: 100;
+  position: relative;
+  left: 7px;
+  bottom: 7px;
+  display: flex;
+  align-self: self-end;
+}
+
+.newMainContentMain {
+  width: 95%;
+  height: 75%;
+  /* max-height: 520px; */
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+.newMainContentBottom {
+  height: 20%;
+  width: 95%;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  margin-bottom: 10px;
+}
+
+.newMainContentLeft {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.newMainContentLeftX2 {
+  width: 22%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.newMainContentLeftX3 {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.newMainContentLeftX4 {
+  width: 22%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  align-content: space-between;
+  justify-content: space-around;
+}
+
+.newMainContentLeftX5 {
+  width: 20%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 20px;
+  grid-column-gap: 10px;
+}
+
+.newMainContentLeftX6 {
+  width: 20%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+
+.newMainContentLeftX7 {
+  width: 20%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+
+.newMainContentLeftX8 {
+  width: 20%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+
+.newMainContentLeftX9 {
+  width: 20%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+
+.newMainContentLeftX10 {
+  width: 20%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+
+.newMainContentLeftX11 {
+  width: 25%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+.newMainContentLeftX12 {
+  width: 25%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+.newMainContentLeftX13 {
+  width: 25%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+.newMainContentLeftX14 {
+  width: 25%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+.newMainContentLeftX15 {
+  width: 25%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+.newMainContentLeftX16 {
+  width: 25%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+.newMainContentLeftX17 {
+  width: 25%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+
+.vidCapture1_1 {
+  width: 100%;
+  height: 70%;
+  position: relative;
+  margin-right: 5%;
+  z-index: 10;
+  display: block;
+
+  object-fit: cover;
+  object-position: center center;
+}
+.overlayVideoCapture {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  color: white;
+  font-size: 20px;
+  height: 20%;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.vidCapture1_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture2_1 {
+  width: 100%;
+  height: 70%;
+  position: relative;
+  display: block;
+  margin-right: 5%;
+  z-index: 20;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture2_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture2_2 {
+  width: 100%;
+  height: 70%;
+  position: relative;
+  display: block;
+  margin-left: 5%;
+  z-index: 10;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture2_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture3_1 {
+  width: 100%;
+  margin-right: 5%;
+  height: 70%;
+  position: relative;
+  display: block;
+  z-index: 10;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture3_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture3_2 {
+  width: 90%;
+  height: 46%;
+  position: relative;
+  display: block;
+  z-index: 10;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture3_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture3_3 {
+  width: 90%;
+  height: 46%;
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture3_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture4_1 {
+  width: 90%;
+  height: 46%;
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture4_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture4_2 {
+  width: 90%;
+  height: 46%;
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture4_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture4_3 {
+  width: 90%;
+  height: 46%;
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture4_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture4_4 {
+  width: 90%;
+  height: 46%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  z-index: 10;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture4_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture5_1 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture5_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture5_2 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture5_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture5_3 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture5_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture5_4 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture5_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture5_5 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture5_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture5_6 {
+  width: 48%;
+  height: 46%;
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.vidCapture5_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture6_1 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture6_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture6_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture6_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture6_3 {
+  /* width: 48%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture6_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture6_4 {
+  /* width: 48%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture6_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture6_5 {
+  /* width: 48%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture6_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture6_6 {
+  /* width: 48%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture6_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture7_1 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture7_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture7_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture7_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture7_3 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture7_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture7_4 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture7_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture7_5 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture7_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture7_6 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture7_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture7_7 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture7_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture7_8 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.vidCapture7_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture8_1 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture8_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture8_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture8_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture8_3 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture8_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture8_4 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture8_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture8_5 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture8_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture8_6 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture8_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture8_7 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture8_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture8_8 {
+  /* width: 48%;
+  height: 33%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture8_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture9_1 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture9_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture9_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture9_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture9_3 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture9_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture9_4 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture9_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture9_5 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture9_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture9_6 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture9_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture9_7 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture9_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture9_8 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture9_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture9_9 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture9_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture9_10 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.vidCapture9_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture10_1 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture10_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture10_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture10_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture10_3 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture10_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture10_4 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture10_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture10_5 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture10_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture10_6 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture10_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture10_7 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture10_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture10_8 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture10_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture10_9 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture10_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture10_10 {
+  /* width: 48%;
+  height: 24%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture10_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture11_1 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture11_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture11_3 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture11_4 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture11_5 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture11_6 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture11_7 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture11_8 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture11_9 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture11_10 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture11_11 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_11:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture11_12 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  visibility: hidden;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture11_12:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture12_1 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture12_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture12_3 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture12_4 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture12_5 {
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture12_6 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture12_7 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture12_8 {
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture12_9 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture12_10 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture12_11 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_11:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture12_12 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture12_12:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture13_1 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture13_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture13_3 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture13_4 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture13_5 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture13_6 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture13_7 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture13_8 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture13_9 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture13_10 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture13_11 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_11:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture13_12 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_12:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture13_13 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture13_13:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture14_1 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture14_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture14_3 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture14_4 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture14_5 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture14_6 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture14_7 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture14_8 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture14_9 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture14_10 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture14_11 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_11:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture14_12 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_12:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture14_13 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_13:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture14_14 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* margin-right: 10px; */
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture14_14:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture15_1 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture15_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture15_3 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture15_4 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture15_5 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture15_6 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture15_7 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture15_8 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture15_9 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture15_10 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture15_11 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_11:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture15_12 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_12:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture15_13 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_13:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture15_14 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* margin-right: 10px; */
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_14:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture15_15 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* margin-right: 10px; */
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture15_15:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_1 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture16_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.vidCapture16_3 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_4 {
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_4 :hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_5 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_6 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_7 {
+  /* width: 48%;
+  height: 19%; */
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_8 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_9 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_10 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_11 {
+  /* width: 48%;
+  height: 19%; */
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_11:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_12 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_12:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_13 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_13:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_14 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* margin-right: 10px; */
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_14:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_15 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* margin-right: 10px; */
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_15:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture16_16 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* margin-right: 10px; */
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture16_16:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_1 {
+  /* wi/ */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_1:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_2 {
+  /* width: 90%;
+  height: 46%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_2:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_3 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_3:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_4 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_4:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_5 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_5:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_6 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_6:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_7 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_7:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_8 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_8:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_9 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_9:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_10 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_10:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_11 {
+  /* width: 48%;
+  height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_11:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_12 {
+  /* width: 48%; */
+  /* height: 19%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_12:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_13 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_13:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_14 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* margin-right: 10px; */
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_14:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_15 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* margin-right: 10px; */
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_15:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_16 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* margin-right: 10px; */
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture7_16:hover .overlayVideoCapture {
+  opacity: 1;
+}
+.vidCapture17_17 {
+  /* width: 19%;
+  height: 94%; */
+  position: relative;
+  z-index: 10;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* margin-right: 10px; */
+  object-fit: cover;
+  object-position: center center;
+}
+
+.vidCapture17_17:hover .overlayVideoCapture {
+  opacity: 1;
+}
+
+.newMainContentRight {
+  width: 73%;
+  height: 90%;
+  /* max-height: 510px; */
+  position: relative;
+  /* padding: 10px; */
+  /* background-color: #fbfcd1; */
+  /* border-bottom-width: 5px; */
+  border-style: solid;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .newMainContentRight {
+    width: 100%;
+  }
+}
+
+.whiteboardContainerBg {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.whiteboardContainerBg > img {
+  height: 100%;
+  width: 100%;
+}
+
+.newMainContentRightX2 {
+  width: 22%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.newMainContentRightX3 {
+  width: 22%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  justify-content: space-evenly;
+  align-content: space-between;
+  /* margin-left: 10px; */
+}
+
+.newMainContentRightX4 {
+  width: 22%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  justify-content: space-evenly;
+  align-content: space-between;
+}
+
+.newMainContentRightX5 {
+  width: 40%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-between; */
+}
+
+.newMainContentRightX6 {
+  width: 40%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-between; */
+}
+
+.newMainContentRightX7 {
+  width: 27%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+
+.newMainContentRightX8 {
+  width: 27%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+
+.newMainContentRightX9 {
+  width: 23%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+RightX10 {
+  width: 23%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+.newMainContentRightX11 {
+  width: 23%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  margin-left: 10px;
+}
+.newMainContentRightX12 {
+  width: 23%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+.newMainContentRightX13 {
+  width: 23%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  margin-left: 10px;
+}
+.newMainContentRightX14 {
+  width: 23%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  margin-left: 10px;
+}
+.newMainContentRightX15 {
+  width: 23%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  margin-left: 10px;
+}
+.newMainContentRightX16 {
+  width: 23%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  margin-left: 10px;
+}
+.newMainContentRightX17 {
+  width: 23%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  margin-left: 10px;
+}
+.newMainContentMiddle {
+  width: 66%;
+  height: 100%;
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  border-image: linear-gradient(125deg, #fbff49, #69693e);
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentMiddleX2 {
+  width: 56%;
+  height: 100%;
+  /* max-height: 520px; */
+  /* background-color: #fbfcd1; */
+  position: relative;
+  border-color: #fbff49;
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentMiddleX3 {
+  width: 58%;
+  height: 100%;
+  /* max-height: 520px; */
+
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentMiddleX4 {
+  width: 56%;
+  height: 100%;
+  /* max-height: 520px; */
+
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentMiddleX5 {
+  width: 38%;
+  margin: 0 1%;
+  height: 100%;
+  /* max-height: 520px; */
+
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentMiddleX6 {
+  width: 38%;
+  margin: 0 1%;
+  height: 100%;
+  /* max-height: 520px; */
+
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentMiddleX7 {
+  width: 52%;
+  margin: 0 1%;
+  height: 100%;
+  /* max-height: 520px; */
+
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentMiddleX8 {
+  width: 52%;
+  margin: 0 1%;
+  height: 100%;
+  /* max-height: 520px; */
+
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentMiddleX9 {
+  width: 57%;
+  margin: 0 1%;
+  height: 100%;
+  /* max-height: 520px; */
+
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentMiddleX10 {
+  width: 57%;
+  margin: 0 1%;
+  height: 100%;
+  /* max-height: 520px; */
+
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentMiddleX11 {
+  width: 75%;
+  height: 100%;
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.newMainContentMiddleX12 {
+  width: 75%;
+  height: 100%;
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.newMainContentMiddleX13 {
+  width: 75%;
+  height: 100%;
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.newMainContentMiddleX14 {
+  width: 75%;
+  height: 100%;
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.newMainContentMiddleX15 {
+  width: 75%;
+  height: 100%;
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.newMainContentMiddleX16 {
+  width: 75%;
+  height: 100%;
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.newMainContentMiddleX17 {
+  width: 75%;
+  height: 100%;
+  /* background-color: #fbfcd1; */
+  /* border-width: 5px; */
+  border-style: solid;
+  position: relative;
+  border-color: #fbff49;
+  /* border-image: linear-gradient(125deg, #fbff49, #69693e); */
+  -webkit-border-image-slice: 1;
+  border-image-slice: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.x13Middle {
+  width: 75%;
+  margin: 0 1%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.x18Middle {
+  width: 75%;
+  margin: 0 1%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.newMainContentMiddleX13 {
+  width: 100%;
+  height: 100%;
+  background-color: #fbfcd1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.x13BottomVids {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.x13BottomVidsAlt {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.x18BottomVidsAlt {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-evenly;
+}
+
+.x20BottomVidsAlt {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-evenly;
+}
+
+.newMainContentRightInner {
+  width: 99%;
+  height: 99%;
+  z-index: 2;
+  position: absolute;
+  margin: 5px;
+  /* background-color: #e3dddd; */
+  /* border-left: 8px solid #1745b9;
+  border-top: 8px solid #1745b9;
+  border-right: 8px solid #1745b9;
+  border-bottom: 8px solid #1745b9; */
+  display: flex;
+  align-items: center;
+}
+
+.newMainContentRightInnerMenu {
+  width: 8%;
+  height: 90%;
+  border-right: 2px solid #637ec6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.newMainContentRightInnerMenuContainer {
+  border: 2px solid #637ec6;
+}
+
+.newMainContentRightInnerMenuContainer div {
+  width: 15px;
+  height: 2px;
+  background-color: #637ec6;
+  margin: 4px 2px;
+}
+
+.newMainContentRightInnerTextarea {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.newMainContentTextarea {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  width: 96%;
+  font-size: 24px;
+}
+
+.newMainContentTextarea:focus {
+  outline: none;
+  font-size: 16px;
+}
+
+.newMainContentTextarea:focus::placeholder {
+  color: transparent;
+}
+
+#newMainContentArea3,
+#newMainContentArea4,
+#newMainContentArea5,
+#newMainContentArea6,
+#newMainContentArea7,
+#newMainContentArea8,
+#newMainContentArea9,
+#newMainContentArea10,
+#newMainContentArea11,
+#newMainContentArea12,
+#newMainContentArea13,
+#newMainContentArea14,
+#newMainContentArea15,
+#newMainContentArea16 {
+  width: 100%;
+  height: 95%;
+  /* background-image: url('../../assets/convoBg.png'); */
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#newMainContentArea2 {
+  width: 100%;
+  height: 95%;
+  /* background-image: url('../../assets/convoBg.png'); */
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.newMainContentCaptureWrapper1 {
+  width: 49%;
+  height: 87.5%;
+  background-color: #0a2977;
+  border: 2px solid #c3cde6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentCaptureWrapper1YellowOne {
+  width: 50%;
+  height: 100%;
+  background-color: #0a2977;
+  border: 2px solid #e2d759;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentCaptureWrapper1Yellow {
+  width: 33%;
+  height: 100%;
+  background-color: #0a2977;
+  border: 2px solid #e2d759;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentCaptureWrapper1YellowWide {
+  width: 75%;
+  height: 100%;
+  background-color: #0a2977;
+  border: 2px solid #e2d759;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentNotes1 {
+  width: 49%;
+  height: 100%;
+  background-color: rgba(202, 236, 98, 1);
+  border: 6px solid #e2d759;
+  display: flex;
+  flex-direction: column;
+}
+
+.newMainContentCaptureWrapper2 {
+  width: 33%;
+  height: 100%;
+  background-color: #0a2977;
+  border: 2px solid #2590b4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentArea2Onside {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.newMainContentArea2OnsideDiff {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.newMainContentCaptureWrapper2Onside {
+  width: 93.9%;
+  height: 42.5%;
+
+  border-left: 5px solid #2590b4;
+  border-right: 5px solid #2590b4;
+  border-top: 7px solid #2590b4;
+  border-bottom: 7px solid #2590b4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentAreaXOnside {
+  width: 42%;
+  height: 100%;
+  display: flex;
+  align-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.newMainContentAreaXOnsideDiff {
+  width: 33%;
+  height: 100%;
+  display: flex;
+  align-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.newMainContentCaptureWrapperXOnside {
+  width: 48%;
+  height: 36%;
+  background-color: #0a2977;
+  border: 5px solid #2590b4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 9% 0 0 0;
+}
+
+.newMainContentCaptureWrapperXOnside:last-child {
+  margin-bottom: 10% !important;
+}
+
+.newMainContentCaptureWrapperXOnsideSmall {
+  width: 42%;
+  height: 31%;
+  background-color: #0a2977;
+  border: 5px solid #2590b4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.75% 0 0 0;
+}
+
+.newMainContentCaptureWrapperXOnsideSmallDiff {
+  width: 46%;
+  height: 27.5%;
+  background-color: #0a2977;
+  border: 5px solid #2590b4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5% 0 0 0;
+}
+
+.newMainContentCaptureWrapperXOnsideSmall:last-child {
+  margin-bottom: 1.75% !important;
+}
+
+.newMainContentCaptureWrapperXOnsideSmallDiff:last-child {
+  margin-bottom: 5% !important;
+}
+
+.newMainContentCaptureWrapperXOnsideSmallFour {
+  width: 45%;
+  height: 21%;
+  background-color: #0a2977;
+  border: 5px solid #2590b4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newMainContentCaptureWrapperXOnsideSmallFourDiff {
+  width: 40%;
+  height: 23.5%;
+  background-color: #0a2977;
+  border: 5px solid #2590b4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.2% 0 0 0;
+}
+
+.newMainContentCaptureWrapperXOnsideSmallFourDiff:last-child {
+  margin-bottom: 1.2%;
+}
+
+.fixed-container12 {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.banner {
+  position: sticky;
+
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+}
+/* .space {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 50px;
+} */
+.bannerback {
+  position: absolute;
+  /* z-index: -1; */
+}
+.videoContainerls {
+  display: flex;
+  column-gap: 20px;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.videoScreen {
+  width: 25vw;
+  height: 10vh;
+}
+
+.footer {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  justify-content: center;
+}
+
+.mobileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 20px;
+}
+
+@media screen and (max-width: 900px) {
+  .container_FM {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    row-gap: 50px;
+    overflow: auto;
+    align-items: center;
+  }
+  .videoCaptureConatainer {
+  }
+  .MiddleSection {
+    width: 100%;
+  }
+  .middleSectionInnerContainer {
+    width: 100%;
+    height: 500px;
+    background-color: #e3dddd;
+    border: 8px solid #1745b9;
+    display: flex;
+    align-items: center;
+  }
+  .videoCaptureConatainer {
+    width: 100%;
+    display: flex;
+    row-gap: 20px;
+    flex-wrap: wrap;
+  }
+  .videoCapture {
+    height: 120px;
+    width: 120px;
+    margin: 10px;
+  }
+}

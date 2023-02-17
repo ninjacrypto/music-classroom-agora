@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="./favicon.png"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Agora online classroom aPaaS project"/><link rel="manifest" href="./manifest.json"/><title>StageTrack</title><script>if (location.search) {
+        const params = new URLSearchParams(location.search.split('?')[1]);
+
+        // window parameters
+        const windowID = params.get('id');
+        const args = params.get('args') ? JSON.parse(params.get('args')) : null;
+
+        window.__launchWindowID = windowID;
+        window.__launchArgs = args;
+
+        // builder parameters
+        const region = params.get('region');
+        const language = params.get('language');
+        const roomName = params.get('roomName');
+        const userName = params.get('userName');
+        const roleType = params.get('roleType');
+        const roomType = params.get('roomType');
+        const companyId = params.get('companyId');
+        const projectId = params.get('projectId');
+        const password = params.get('password');
+        window.__launchRegion = region;
+        window.__launchLanguage = language;
+        window.__launchRoomName = roomName;
+        window.__launchUserName = userName;
+        window.__launchRoleType = roleType;
+        window.__launchRoomType = roomType;
+        window.__launchCompanyId = companyId;
+        window.__launchProjectId = projectId;
+        window.__launchMasterPassword = password;
+        if (windowID) {
+          this.location.hash = 'window';
+        }
+      }</script><script defer="defer" src="./static/bundle-fda78ed4a08b8ed4c9f1.js"></script><script defer="defer" src="./static/bundle-ceff2249a972eb742cc5.js"></script><link href="./static/550.6b07438128c4cab1113c.css" rel="stylesheet"><link href="./static/main.3dc61615a7aee6e4740b.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
