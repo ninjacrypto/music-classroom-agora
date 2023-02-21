@@ -57,7 +57,8 @@ export const WhiteboardContainer = observer(() => {
           <Layout className={'newMainContentRightInnerTextarea'}>
             <div id="newMainContentRightInnerTextarea" className="newMainContentRightInnerTextarea">
               <div className='chatContainer'>
-                <Chat />
+                {/* <Chat /> */}
+                <HandsUpContainer />                
               </div>
               <Whiteboard />
               <ScreenShareContainer />
@@ -126,7 +127,7 @@ export const MidClassScenario = observer(() => {
         <DialogContainer />
         <LoadingContainer />
         <Float bottom={15} right={10} align="flex-end" gap={2}>
-          <HandsUpContainer />
+          {/* <HandsUpContainer /> */}
         </Float>
 
         {isMobile ? (

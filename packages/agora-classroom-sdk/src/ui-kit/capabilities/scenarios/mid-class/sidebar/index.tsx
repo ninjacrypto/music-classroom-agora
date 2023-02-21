@@ -53,6 +53,7 @@ import classNames from 'classnames';
 import { InteractionStateColors } from '~ui-kit/utilities/state-color';
 import ClipboardJS from 'clipboard';
 import md5 from 'js-md5';
+import { Chat } from '@/ui-kit/capabilities/containers/widget/slots';
 
 const SignalContent = observer(() => {
   const { navigationBarUIStore } = useStore();
@@ -298,21 +299,8 @@ export const NavigationBarAction = visibilityListItemControl(
   },
 );
 
-export const Sidebar = observer(() => {
-  const [openNav, setOpenNav] = useState(false);
-
-  const [sidebarType, setSidebarType] = useState<string | null>(null);
-  const { navigationBarUIStore, shareUIStore, widgetUIStore } = useStore();
-  const { actions } = navigationBarUIStore;
-  let mfwmloCopy = useRef<HTMLSpanElement>(null);
-  let sorCopy = useRef<HTMLSpanElement>(null);
-
-  const { role } = EduClassroomConfig.shared.sessionInfo;
-
-  const showAdminPanel = role === EduRoleTypeEnum.teacher ? true : false;
-
+export const Stickers = observer((props: any) => {
   const { publishStickerToSocket, publishChatWidget } = useMusicFunRtmContext();
-
   const globalStore = useSelector((state: any) => state.StickerSlice);
 
   const roomIndex = globalStore.findIndex((item: any) =>
@@ -324,12 +312,249 @@ export const Sidebar = observer(() => {
 
   const currentUser = userProfileFinder(EduClassroomConfig.shared.sessionInfo.userName);
 
+  const title = EduRoleTypeEnum.teacher? 'Admin' : ''
+
+  const getActiveInstrumentClassName = (item: any) => {
+    return currentUser?.stickers?.instruments?.includes(item);
+  };
+
+  const getActiveEmojiClassName = (item: any) => {
+    return currentUser?.stickers?.emojis?.includes(item);
+  };
+
+  const onInstrumentIconClick = (event: any) => {
+    const { id } = event.target;
+
+    publishStickerToSocket(
+      'updateStickers',
+      {
+        userId: currentUser?.userId,
+        role: currentUser?.role,
+        stickerType: 'instruments',
+        instruments: currentUser?.stickers?.instruments ?? [],
+        newSticker: id,
+      },
+      EduClassroomConfig.shared.sessionInfo.roomName,
+    );
+  };
+
+  const onEmojiIconClick = (event: any) => {
+    const { id } = event.target;
+
+    publishStickerToSocket(
+      'updateStickers',
+      {
+        userId: currentUser?.userId,
+        role: currentUser?.role,
+        stickerType: 'emojis',
+        emojis: currentUser?.stickers?.emojis ?? [],
+        newSticker: id,
+      },
+      EduClassroomConfig.shared.sessionInfo.roomName,
+    );
+  };
+
+  return (
+    <div
+      style={{
+        paddingRight: '2px',
+        background: 'linear-gradient(225deg, #fbfcd1, #000000)',
+        height: '100%',
+      }}>
+      <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
+        <a className="closebtn" onClick={() => props.handleOnOpenNav()}>
+          &times;
+        </a>
+        <div className="headerTitle">{title} Back Stage</div>
+        <div
+          style={{
+            height: '70vh',
+            overflowY: 'scroll',
+            textAlign: 'center',
+          }}>
+          <text
+            style={{
+              fontFamily: 'Risque',
+              fontStyle: 'normal',
+              fontWeight: 'normal',
+              fontSize: '20px',
+              textAlign: 'center',
+            }}>
+            Emojis
+            <div className={'guestList_divider'} />
+          </text>
+
+          <div
+            style={{
+              width: 150,
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'center',
+              columnGap: 20,
+              rowGap: 10,
+              height: 200,
+            }}>
+            {Object.keys(EmotesvgDict).map((item: any, index: number) => (
+              <div
+                key={`${item}${index}`}
+                className={getActiveEmojiClassName(item) ? 'inactive' : 'active'}
+                onClick={onEmojiIconClick}>
+                <img id={`${item}`} src={EmotesvgDict[item]} width={50} height={50} />
+              </div>
+            ))}
+            <text
+              style={{
+                fontFamily: 'Risque',
+                fontStyle: 'normal',
+                fontWeight: 'normal',
+                fontSize: '20px',
+                textAlign: 'center',
+                // color: ' #fbff49',
+              }}>
+              Instruments
+              <div className={'guestList_divider'} />
+            </text>
+
+            <div
+              style={{
+                width: 150,
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                justifyContent: 'center',
+
+                columnGap: 20,
+                rowGap: 10,
+                height: 200,
+              }}>
+              {Object.keys(InstrumentSvgDict).map((item: any, index: number) => (
+                <div
+                  key={`${item}${index}`}
+                  className={getActiveInstrumentClassName(item) ? 'inactive' : 'active'}
+                  onClick={onInstrumentIconClick}>
+                  <img id={`${item}`} src={InstrumentSvgDict[item]} width={50} height={50} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '20px',
+              left: '30%',
+              transform: 'rotate(180deg)',
+              cursor: 'pointer',
+            }}>
+            <img
+              src={'/assets/loginbtn.png'}
+              onClick={() => {
+                props.setSidebarType(null);
+              }}
+              alt={''}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
+
+export const Messages = observer((props: any) => {
+  const { publishChatWidget } = useMusicFunRtmContext();
+  const { role } = EduClassroomConfig.shared.sessionInfo;
+  const showAdminPanel = role === EduRoleTypeEnum.teacher ? true : false;
+  const title = showAdminPanel? 'Admin' : ''
+
+
+  useEffect(() => {
+    showAdminPanel && publishChatWidget(
+      'updateChatWidget',
+      { toggle: false },
+      EduClassroomConfig.shared.sessionInfo.roomName,
+    );
+  }, [])
+
+  return (
+    <div
+      style={{
+        paddingRight: '2px',
+        background: 'linear-gradient(225deg, #fbfcd1, #000000)',
+        height: '100%',
+      }}>
+      <div
+        id="mySidepanel"
+        style={{ color: 'white', padding: 20 }}
+        className="sidepanel">
+        <div className="headerTitle"> {title} Back Stage</div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            rowGap: '30px',
+            marginTop: '30px',
+            textAlign: 'center',
+          }}>
+          <text
+            style={{
+              fontFamily: 'Risque',
+              fontStyle: 'normal',
+              fontWeight: 'normal',
+              fontSize: '20px',
+              textAlign: 'center',
+            }}>
+            Message
+          </text>
+          <Chat />
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '20px',
+              left: '30%',
+              transform: 'rotate(180deg)',
+              cursor: 'pointer',
+            }}>
+            <img
+              src={'/assets/loginbtn.png'}
+              onClick={() => {
+                showAdminPanel && publishChatWidget(
+                  'updateChatWidget',
+                  { toggle: true },
+                  EduClassroomConfig.shared.sessionInfo.roomName,
+                );
+                props.setSidebarType(null);
+              }}
+              alt={''}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
+
+export const Sidebar = observer(() => {
+  const [openNav, setOpenNav] = useState(false);
+
+  const [sidebarType, setSidebarType] = useState<string | null>(null);
+  const { navigationBarUIStore, shareUIStore, widgetUIStore } = useStore();
+  const { actions } = navigationBarUIStore;
+  let mfwmloCopy = useRef<HTMLSpanElement>(null);
+  let sorCopy = useRef<HTMLSpanElement>(null);
+
+  const { publishChatWidget } = useMusicFunRtmContext();
+
+
+  const { role } = EduClassroomConfig.shared.sessionInfo;
+
+  const showAdminPanel = role === EduRoleTypeEnum.teacher ? true : false;
+
   const region = localStorage.getItem('home_store_demo_launch_region');
   const language = localStorage.getItem('home_store_demo_launch_language');
 
   const { roomName, roomType } = EduClassroomConfig.shared.sessionInfo;
 
-  const password = md5("richardKagan123@");
+  const password = md5('richardKagan123@');
 
   const handleOnOpenNav = () => {
     setOpenNav(!openNav);
@@ -385,649 +610,611 @@ export const Sidebar = observer(() => {
     }
   };
 
-  const getActiveInstrumentClassName = (item: any) => {
-    return currentUser?.stickers?.instruments?.includes(item);
-  };
+  // const HandleMobileMenu = observer(() => {
+  //   const { streamUIStore } = useInteractiveUIStores() as EduInteractiveUIClassStore;
 
-  const getActiveEmojiClassName = (item: any) => {
-    return currentUser?.stickers?.emojis?.includes(item);
-  };
+  //   const { carouselStreams, teacherCameraStream } = streamUIStore;
 
-  const onInstrumentIconClick = (event: any) => {
-    const { id } = event.target;
+  //   switch (showAdminPanel) {
+  //     case true:
+  //       switch (sidebarType) {
+  //         case 'Tools':
+  //           return (
+  //             <div
+  //               style={{
+  //                 paddingRight: '2px',
+  //                 background: 'linear-gradient(225deg, #fbfcd1, #000000)',
+  //                 height: '100%',
+  //               }}>
+  //               <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
+  //                 <div className="headerTitle">Admin Back Stage</div>
+  //                 <div
+  //                   style={{
+  //                     display: 'flex',
+  //                     flexDirection: 'column',
+  //                     rowGap: '30px',
+  //                     marginTop: '30px',
+  //                     textAlign: 'center',
+  //                   }}>
+  //                   <text
+  //                     style={{
+  //                       fontFamily: 'Risque',
+  //                       fontStyle: 'normal',
+  //                       fontWeight: 'normal',
+  //                       fontSize: '20px',
+  //                       textAlign: 'center',
+  //                     }}>
+  //                     Tools
+  //                     <div className={'guestList_divider'} />
+  //                   </text>
 
-    publishStickerToSocket(
-      'updateStickers',
-      {
-        userId: currentUser?.userId,
-        role: currentUser?.role,
-        stickerType: 'instruments',
-        instruments: currentUser?.stickers?.instruments ?? [],
-        newSticker: id,
-      },
-      EduClassroomConfig.shared.sessionInfo.roomName,
-    );
-  };
+  //                   {actions.length
+  //                     ? actions.map((a) =>
+  //                         a.id === 'Share' ? (
+  //                           <span
+  //                             ref={mfwmloCopy}
+  //                             className={`MenuItemforSubMenu active`}
+  //                             data-clipboard-text={`${AgoraEduSDK.shareUrl}`}
+  //                             onClick={handleInviteMemberToMFWMLOClick}>
+  //                             Invite to MFWMLO
+  //                           </span>
+  //                         ) : a.id === 'Exit' ? (
+  //                           <span
+  //                             ref={sorCopy}
+  //                             className={`MenuItemforSubMenu active`}
+  //                             data-clipboard-text={`${AgoraEduSDK.shareUrl}`}
+  //                             onClick={handleInviteMemberToSORClick}>
+  //                             Invite to SOR
+  //                           </span>
+  //                         ) : (
+  //                           a.id === 'Record' && (
+  //                             <text className={`MenuItemforSubMenu active`} onClick={a.onClick}>
+  //                               Start Recording
+  //                             </text>
+  //                           )
+  //                         ),
+  //                       )
+  //                     : null}
 
-  const onEmojiIconClick = (event: any) => {
-    const { id } = event.target;
+  //                   <div
+  //                     style={{
+  //                       position: 'absolute',
+  //                       bottom: '20px',
+  //                       left: '30%',
+  //                       transform: 'rotate(180deg)',
+  //                       cursor: 'pointer',
+  //                     }}>
+  //                     <img
+  //                       src={'/assets/loginbtn.png'}
+  //                       onClick={() => {
+  //                         setSidebarType(null);
+  //                       }}
+  //                       alt={''}
+  //                     />
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           );
+  //         case 'Guests':
+  //           return (
+  //             <div
+  //               style={{
+  //                 paddingRight: '2px',
+  //                 background: 'linear-gradient(225deg, #fbfcd1, #000000)',
+  //                 height: '100%',
+  //               }}>
+  //               <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
+  //                 <div className="headerTitle">Admin Back Stage</div>
+  //                 <div className={'guestListContainer'}>
+  //                   <div className={'guestListTitle'}>Guest</div>
+  //                   <div className={'guestList_divider'} />
+  //                   <WaveArmListContainer />
 
-    publishStickerToSocket(
-      'updateStickers',
-      {
-        userId: currentUser?.userId,
-        role: currentUser?.role,
-        stickerType: 'emojis',
-        emojis: currentUser?.stickers?.emojis ?? [],
-        newSticker: id,
-      },
-      EduClassroomConfig.shared.sessionInfo.roomName,
-    );
-  };
+  //                   <div className={'guestList_userContainer'}>
+  //                     <div className={'guestList_userSubContainer'}>
+  //                       <div className={'guestList_user'}>
+  //                         {teacherCameraStream?.fromUser.userName}
+  //                       </div>
+  //                       <div
+  //                         className={
+  //                           !teacherCameraStream?.isCameraMuted && !teacherCameraStream?.isMicMuted
+  //                             ? 'guestList_userStatusLive'
+  //                             : 'guestList_userStatusPaused'
+  //                         }>
+  //                         {!teacherCameraStream?.isCameraMuted && !teacherCameraStream?.isMicMuted
+  //                           ? 'Live'
+  //                           : 'Paused'}
+  //                       </div>
+  //                     </div>
+  //                     {carouselStreams?.length > 0
+  //                       ? carouselStreams?.map(
+  //                           (student, index) =>
+  //                             student.fromUser.userUuid && (
+  //                               <div className={'guestList_userSubContainer'} key={index}>
+  //                                 <div className={'guestList_user'}>
+  //                                   {student.fromUser.userName}
+  //                                 </div>
+  //                                 <div
+  //                                   className={
+  //                                     !student.isCameraMuted && !student.isMicMuted
+  //                                       ? 'guestList_userStatusLive'
+  //                                       : 'guestList_userStatusPaused'
+  //                                   }>
+  //                                   {!student.isCameraMuted && !student.isMicMuted
+  //                                     ? 'Live'
+  //                                     : 'Paused'}
+  //                                 </div>
+  //                               </div>
+  //                             ),
+  //                         )
+  //                       : null}
+  //                   </div>
+  //                   <div
+  //                     style={{
+  //                       position: 'absolute',
+  //                       bottom: '20px',
+  //                       left: '30%',
+  //                       transform: 'rotate(180deg)',
+  //                       cursor: 'pointer',
+  //                     }}>
+  //                     <img
+  //                       src={'/assets/loginbtn.png'}
+  //                       onClick={() => {
+  //                         setSidebarType(null);
+  //                       }}
+  //                       alt={''}
+  //                     />
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           );
 
-  const HandleMobileMenu = observer(() => {
-    const { streamUIStore } = useInteractiveUIStores() as EduInteractiveUIClassStore;
+  //         case 'Stickers':
+  //           return (
+  //             <div
+  //               style={{
+  //                 paddingRight: '2px',
+  //                 background: 'linear-gradient(225deg, #fbfcd1, #000000)',
+  //                 height: '100%',
+  //               }}>
+  //               <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
+  //                 <div className="headerTitle">Admin Back Stage</div>
+  //                 <div
+  //                   style={{
+  //                     height: '70vh',
+  //                     overflowY: 'scroll',
+  //                     textAlign: 'center',
+  //                   }}>
+  //                   <text
+  //                     style={{
+  //                       fontFamily: 'Risque',
+  //                       fontStyle: 'normal',
+  //                       fontWeight: 'normal',
+  //                       fontSize: '20px',
+  //                       textAlign: 'center',
+  //                     }}>
+  //                     Emojis
+  //                     <div className={'guestList_divider'} />
+  //                   </text>
 
-    const { carouselStreams, teacherCameraStream } = streamUIStore;
+  //                   <div
+  //                     style={{
+  //                       width: 150,
+  //                       display: 'flex',
+  //                       flexWrap: 'wrap',
+  //                       alignItems: 'center',
+  //                       justifyContent: 'center',
+  //                       columnGap: 20,
+  //                       rowGap: 10,
+  //                       height: 200,
+  //                     }}>
+  //                     {Object.keys(EmotesvgDict).map((item: any, index: number) => (
+  //                       <div
+  //                         key={`${item}${index}`}
+  //                         className={getActiveEmojiClassName(item) ? 'inactive' : 'active'}
+  //                         onClick={onEmojiIconClick}>
+  //                         <img id={`${item}`} src={EmotesvgDict[item]} width={50} height={50} />
+  //                       </div>
+  //                     ))}
+  //                     <text
+  //                       style={{
+  //                         fontFamily: 'Risque',
+  //                         fontStyle: 'normal',
+  //                         fontWeight: 'normal',
+  //                         fontSize: '20px',
+  //                         textAlign: 'center',
+  //                       }}>
+  //                       Instruments
+  //                       <div className={'guestList_divider'} />
+  //                     </text>
 
-    switch (showAdminPanel) {
-      case true:
-        switch (sidebarType) {
-          case 'Tools':
-            return (
-              <div
-                style={{
-                  paddingRight: '2px',
-                  background: 'linear-gradient(225deg, #fbfcd1, #000000)',
-                  height: '100%',
-                }}>
-                <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
-                  <div className="headerTitle">Admin Back Stage</div>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      rowGap: '30px',
-                      marginTop: '30px',
-                      textAlign: 'center',
-                    }}>
-                    <text
-                      style={{
-                        fontFamily: 'Risque',
-                        fontStyle: 'normal',
-                        fontWeight: 'normal',
-                        fontSize: '20px',
-                        textAlign: 'center',
-                      }}>
-                      Tools
-                      <div className={'guestList_divider'} />
-                    </text>
+  //                     <div
+  //                       style={{
+  //                         width: 150,
+  //                         display: 'flex',
+  //                         flexWrap: 'wrap',
+  //                         alignItems: 'center',
+  //                         justifyContent: 'center',
 
-                    {actions.length
-                      ? actions.map((a) =>
-                          a.id === 'Share' ? (
-                            <span
-                              ref={mfwmloCopy}
-                              className={`MenuItemforSubMenu active`}
-                              data-clipboard-text={`${AgoraEduSDK.shareUrl}`}
-                              onClick={handleInviteMemberToMFWMLOClick}>
-                              Invite to MFWMLO
-                            </span>
-                          ) : a.id === 'Exit' ? (
-                            <span
-                              ref={sorCopy}
-                              className={`MenuItemforSubMenu active`}
-                              data-clipboard-text={`${AgoraEduSDK.shareUrl}`}
-                              onClick={handleInviteMemberToSORClick}>
-                              Invite to SOR
-                            </span>
-                          ) : (
-                            a.id === 'Record' && (
-                              <text className={`MenuItemforSubMenu active`} onClick={a.onClick}>
-                                Start Recording
-                              </text>
-                            )
-                          ),
-                        )
-                      : null}
+  //                         columnGap: 20,
+  //                         rowGap: 10,
+  //                         height: 200,
+  //                       }}>
+  //                       {Object.keys(InstrumentSvgDict).map((item: any, index: number) => (
+  //                         <div
+  //                           key={`${item}${index}`}
+  //                           className={getActiveInstrumentClassName(item) ? 'inactive' : 'active'}
+  //                           onClick={onInstrumentIconClick}>
+  //                           <img
+  //                             id={`${item}`}
+  //                             src={InstrumentSvgDict[item]}
+  //                             width={50}
+  //                             height={50}
+  //                           />
+  //                         </div>
+  //                       ))}
+  //                     </div>
+  //                   </div>
+  //                   <div
+  //                     style={{
+  //                       position: 'absolute',
+  //                       bottom: '20px',
+  //                       left: '30%',
+  //                       transform: 'rotate(180deg)',
+  //                       cursor: 'pointer',
+  //                     }}>
+  //                     <img
+  //                       src={'/assets/loginbtn.png'}
+  //                       onClick={() => {
+  //                         setSidebarType(null);
+  //                       }}
+  //                       alt={''}
+  //                     />
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           );
 
-                    <div
-                      style={{
-                        position: 'absolute',
-                        bottom: '20px',
-                        left: '30%',
-                        transform: 'rotate(180deg)',
-                        cursor: 'pointer',
-                      }}>
-                      <img
-                        src={'/assets/loginbtn.png'}
-                        onClick={() => {
-                          setSidebarType(null);
-                        }}
-                        alt={''}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          case 'Guests':
-            return (
-              <div
-                style={{
-                  paddingRight: '2px',
-                  background: 'linear-gradient(225deg, #fbfcd1, #000000)',
-                  height: '100%',
-                }}>
-                <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
-                  <div className="headerTitle">Admin Back Stage</div>
-                  <div className={'guestListContainer'}>
-                    <div className={'guestListTitle'}>Guest</div>
-                    <div className={'guestList_divider'} />
-                    <WaveArmListContainer />
+  //         default:
+  //           return (
+  //             <div
+  //               style={{
+  //                 paddingRight: '2px',
+  //                 background: 'linear-gradient(225deg, #fbfcd1, #000000)',
+  //                 height: '100%',
+  //               }}>
+  //               <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
+  //                 <div className="headerTitle">Admin Back Stage</div>
+  //                 <div className="header-signal">
+  //                   <SignalQuality />
+  //                 </div>
+  //                 <div className="header-actions relative">
+  //                   <Actions />
+  //                   <ShareCard />
+  //                 </div>
+  //                 <div
+  //                   style={{
+  //                     display: 'flex',
+  //                     flexDirection: 'column',
+  //                     rowGap: '3vh',
+  //                     marginTop: '30px',
+  //                     justifyContent: 'space-between',
+  //                   }}>
+  //                   <div
+  //                     className="gradient-outline"
+  //                     onClick={() => handleOnSidebarToolsClick('Tools')}>
+  //                     <div className={`gradient-box`}>
+  //                       <text className="sideBarMainText">Tools</text>
+  //                     </div>
+  //                   </div>
+  //                   <div
+  //                     className="gradient-outline"
+  //                     onClick={() => handleOnSidebarToolsClick('Guests')}>
+  //                     <div className={`gradient-box`}>
+  //                       <text className="sideBarMainText">Guests</text>
+  //                     </div>
+  //                   </div>
+  //                   {/* <div
+  //             className="gradient-outline"
+  //             onClick={() => handleOnSidebarToolsClick('Stickers')}>
+  //             <div className={`gradient-box`}>
+  //               <text className="sideBarMainText">Stickers</text>
+  //             </div>
+  //           </div> */}
+  //                   <div
+  //                     className="gradient-outline"
+  //                     onClick={() => handleOnSidebarToolsClick('Stickers')}>
+  //                     <div className={`gradient-box`}>
+  //                       <text className="sideBarMainText">Stickers</text>
+  //                     </div>
+  //                   </div>
+  //                   <div
+  //                     className="gradient-outline"
+  //                     onClick={() => {
+  //                       publishChatWidget(
+  //                         'updateChatWidget',
+  //                         { toggle: !globalStore[roomIndex]['chatMinimized'] },
+  //                         EduClassroomConfig.shared.sessionInfo.roomName,
+  //                       );
+  //                       handleOnSidebarToolsClick('Chat');
+  //                       // toggleChatMinimize();
+  //                     }}>
+  //                     <div className={`gradient-box`}>
+  //                       <text className="sideBarMainText">Chat</text>
+  //                     </div>
+  //                   </div>
+  //                   <div
+  //                     style={
+  //                       {
+  //                         // display: 'flex',
+  //                         // justifyContent: 'center',
+  //                         // position: 'absolute',
+  //                         // bottom: '100px',
+  //                         // width: '200px',
+  //                       }
+  //                     }>
+  //                     {/* <text className={`MenuItemforSubMenu active`}>{classStatusText}</text> */}
+  //                   </div>
+  //                   <div className="top-babaji-contianer">
+  //                     {actions.length
+  //                       ? actions.map(
+  //                           (a) =>
+  //                             a.id === 'Exit' && (
+  //                               <div
+  //                                 className="babaji-container"
+  //                                 onClick={() => {
+  //                                   a.onClick ? a?.onClick() : null;
+  //                                   setOpenNav(false);
+  //                                 }}>
+  //                                 <div className="gradient-small-box">
+  //                                   <text className="sideBarSubText">Leave Session</text>
+  //                                 </div>
+  //                                 <div className="gradient-small-box-outline"></div>
+  //                               </div>
+  //                             ),
+  //                         )
+  //                       : null}
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           );
+  //       }
+  //     default:
+  //       switch (sidebarType) {
+  //         case 'Stickers':
+  //           return (
+  //             <div
+  //               style={{
+  //                 paddingRight: '2px',
+  //                 background: 'linear-gradient(225deg, #fbfcd1, #000000)',
+  //                 height: '100%',
+  //               }}>
+  //               <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
+  //                 <div className="headerTitle">Back Stage</div>
+  //                 <div
+  //                   style={{
+  //                     height: '70vh',
+  //                     overflowY: 'scroll',
+  //                     textAlign: 'center',
+  //                   }}>
+  //                   <text
+  //                     style={{
+  //                       fontFamily: 'Risque',
+  //                       fontStyle: 'normal',
+  //                       fontWeight: 'normal',
+  //                       fontSize: '20px',
+  //                       textAlign: 'center',
+  //                     }}>
+  //                     Emojis
+  //                     <div className={'guestList_divider'} />
+  //                   </text>
 
-                    <div className={'guestList_userContainer'}>
-                      <div className={'guestList_userSubContainer'}>
-                        <div className={'guestList_user'}>
-                          {teacherCameraStream?.fromUser.userName}
-                        </div>
-                        <div
-                          className={
-                            !teacherCameraStream?.isCameraMuted && !teacherCameraStream?.isMicMuted
-                              ? 'guestList_userStatusLive'
-                              : 'guestList_userStatusPaused'
-                          }>
-                          {!teacherCameraStream?.isCameraMuted && !teacherCameraStream?.isMicMuted
-                            ? 'Live'
-                            : 'Paused'}
-                        </div>
-                      </div>
-                      {carouselStreams?.length > 0
-                        ? carouselStreams?.map(
-                            (student, index) =>
-                              student.fromUser.userUuid && (
-                                <div className={'guestList_userSubContainer'} key={index}>
-                                  <div className={'guestList_user'}>
-                                    {student.fromUser.userName}
-                                  </div>
-                                  <div
-                                    className={
-                                      !student.isCameraMuted && !student.isMicMuted
-                                        ? 'guestList_userStatusLive'
-                                        : 'guestList_userStatusPaused'
-                                    }>
-                                    {!student.isCameraMuted && !student.isMicMuted
-                                      ? 'Live'
-                                      : 'Paused'}
-                                  </div>
-                                </div>
-                              ),
-                          )
-                        : null}
-                    </div>
-                    <div
-                      style={{
-                        position: 'absolute',
-                        bottom: '20px',
-                        left: '30%',
-                        transform: 'rotate(180deg)',
-                        cursor: 'pointer',
-                      }}>
-                      <img
-                        src={'/assets/loginbtn.png'}
-                        onClick={() => {
-                          setSidebarType(null);
-                        }}
-                        alt={''}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
+  //                   <div
+  //                     style={{
+  //                       width: 150,
+  //                       display: 'flex',
+  //                       flexWrap: 'wrap',
+  //                       alignItems: 'center',
+  //                       justifyContent: 'center',
+  //                       columnGap: 20,
+  //                       rowGap: 10,
+  //                       height: 200,
+  //                     }}>
+  //                     {Object.keys(EmotesvgDict).map((item: any, index: number) => (
+  //                       <div
+  //                         key={`${item}${index}`}
+  //                         className={getActiveEmojiClassName(item) ? 'inactive' : 'active'}
+  //                         onClick={onEmojiIconClick}>
+  //                         <img id={`${item}`} src={EmotesvgDict[item]} width={50} height={50} />
+  //                       </div>
+  //                     ))}
+  //                     <text
+  //                       style={{
+  //                         fontFamily: 'Risque',
+  //                         fontStyle: 'normal',
+  //                         fontWeight: 'normal',
+  //                         fontSize: '20px',
+  //                         textAlign: 'center',
+  //                         // color: ' #fbff49',
+  //                       }}>
+  //                       Instruments
+  //                       <div className={'guestList_divider'} />
+  //                     </text>
 
-          case 'Stickers':
-            return (
-              <div
-                style={{
-                  paddingRight: '2px',
-                  background: 'linear-gradient(225deg, #fbfcd1, #000000)',
-                  height: '100%',
-                }}>
-                <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
-                  <div className="headerTitle">Admin Back Stage</div>
-                  <div
-                    style={{
-                      height: '70vh',
-                      overflowY: 'scroll',
-                      textAlign: 'center',
-                    }}>
-                    <text
-                      style={{
-                        fontFamily: 'Risque',
-                        fontStyle: 'normal',
-                        fontWeight: 'normal',
-                        fontSize: '20px',
-                        textAlign: 'center',
-                      }}>
-                      Emojis
-                      <div className={'guestList_divider'} />
-                    </text>
+  //                     <div
+  //                       style={{
+  //                         width: 150,
+  //                         display: 'flex',
+  //                         flexWrap: 'wrap',
+  //                         alignItems: 'center',
+  //                         justifyContent: 'center',
 
-                    <div
-                      style={{
-                        width: 150,
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        columnGap: 20,
-                        rowGap: 10,
-                        height: 200,
-                      }}>
-                      {Object.keys(EmotesvgDict).map((item: any, index: number) => (
-                        <div
-                          key={`${item}${index}`}
-                          className={getActiveEmojiClassName(item) ? 'inactive' : 'active'}
-                          onClick={onEmojiIconClick}>
-                          <img id={`${item}`} src={EmotesvgDict[item]} width={50} height={50} />
-                        </div>
-                      ))}
-                      <text
-                        style={{
-                          fontFamily: 'Risque',
-                          fontStyle: 'normal',
-                          fontWeight: 'normal',
-                          fontSize: '20px',
-                          textAlign: 'center',
-                        }}>
-                        Instruments
-                        <div className={'guestList_divider'} />
-                      </text>
+  //                         columnGap: 20,
+  //                         rowGap: 10,
+  //                         height: 200,
+  //                       }}>
+  //                       {Object.keys(InstrumentSvgDict).map((item: any, index: number) => (
+  //                         <div
+  //                           key={`${item}${index}`}
+  //                           className={getActiveInstrumentClassName(item) ? 'inactive' : 'active'}
+  //                           onClick={onInstrumentIconClick}>
+  //                           <img
+  //                             id={`${item}`}
+  //                             src={InstrumentSvgDict[item]}
+  //                             width={50}
+  //                             height={50}
+  //                           />
+  //                         </div>
+  //                       ))}
+  //                     </div>
+  //                   </div>
+  //                   <div
+  //                     style={{
+  //                       position: 'absolute',
+  //                       bottom: '20px',
+  //                       left: '30%',
+  //                       transform: 'rotate(180deg)',
+  //                       cursor: 'pointer',
+  //                     }}>
+  //                     <img
+  //                       src={'/assets/loginbtn.png'}
+  //                       onClick={() => {
+  //                         setSidebarType(null);
+  //                       }}
+  //                       alt={''}
+  //                     />
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           );
 
-                      <div
-                        style={{
-                          width: 150,
-                          display: 'flex',
-                          flexWrap: 'wrap',
-                          alignItems: 'center',
-                          justifyContent: 'center',
+  //         default:
+  //           return (
+  //             <div
+  //               style={{
+  //                 paddingRight: '2px',
+  //                 background: 'linear-gradient(225deg, #fbfcd1, #000000)',
+  //                 height: '100%',
+  //               }}>
+  //               <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
+  //                 <div className="headerTitle">Back Stage</div>
+  //                 <div className="header-signal">
+  //                   <SignalQuality />
+  //                 </div>
+  //                 <div className="header-actions relative">
+  //                   <Actions />
+  //                   <ShareCard />
+  //                 </div>
+  //                 <div className="userMenu1">
+  //                   <div className="userMenuContainer"></div>
+  //                   <div className="userMenuContainer ">
+  //                     <div
+  //                       className={`gradient-small-box-outline-user
+  //           ${!carouselStreams[0]?.isCameraMuted ? 'inactiveOption' : 'activeOption'}
+  //         `}
+  //                       style={{ height: '7vh' }}
+  //                     />
+  //                     {actions.length
+  //                       ? actions.map(
+  //                           (a) =>
+  //                             a.id === 'Camera' && (
+  //                               <div
+  //                                 className={`userMenuSubcontainer
+  //           ${!carouselStreams[0]?.isCameraMuted ? 'inactiveOption' : 'activeOption'}
+  //         `}
+  //                                 style={{ height: '7vh' }}>
+  //                                 <span
+  //                                   className={`MenuItemforSubMenu active`}
+  //                                   onClick={a?.onClick}>
+  //                                   {`${
+  //                                     !carouselStreams[0]?.isCameraMuted
+  //                                       ? 'Pause Video'
+  //                                       : 'Unpause Video'
+  //                                   }`}
+  //                                 </span>
+  //                               </div>
+  //                             ),
+  //                         )
+  //                       : null}
+  //                   </div>
+  //                   <div className="userMenuContainer">
+  //                     <div
+  //                       className={`gradient-small-box-outline-user ${
+  //                         !carouselStreams[0]?.isMicMuted ? 'inactiveOption' : 'activeOption'
+  //                       }`}
+  //                       style={{ height: '7vh' }}
+  //                     />
+  //                     {actions.length
+  //                       ? actions.map(
+  //                           (a) =>
+  //                             a?.id === 'Mic' && (
+  //                               <div
+  //                                 className={`userMenuSubcontainer ${
+  //                                   !carouselStreams[0]?.isMicMuted
+  //                                     ? 'inactiveOption'
+  //                                     : 'activeOption'
+  //                                 } `}
+  //                                 style={{ height: '7vh' }}>
+  //                                 <span
+  //                                   className={`MenuItemforSubMenu active`}
+  //                                   onClick={a?.onClick}>
+  //                                   {`${
+  //                                     !carouselStreams[0]?.isMicMuted
+  //                                       ? 'Mute Audio'
+  //                                       : 'Unmute Audio'
+  //                                   }`}
+  //                                 </span>
+  //                               </div>
+  //                             ),
+  //                         )
+  //                       : null}
+  //                   </div>
 
-                          columnGap: 20,
-                          rowGap: 10,
-                          height: 200,
-                        }}>
-                        {Object.keys(InstrumentSvgDict).map((item: any, index: number) => (
-                          <div
-                            key={`${item}${index}`}
-                            className={getActiveInstrumentClassName(item) ? 'inactive' : 'active'}
-                            onClick={onInstrumentIconClick}>
-                            <img
-                              id={`${item}`}
-                              src={InstrumentSvgDict[item]}
-                              width={50}
-                              height={50}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        position: 'absolute',
-                        bottom: '20px',
-                        left: '30%',
-                        transform: 'rotate(180deg)',
-                        cursor: 'pointer',
-                      }}>
-                      <img
-                        src={'/assets/loginbtn.png'}
-                        onClick={() => {
-                          setSidebarType(null);
-                        }}
-                        alt={''}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
+  //                   <div
+  //                     className="userMenuContainer"
+  //                     onClick={() => {
+  //                       handleOnSidebarToolsClick('Stickers');
+  //                     }}>
+  //                     <div
+  //                       className={`gradient-small-box-outline-user inactiveOption
+  //                 `}
+  //                       style={{ height: '7vh' }}
+  //                     />
+  //                     <div
+  //                       className={`userMenuSubcontainer inactiveOption`}
+  //                       style={{ height: '7vh' }}>
+  //                       <span className={`MenuItemforSubMenu active`}>Stickers</span>
+  //                     </div>
+  //                   </div>
+  //                 </div>
+  //                 <div className="top-babaji-contianer">
+  //                   {actions.length
+  //                     ? actions.map(
+  //                         (a) =>
+  //                           a.id === 'Exit' && (
+  //                             <div className="babaji-container" onClick={a?.onClick}>
+  //                               <div className="gradient-small-box">
+  //                                 <span className="sideBarSubText">Leave Session</span>
+  //                               </div>
+  //                               <div className="gradient-small-box-outline"></div>
+  //                             </div>
+  //                           ),
+  //                       )
+  //                     : null}
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           );
+  //       }
+  //   }
+  // });
 
-          default:
-            return (
-              <div
-                style={{
-                  paddingRight: '2px',
-                  background: 'linear-gradient(225deg, #fbfcd1, #000000)',
-                  height: '100%',
-                }}>
-                <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
-                  <div className="headerTitle">Admin Back Stage</div>
-                  <div className="header-signal">
-                    <SignalQuality />
-                  </div>
-                  <div className="header-actions relative">
-                    <Actions />
-                    <ShareCard />
-                  </div>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      rowGap: '3vh',
-                      marginTop: '30px',
-                      justifyContent: 'space-between',
-                    }}>
-                    <div
-                      className="gradient-outline"
-                      onClick={() => handleOnSidebarToolsClick('Tools')}>
-                      <div className={`gradient-box`}>
-                        <text className="sideBarMainText">Tools</text>
-                      </div>
-                    </div>
-                    <div
-                      className="gradient-outline"
-                      onClick={() => handleOnSidebarToolsClick('Guests')}>
-                      <div className={`gradient-box`}>
-                        <text className="sideBarMainText">Guests</text>
-                      </div>
-                    </div>
-                    {/* <div
-              className="gradient-outline"
-              onClick={() => handleOnSidebarToolsClick('Stickers')}>
-              <div className={`gradient-box`}>
-                <text className="sideBarMainText">Stickers</text>
-              </div>
-            </div> */}
-                    <div
-                      className="gradient-outline"
-                      onClick={() => handleOnSidebarToolsClick('Stickers')}>
-                      <div className={`gradient-box`}>
-                        <text className="sideBarMainText">Stickers</text>
-                      </div>
-                    </div>
-                    <div
-                      className="gradient-outline"
-                      onClick={() => {
-                        publishChatWidget(
-                          'updateChatWidget',
-                          { toggle: !globalStore[roomIndex]['chatMinimized'] },
-                          EduClassroomConfig.shared.sessionInfo.roomName,
-                        );
-                        // toggleChatMinimize();
-                      }}>
-                      <div className={`gradient-box`}>
-                        <text className="sideBarMainText">Chat</text>
-                      </div>
-                    </div>
-                    <div
-                      style={
-                        {
-                          // display: 'flex',
-                          // justifyContent: 'center',
-                          // position: 'absolute',
-                          // bottom: '100px',
-                          // width: '200px',
-                        }
-                      }>
-                      {/* <text className={`MenuItemforSubMenu active`}>{classStatusText}</text> */}
-                    </div>
-                    <div className="top-babaji-contianer">
-                      {actions.length
-                        ? actions.map(
-                            (a) =>
-                              a.id === 'Exit' && (
-                                <div
-                                  className="babaji-container"
-                                  onClick={() => {
-                                    a.onClick ? a?.onClick() : null;
-                                    setOpenNav(false);
-                                  }}>
-                                  <div className="gradient-small-box">
-                                    <text className="sideBarSubText">Leave Session</text>
-                                  </div>
-                                  <div className="gradient-small-box-outline"></div>
-                                </div>
-                              ),
-                          )
-                        : null}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-        }
-      default:
-        switch (sidebarType) {
-          case 'Stickers':
-            return (
-              <div
-                style={{
-                  paddingRight: '2px',
-                  background: 'linear-gradient(225deg, #fbfcd1, #000000)',
-                  height: '100%',
-                }}>
-                <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
-                  <div className="headerTitle">Back Stage</div>
-                  <div
-                    style={{
-                      height: '70vh',
-                      overflowY: 'scroll',
-                      textAlign: 'center',
-                    }}>
-                    <text
-                      style={{
-                        fontFamily: 'Risque',
-                        fontStyle: 'normal',
-                        fontWeight: 'normal',
-                        fontSize: '20px',
-                        textAlign: 'center',
-                      }}>
-                      Emojis
-                      <div className={'guestList_divider'} />
-                    </text>
-
-                    <div
-                      style={{
-                        width: 150,
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        columnGap: 20,
-                        rowGap: 10,
-                        height: 200,
-                      }}>
-                      {Object.keys(EmotesvgDict).map((item: any, index: number) => (
-                        <div
-                          key={`${item}${index}`}
-                          className={getActiveEmojiClassName(item) ? 'inactive' : 'active'}
-                          onClick={onEmojiIconClick}>
-                          <img id={`${item}`} src={EmotesvgDict[item]} width={50} height={50} />
-                        </div>
-                      ))}
-                      <text
-                        style={{
-                          fontFamily: 'Risque',
-                          fontStyle: 'normal',
-                          fontWeight: 'normal',
-                          fontSize: '20px',
-                          textAlign: 'center',
-                          // color: ' #fbff49',
-                        }}>
-                        Instruments
-                        <div className={'guestList_divider'} />
-                      </text>
-
-                      <div
-                        style={{
-                          width: 150,
-                          display: 'flex',
-                          flexWrap: 'wrap',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-
-                          columnGap: 20,
-                          rowGap: 10,
-                          height: 200,
-                        }}>
-                        {Object.keys(InstrumentSvgDict).map((item: any, index: number) => (
-                          <div
-                            key={`${item}${index}`}
-                            className={getActiveInstrumentClassName(item) ? 'inactive' : 'active'}
-                            onClick={onInstrumentIconClick}>
-                            <img
-                              id={`${item}`}
-                              src={InstrumentSvgDict[item]}
-                              width={50}
-                              height={50}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        position: 'absolute',
-                        bottom: '20px',
-                        left: '30%',
-                        transform: 'rotate(180deg)',
-                        cursor: 'pointer',
-                      }}>
-                      <img
-                        src={'/assets/loginbtn.png'}
-                        onClick={() => {
-                          setSidebarType(null);
-                        }}
-                        alt={''}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-
-          default:
-            return (
-              <div
-                style={{
-                  paddingRight: '2px',
-                  background: 'linear-gradient(225deg, #fbfcd1, #000000)',
-                  height: '100%',
-                }}>
-                <div id="mySidepanel" style={{ color: 'white', padding: 20 }} className="sidepanel">
-                  <div className="headerTitle">Back Stage</div>
-                  <div className="header-signal">
-                    <SignalQuality />
-                  </div>
-                  <div className="header-actions relative">
-                    <Actions />
-                    <ShareCard />
-                  </div>
-                  <div className="userMenu1">
-                    <div className="userMenuContainer"></div>
-                    <div className="userMenuContainer ">
-                      <div
-                        className={`gradient-small-box-outline-user
-            ${!carouselStreams[0]?.isCameraMuted ? 'inactiveOption' : 'activeOption'}
-          `}
-                        style={{ height: '7vh' }}
-                      />
-                      {actions.length
-                        ? actions.map(
-                            (a) =>
-                              a.id === 'Camera' && (
-                                <div
-                                  className={`userMenuSubcontainer
-            ${!carouselStreams[0]?.isCameraMuted ? 'inactiveOption' : 'activeOption'}
-          `}
-                                  style={{ height: '7vh' }}>
-                                  <span
-                                    className={`MenuItemforSubMenu active`}
-                                    onClick={a?.onClick}>
-                                    {`${
-                                      !carouselStreams[0]?.isCameraMuted
-                                        ? 'Pause Video'
-                                        : 'Unpause Video'
-                                    }`}
-                                  </span>
-                                </div>
-                              ),
-                          )
-                        : null}
-                    </div>
-                    <div className="userMenuContainer">
-                      <div
-                        className={`gradient-small-box-outline-user ${
-                          !carouselStreams[0]?.isMicMuted ? 'inactiveOption' : 'activeOption'
-                        }`}
-                        style={{ height: '7vh' }}
-                      />
-                      {actions.length
-                        ? actions.map(
-                            (a) =>
-                              a?.id === 'Mic' && (
-                                <div
-                                  className={`userMenuSubcontainer ${
-                                    !carouselStreams[0]?.isMicMuted
-                                      ? 'inactiveOption'
-                                      : 'activeOption'
-                                  } `}
-                                  style={{ height: '7vh' }}>
-                                  <span
-                                    className={`MenuItemforSubMenu active`}
-                                    onClick={a?.onClick}>
-                                    {`${
-                                      !carouselStreams[0]?.isMicMuted
-                                        ? 'Mute Audio'
-                                        : 'Unmute Audio'
-                                    }`}
-                                  </span>
-                                </div>
-                              ),
-                          )
-                        : null}
-                    </div>
-
-                    <div
-                      className="userMenuContainer"
-                      onClick={() => {
-                        handleOnSidebarToolsClick('Stickers');
-                      }}>
-                      <div
-                        className={`gradient-small-box-outline-user inactiveOption
-                  `}
-                        style={{ height: '7vh' }}
-                      />
-                      <div
-                        className={`userMenuSubcontainer inactiveOption`}
-                        style={{ height: '7vh' }}>
-                        <span className={`MenuItemforSubMenu active`}>Stickers</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="top-babaji-contianer">
-                    {actions.length
-                      ? actions.map(
-                          (a) =>
-                            a.id === 'Exit' && (
-                              <div className="babaji-container" onClick={a?.onClick}>
-                                <div className="gradient-small-box">
-                                  <span className="sideBarSubText">Leave Session</span>
-                                </div>
-                                <div className="gradient-small-box-outline"></div>
-                              </div>
-                            ),
-                        )
-                      : null}
-                  </div>
-                </div>
-              </div>
-            );
-        }
-    }
-  });
-
+  
   const Sidebar = observer(() => {
     const { streamUIStore } = useInteractiveUIStores() as EduInteractiveUIClassStore;
 
@@ -1037,7 +1224,7 @@ export const Sidebar = observer(() => {
       case true:
         return (
           <Menu isOpen={openNav} onStateChange={(state: any) => handleStateChange(state)}>
-            <HandleMobileMenu />
+            {/* <HandleMobileMenu /> */}
           </Menu>
         );
       default:
@@ -1083,17 +1270,7 @@ export const Sidebar = observer(() => {
                             </text>
                             {/*
                              */}
-                            <p
-                              className={`MenuItemforSubMenu active`}
-                              onClick={() => handleInviteMemberToMFWMLOClick()}>
-                              Invite to MFWMLO
-                            </p>
 
-                            <p
-                              className={`MenuItemforSubMenu active`}
-                              onClick={() => handleInviteMemberToSORClick()}>
-                              Invite to SOR
-                            </p>
                             {actions.length
                               ? actions.map(
                                   (a) =>
@@ -1143,6 +1320,18 @@ export const Sidebar = observer(() => {
                             &times;
                           </a>
                           <div className="headerTitle">Admin Back Stage</div>
+                          <p
+                            className={`MenuItemforSubMenu active`}
+                            style={{ marginTop: 20 }}
+                            onClick={() => handleInviteMemberToMFWMLOClick()}>
+                            Invite to MFWMLO
+                          </p>
+
+                          <p
+                            className={`MenuItemforSubMenu active`}
+                            onClick={() => handleInviteMemberToSORClick()}>
+                            Invite to SOR
+                          </p>
                           <div className={'guestListContainer'}>
                             <div className={'guestListTitle'}>Guest</div>
                             <div className={'guestList_divider'} />
@@ -1209,128 +1398,14 @@ export const Sidebar = observer(() => {
                         </div>
                       </div>
                     );
-
                   case 'Stickers':
                     return (
-                      <div
-                        style={{
-                          paddingRight: '2px',
-                          background: 'linear-gradient(225deg, #fbfcd1, #000000)',
-                          height: '100%',
-                        }}>
-                        <div
-                          id="mySidepanel"
-                          style={{ color: 'white', padding: 20 }}
-                          className="sidepanel">
-                          <a className="closebtn" onClick={handleOnOpenNav}>
-                            &times;
-                          </a>
-                          <div className="headerTitle">Admin Back Stage</div>
-                          <div
-                            style={{
-                              height: '70vh',
-                              overflowY: 'scroll',
-                              textAlign: 'center',
-                            }}>
-                            <text
-                              style={{
-                                fontFamily: 'Risque',
-                                fontStyle: 'normal',
-                                fontWeight: 'normal',
-                                fontSize: '20px',
-                                textAlign: 'center',
-                              }}>
-                              Emojis
-                              <div className={'guestList_divider'} />
-                            </text>
-
-                            <div
-                              style={{
-                                width: 150,
-                                display: 'flex',
-                                flexWrap: 'wrap',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                columnGap: 20,
-                                rowGap: 10,
-                                height: 200,
-                              }}>
-                              {Object.keys(EmotesvgDict).map((item: any, index: number) => (
-                                <div
-                                  key={`${item}${index}`}
-                                  className={getActiveEmojiClassName(item) ? 'inactive' : 'active'}
-                                  onClick={onEmojiIconClick}>
-                                  <img
-                                    id={`${item}`}
-                                    src={EmotesvgDict[item]}
-                                    width={50}
-                                    height={50}
-                                  />
-                                </div>
-                              ))}
-                              <text
-                                style={{
-                                  fontFamily: 'Risque',
-                                  fontStyle: 'normal',
-                                  fontWeight: 'normal',
-                                  fontSize: '20px',
-                                  textAlign: 'center',
-                                  // color: ' #fbff49',
-                                }}>
-                                Instruments
-                                <div className={'guestList_divider'} />
-                              </text>
-
-                              <div
-                                style={{
-                                  width: 150,
-                                  display: 'flex',
-                                  flexWrap: 'wrap',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-
-                                  columnGap: 20,
-                                  rowGap: 10,
-                                  height: 200,
-                                }}>
-                                {Object.keys(InstrumentSvgDict).map((item: any, index: number) => (
-                                  <div
-                                    key={`${item}${index}`}
-                                    className={
-                                      getActiveInstrumentClassName(item) ? 'inactive' : 'active'
-                                    }
-                                    onClick={onInstrumentIconClick}>
-                                    <img
-                                      id={`${item}`}
-                                      src={InstrumentSvgDict[item]}
-                                      width={50}
-                                      height={50}
-                                    />
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                            <div
-                              style={{
-                                position: 'absolute',
-                                bottom: '20px',
-                                left: '30%',
-                                transform: 'rotate(180deg)',
-                                cursor: 'pointer',
-                              }}>
-                              <img
-                                src={'/assets/loginbtn.png'}
-                                onClick={() => {
-                                  setSidebarType(null);
-                                }}
-                                alt={''}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <Stickers handleOnOpenNav={handleOnOpenNav} setSidebarType={setSidebarType} />
                     );
-
+                  case 'Chat':
+                    return (
+                      <Messages setSidebarType={setSidebarType} />
+                    );
                   default:
                     return (
                       <div
@@ -1395,9 +1470,10 @@ export const Sidebar = observer(() => {
                               onClick={() => {
                                 publishChatWidget(
                                   'updateChatWidget',
-                                  { toggle: !globalStore[roomIndex]['chatMinimized'] },
+                                  { toggle: true },
                                   EduClassroomConfig.shared.sessionInfo.roomName,
                                 );
+                                handleOnSidebarToolsClick('Chat');
                                 // toggleChatMinimize();
                               }}>
                               <div className={`gradient-box`}>
@@ -1440,125 +1516,12 @@ export const Sidebar = observer(() => {
                 switch (sidebarType) {
                   case 'Stickers':
                     return (
-                      <div
-                        style={{
-                          paddingRight: '2px',
-                          background: 'linear-gradient(225deg, #fbfcd1, #000000)',
-                          height: '100%',
-                        }}>
-                        <div
-                          id="mySidepanel"
-                          style={{ color: 'white', padding: 20 }}
-                          className="sidepanel">
-                          <a className="closebtn" onClick={handleOnOpenNav}>
-                            &times;
-                          </a>
-                          <div className="headerTitle">Back Stage</div>
-                          <div
-                            style={{
-                              height: '70vh',
-                              overflowY: 'scroll',
-                              textAlign: 'center',
-                            }}>
-                            <text
-                              style={{
-                                fontFamily: 'Risque',
-                                fontStyle: 'normal',
-                                fontWeight: 'normal',
-                                fontSize: '20px',
-                                textAlign: 'center',
-                              }}>
-                              Emojis
-                              <div className={'guestList_divider'} />
-                            </text>
-
-                            <div
-                              style={{
-                                width: 150,
-                                display: 'flex',
-                                flexWrap: 'wrap',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                columnGap: 20,
-                                rowGap: 10,
-                                height: 200,
-                              }}>
-                              {Object.keys(EmotesvgDict).map((item: any, index: number) => (
-                                <div
-                                  key={`${item}${index}`}
-                                  className={getActiveEmojiClassName(item) ? 'inactive' : 'active'}
-                                  onClick={onEmojiIconClick}>
-                                  <img
-                                    id={`${item}`}
-                                    src={EmotesvgDict[item]}
-                                    width={50}
-                                    height={50}
-                                  />
-                                </div>
-                              ))}
-                              <text
-                                style={{
-                                  fontFamily: 'Risque',
-                                  fontStyle: 'normal',
-                                  fontWeight: 'normal',
-                                  fontSize: '20px',
-                                  textAlign: 'center',
-                                  // color: ' #fbff49',
-                                }}>
-                                Instruments
-                                <div className={'guestList_divider'} />
-                              </text>
-
-                              <div
-                                style={{
-                                  width: 150,
-                                  display: 'flex',
-                                  flexWrap: 'wrap',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-
-                                  columnGap: 20,
-                                  rowGap: 10,
-                                  height: 200,
-                                }}>
-                                {Object.keys(InstrumentSvgDict).map((item: any, index: number) => (
-                                  <div
-                                    key={`${item}${index}`}
-                                    className={
-                                      getActiveInstrumentClassName(item) ? 'inactive' : 'active'
-                                    }
-                                    onClick={onInstrumentIconClick}>
-                                    <img
-                                      id={`${item}`}
-                                      src={InstrumentSvgDict[item]}
-                                      width={50}
-                                      height={50}
-                                    />
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                            <div
-                              style={{
-                                position: 'absolute',
-                                bottom: '20px',
-                                left: '30%',
-                                transform: 'rotate(180deg)',
-                                cursor: 'pointer',
-                              }}>
-                              <img
-                                src={'/assets/loginbtn.png'}
-                                onClick={() => {
-                                  setSidebarType(null);
-                                }}
-                                alt={''}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <Stickers handleOnOpenNav={handleOnOpenNav} setSidebarType={setSidebarType} />
                     );
-
+                  case 'Chat':
+                    return (
+                      <Messages setSidebarType={setSidebarType} />
+                    );
                   default:
                     return (
                       <div
@@ -1655,14 +1618,28 @@ export const Sidebar = observer(() => {
                                 handleOnSidebarToolsClick('Stickers');
                               }}>
                               <div
-                                className={`gradient-small-box-outline-user inactiveOption
-                  `}
+                                className={`gradient-small-box-outline-user inactiveOption`}
                                 style={{ height: '7vh' }}
                               />
                               <div
                                 className={`userMenuSubcontainer inactiveOption`}
                                 style={{ height: '7vh' }}>
                                 <span className={`MenuItemforSubMenu active`}>Stickers</span>
+                              </div>
+                            </div>
+                            <div
+                              className="userMenuContainer"
+                              onClick={() => {
+                                handleOnSidebarToolsClick('Chat');
+                              }}>
+                              <div
+                                className={`gradient-small-box-outline-user inactiveOption`}
+                                style={{ height: '7vh' }}
+                              />
+                              <div
+                                className={`userMenuSubcontainer inactiveOption`}
+                                style={{ height: '7vh' }}>
+                                <span className={`MenuItemforSubMenu active`}>Chat</span>
                               </div>
                             </div>
                           </div>

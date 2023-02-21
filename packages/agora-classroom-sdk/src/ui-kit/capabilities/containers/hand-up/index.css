@@ -11,6 +11,7 @@
 }
 
 .hands-up {
+  margin-left: 5px;
   cursor: pointer;
   align-self: flex-end;
 }
@@ -62,6 +63,7 @@
 }
 
 .hands-up-sender {
+  margin-left: 5px;
   cursor: pointer;
   position: relative;
 }

@@ -66,7 +66,7 @@ export const WhiteboardToolbar = visibilityControl(
 
     return mappedTools.length > 0 ? (
       <div
-        className="absolute bottom-0 w-full overflow-hidden"
+        className="absolute bottom-0 w-full"
         style={{ height: boardUIStore.boardAreaHeight, pointerEvents: 'none' }}>
         <Toolbar
           style={{ opacity: containedStreamWindowCoverOpacity, pointerEvents: 'all' }}

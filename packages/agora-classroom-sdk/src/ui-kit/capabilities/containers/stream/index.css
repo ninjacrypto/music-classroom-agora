@@ -27,7 +27,7 @@
 
 .video-player-overlay .bottom-left-info {
   position: absolute;
-  bottom: -30px;
+  bottom: -33px;
   left: -3px;
   display: flex;
   align-items: center;
@@ -250,7 +250,7 @@
 
 .username2 {
   @apply text-white font-medium;
-  font-size: 12px;
+  font-size: 16px;
   /* letter-spacing: -0.41px; */
   text-shadow: 0 1px 2px rgb(13 29 61 / 80%);
   /* overflow: hidden; */

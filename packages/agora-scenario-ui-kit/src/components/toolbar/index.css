@@ -286,7 +286,7 @@
   width: fit-content;
   left: 50%;
   transform: translate(-50%, 0) !important;
-  bottom: 5px;
+  bottom: -45px;
   /* left: 20%; */
   /* overflow-y: auto; */
   opacity: 1;

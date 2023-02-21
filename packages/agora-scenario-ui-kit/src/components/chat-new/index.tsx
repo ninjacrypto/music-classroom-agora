@@ -221,11 +221,11 @@ export const ChatNew: FC<ChatProps> = ({
                 <i className={canChatting ? 'can-discussion-svg' : 'no-discussion-svg'}></i>
               </span>
             ) : null} */}
-            {isHost && showCloseIcon ? (
+            {/* {isHost && showCloseIcon ? (
               <span style={{ cursor: 'pointer' }} onClick={() => onCollapse && onCollapse()}>
                 <SvgImg type={SvgIconEnum.MINIMIZE} />
               </span>
-            ) : null}
+            ) : null} */}
           </span>
         </div>
 

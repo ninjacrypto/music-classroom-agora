@@ -17,6 +17,7 @@
 }
 .sidepanel {
   height: 100%;
+  width: 250px;
   background-color: black;
   padding: 20px;
   box-sizing: border-box;
@@ -126,6 +127,7 @@
   font-size: 18px;
   color: #fbff49 !important;
   cursor: pointer;
+  text-align: center;
 }
 .top-babaji-contianer {
   /* position: relative; */
@@ -207,6 +209,7 @@
   cursor: pointer;
 }
 .headerTitle {
+  /* margin-bottom: 20px; */
   font-family: Risque;
   font-style: normal;
   font-weight: normal;
